@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% if title %}
+			<title>{{ title }} | {{ config.app_name }}</title>
+		{% else %}
+			<title>{{ config.app_name }}</title>
+		{% endif %}
+		
+	</head>
+	<body>
+		<div class="header">
+			{{ config.app_name }}
+			<a href="/index">Home</a>
+			<a href="/register">Register</a>
+		</div>
+		
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<p class='msg'>{{ message }}</p>
+				{% endfor %}
+			{% endif %}
+			
+		{% endwith %}	
+		
+		{% block content %}{% endblock %}
+		
+		
+		
+		
+		
+	</body>
+	
+	
+	
+	
+</html>
