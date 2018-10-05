@@ -10,9 +10,19 @@
 	</head>
 	<body>
 		<div class="header">
-			{{ config.app_name }}
+			<h2 style='display: inline'>{{ config.app_name }}</h2>
 			<a href="/index">Home</a>
 			<a href="/register">Register</a>
+			{% if current_user.is_anonymous %}
+			
+			<a href="/login">Log In</a>
+			
+			{% else %}
+			
+			<a href="/logout">Log Out</a>
+			<p style='display:inline'>Hey, <a href='{{ url_for("user_profile", name=current_user.username) }}'>{{ current_user.username }}</a>!</p>
+			
+			{% endif %}
 		</div>
 		
 		{% with messages = get_flashed_messages() %}

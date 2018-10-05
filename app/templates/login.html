@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>Log in to {{ config.app_name }}</h1>
+		
+		<form method="POST" novalidate>
+			{{ form.hidden_tag() }}
+			
+			<div class="input_block">
+				<p>{{ form.username.label }}</p>
+				{{ form.username(size=32) }}
+			</div>
+			
+			<div class="input_block">
+				<p>{{ form.password.label }}</p>
+				{{ form.password }}
+			</div>
+			
+			<div class="input_block">
+				<p>{{ form.remember_me.label }}</p>
+				{{ form.remember_me }}
+			</div>
+			
+			<div class="submit">
+				<br>
+				{{ form.submit }}
+			</div>
+			
+			
+			
+		</form>
+		
+	</body>
+
+</html>
+
+
+
+{% endblock %}

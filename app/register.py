@@ -7,7 +7,7 @@ class Register:
 		self.first_name = first_name
 		self.last_name = last_name
 		self.email = email
-		self.hashed_password = hashlib.sha256(username.encode('utf-8')).hexdigest()
+		self.hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 		self.username = username
 	
 	def register(self):
