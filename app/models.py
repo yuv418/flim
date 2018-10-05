@@ -1,6 +1,7 @@
 from app import db
 
-class User(db.Model):
+class Users(db.Model):
+	tablename='users'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	first_name = db.Column(db.String(128), index=True, unique=True)
 	last_name = db.Column(db.String(128), index=True, unique=True)

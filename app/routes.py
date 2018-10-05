@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect
 from app import app
 from app import config
 from app.forms import RegistrationForm
-
+from app.register import Register
 
 current_config = config.Config()
 
@@ -18,8 +18,17 @@ def register():
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		
-		flash('Registration requested for user {}, first_name {} and last_name {}'.format( 
-			form.username.data, form.first_name.data, form.last_name.data))
+		
+			
+		register = Register(form.first_name.data,
+			form.last_name.data,
+			form.email.data,
+			form.password.data,
+			form.username.data)
+			
+		register.register()
+		
+		flash('Registration requested for user!')
 		
 		return redirect('/index')
 	return render_template("register.html", 
