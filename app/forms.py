@@ -26,7 +26,7 @@ class NewPost(FlaskForm):
 	
 	post_topics_list = ["Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux",
 		"iOS", "Android", "Windows Phone", "SIM Card Problem", "Phone", "Desktop", "Laptop",
-		"Broken", "Data Recovery"]
+		"Broken", "Data Recovery"] #TODO make this part of the db and dynamic
 		
 	topics = SelectMultipleField("Topics/Tags", choices=post_topics_list, valdiators[DataRequired()])
 	
