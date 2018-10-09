@@ -12,11 +12,12 @@ class Users(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	first_name = db.Column(db.String(128), index=True, unique=True)
 	last_name = db.Column(db.String(128), index=True, unique=True)
-	email = db.Column(db.String(512), index=True, unique=True)
+	email = db.Column(db.String(128), index=True, unique=True)
+	about = db.Column(db.String(256), index=True, unique=True) 
 	password_hashed = db.Column(db.String(256), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
-	issue = db.relationship('Issue', backref='issue.creator')
+	issue = db.relationship('Post', backref='post.creator')
 	
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -28,17 +29,18 @@ class Users(UserMixin, db.Model):
 	def load_user(id):
 		return Users.query.get(int(id))
 	
-	def __repr__(self):
+	def __repr__(self): 
 		return "<object User {}>".format(self.username)
 
-class Issue(db.Model):
+class Post(db.Model):
+	__tablename__ = "post"
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	user_id = db.Column(db.Integer, db.ForeignKey("{}.users.id".format(currentconfig.app_db_name)))
+	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
 	title = db.Column(db.String(128), index=True)
-	content = db.Column(db.String(128), index=True)
+	content = db.Column(db.Text, index=True)
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
 
 	def __repr__(self):
-		return "<object Issue {} }{}>".format(self.id, self.title)
+		return "<object Post {} }{}>".format(self.id, self.title)
