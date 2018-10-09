@@ -2,6 +2,15 @@
 {% block content %}
 	<h1>User Profile for {{ user.username }} ({{ user.first_name + " " + user.last_name }})</h1>
 	
+	{% if user.about %}
+		<p>{{ user.about }}</p>
+		
+	{% else %}
+		<p>Well, normally we'd put the "About Me" description here, but there isn't one!</p>
+	{% endif %}
+	
+	
+	
 	
 
 

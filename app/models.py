@@ -13,7 +13,7 @@ class Users(UserMixin, db.Model):
 	first_name = db.Column(db.String(128), index=True, unique=True)
 	last_name = db.Column(db.String(128), index=True, unique=True)
 	email = db.Column(db.String(128), index=True, unique=True)
-	about = db.Column(db.String(256), index=True, unique=True) 
+	about = db.Column(db.Text(512), index=True, unique=True) 
 	password_hashed = db.Column(db.String(256), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
@@ -37,10 +37,12 @@ class Post(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
-	title = db.Column(db.String(128), index=True)
+	title = db.Column(db.String(128), index=True) 
 	content = db.Column(db.Text, index=True)
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
+	
+	topics = db.Column(db.Text(512), index=True, default="")
 
 	def __repr__(self):
 		return "<object Post {} }{}>".format(self.id, self.title)

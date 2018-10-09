@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectMultipleField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, EqualTo
 
@@ -18,3 +18,15 @@ class LoginForm(FlaskForm):
 	password = PasswordField("Password", validators=[DataRequired()])
 	remember_me = BooleanField("Remember", validators=[DataRequired()])
 	submit = SubmitField("Log In")
+	
+	
+class NewPost(FlaskForm):
+	title = StringField("Title", validators=[DataRequired()])
+	content = TextAreaField("Content", validators=[DataRequired()])
+	
+	post_topics_list = ["Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux",
+		"iOS", "Android", "Windows Phone", "SIM Card Problem", "Phone", "Desktop", "Laptop",
+		"Broken", "Data Recovery"]
+		
+	topics = SelectMultipleField("Topics/Tags", choices=post_topics_list, valdiators[DataRequired()])
+	
