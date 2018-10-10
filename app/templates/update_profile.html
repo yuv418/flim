@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+	<h1>Update Profile</h1>
+	
+	<form action="" method="POST" novalidate>
+		<div class="form_block">
+			{{ form.first_name.label }}
+			{{ form.first_name(size=32) }}
+		</div>
+		
+		<div class="form_block">
+			{{ form.last_name.label }}
+			{{ form.last_name(size=32) }}
+		</div>
+		
+		<div class="form_block">
+			{{ form.password.label }}
+			{{ form.password(size=32) }}
+		</div>
+		
+		<div class="form_block">
+			{{ form.password_validate.label }}
+			{{ form.password_validate(size=32) }}
+		</div>
+		
+		<div class="form_block">
+			{{ form.about_me.label }}
+			{{ form.about_me(cols=100, rows=10) }}
+		</div>
+		
+		<div class="submit_block">
+			{{ form.submit }}
+		</div>
+		
+		
+		
+		
+		
+	</form>
+
+{% endblock %}

@@ -33,4 +33,20 @@ class NewPostForm(FlaskForm):
 	
 	submit = SubmitField("Post")
 	
+class UpdateProfileForm(FlaskForm):
+	first_name = StringField('First Name')
+	last_name = StringField('Last Name')
+	
+	email = EmailField('Email')
+	
+	password = PasswordField('Password', validators=[EqualTo('password_validate', message='The passwords must match')])
+	password_validate = PasswordField('Password (type again to validate)')
+	
+	about_me = TextAreaField("About Me: ")
+	
+	submit = SubmitField("Update Information")
+	
+	
+
+	
 	

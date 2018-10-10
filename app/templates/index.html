@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!DOCTYPE html>
-<html>
-	<body>
-		<h2>Welcome to {{config.app_name}}!</h2>
-	</body>
-</html>
+	<h2>Welcome to {{config.app_name}}!</h2>
+	
+	{% for post in all_posts %}
+		
+		{% include "_post_listing.html" %}
+	
+	{% endfor %}
 {% endblock %}

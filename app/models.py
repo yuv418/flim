@@ -1,5 +1,6 @@
 from app import db
 from app import login
+from flask import url_for
 from flask_login import UserMixin
 from datetime import datetime
 from app.config import Config
@@ -43,11 +44,11 @@ class Post(db.Model):
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
 	
-	topics = db.Column(db.Text, index=True, default="")
+	topics = db.Column(db.Text, index=True, default="")	
 	
 	def get_topics_list(self):
 		return json.loads(self.topics)
 	
 
 	def __repr__(self):
-		return "<object Post {} }{}>".format(self.id, self.title)
+		return "<object Post {} {}>".format(self.id, self.title)
