@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+	
+	
+	<h1>Post: {{ post.title }}</h1>
+
+	<h2>Topics</h2>
+	{% for topic in post.get_topics_list() %}
+		<p>{{ topic }}</p>
+	{% endfor %}
+
+	<h3>Content</h3>
+	
+	<p> {{ post.content }}</p>
+
+{% endblock %}

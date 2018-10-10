@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import Users
+from app.models import Users, Post
 from app import app
 from app import config
 from app.forms import RegistrationForm, LoginForm, NewPostForm
@@ -90,17 +90,33 @@ def new_post():
 	if form.validate_on_submit():
 		
 		make_new_post = NewPost(current_user.id, form.title.data, form.content.data, form.topics.data)
-		new_post_id = make_new_post.create_new_post()
+		new_post = make_new_post.create_new_post()
 		
-		flash("Posted successfully! Post ID is {}!".format(str(new_post_id)))
+		flash('Post "{}" created succesfully!'.format(str(new_post.title)))
 		
-		return redirect(url_for('index'))
+		return redirect(url_for('view_post', post_id=new_post.id))
 	
 	
 	return render_template("new_post.html", 
 		config=current_config,
 		form=form,
 		title="New Post")
+		
+		
+@app.route('/post/<post_id>')
+def view_post(post_id):
+	try:
+		post_id = int(post_id)
+	except ValueError:
+		return "Oops! That's not a valid post!"
+	
+	post = Post.query.filter_by(id=post_id).first()
+	
+	if post == None:
+		return "Oops! That's not a valid post!"
+	
+	return render_template("view_post.html",
+		post=post, title=post.title)
 		
 	
 
