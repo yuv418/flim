@@ -18,3 +18,6 @@ class NewPost:
 		
 		db.session.add(new_post)
 		db.session.commit()
+		
+		return new_post.id
+		

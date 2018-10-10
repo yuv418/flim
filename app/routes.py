@@ -90,7 +90,9 @@ def new_post():
 	if form.validate_on_submit():
 		
 		make_new_post = NewPost(current_user.id, form.title.data, form.content.data, form.topics.data)
-		make_new_post.create_new_post()
+		new_post_id = make_new_post.create_new_post()
+		
+		flash("Posted successfully! Post ID is {}!".format(str(new_post_id)))
 		
 		return redirect(url_for('index'))
 	
