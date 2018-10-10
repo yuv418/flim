@@ -42,7 +42,7 @@ class Post(db.Model):
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
 	
-	topics = db.Column(db.Text(512), index=True, default="")
+	topics = db.Column(db.Text, index=True, default="")
 
 	def __repr__(self):
 		return "<object Post {} }{}>".format(self.id, self.title)

@@ -3,7 +3,7 @@ import os
 class Config:
 	
 	
-	app_name = "File-a-Bug"
+	app_name = "Flim"
 	
 	app_db_name = "bug_reporter_db"
 	app_db_username = "default_u"

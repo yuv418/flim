@@ -2,10 +2,26 @@
 {% block content %}
 
 	<h1>New Post</h1>
-	
-	<div class="form_block">
-		<p>{{</p>
+	<form action="" method="POST" novalidate>
 		
-	</div>
+		{{ form.hidden_tag() }}
+		
+		<div class="form_block">
+			<p>{{ form.title.label }}</p>
+			{{ form.title(size=32) }}
+		</div>
+		
+		<div class="form_block">
+			<p>{{ form.content.label }}</p>
+			{{ form.content(cols=100, rows=10) }}
+		</div>
+		
+		<div class="form_block">
+			<p>{{ form.topics.label }}</p>
+			{{ form.topics }}
+		</div>
+		
+		{{ form.submit }}
+	</form>
 
 {% endblock %}

@@ -5,7 +5,9 @@ from app import app
 from app import config
 from app.forms import RegistrationForm, LoginForm, NewPostForm
 from app.register import Register
+from app.new_post import NewPost
 import hashlib
+
 
 current_config = config.Config()
 
@@ -78,15 +80,24 @@ def user_profile(name):
 		
 		
 		
-@app.route("/new_post")
+@app.route("/new_post", methods=["GET", "POST"])
 @login_required
 def new_post():
-	
 	form = NewPostForm()
+	
+	print(form.validate_on_submit())
+	
+	if form.validate_on_submit():
+		
+		make_new_post = NewPost(current_user.id, form.title.data, form.content.data, form.topics.data)
+		make_new_post.create_new_post()
+		
+		return redirect(url_for('index'))
+	
 	
 	return render_template("new_post.html", 
 		config=current_config,
-		form=form
+		form=form,
 		title="New Post")
 		
 	
