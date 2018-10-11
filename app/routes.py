@@ -1,13 +1,14 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import Users, Post
+from app.models import *
 from app import app
 from app import config, errors
-from app.forms import RegistrationForm, LoginForm, NewPostForm, UpdateProfileForm
+from app.forms import *
 from app.register import Register
 from app.new_post import NewPost
 from app.update_user_profile import UpdateUserProfile
 from app import db
+from app.new_response import NewResponse
 import hashlib
 
 
@@ -80,9 +81,12 @@ def logout():
 @login_required
 def user_profile(name):
 	user = Users.query.filter_by(username=name).first_or_404()
+	posts = Post.query.filter_by(user_id=user.id).all()
+	
 	return render_template("user.html", 
 		user=user,
-		title="User Profile")
+		title="User Profile",
+		user_posts=posts)
 		
 		
 		
@@ -117,13 +121,16 @@ def view_post(post_id):
 	except ValueError:
 		return "Oops! That's not a valid post!"
 	
+	post_responses = Response.query.filter_by(post_id=post_id).order_by(Response.id.desc()).all()
+	
+	
 	post = Post.query.filter_by(id=post_id).first()
 	
 	if post == None:
 		return "Oops! That's not a valid post!"
 	
 	return render_template("view_post.html",
-		post=post, title=post.title)
+		post=post, title=post.title, post_responses=post_responses)
 		
 		
 @app.route('/update_profile', methods=["GET", "POST"])
@@ -144,7 +151,28 @@ def update_profile():
 @app.route('/edit_post/<post_id>', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
-	return "Placeholder"
+	post = Post.query.filter_by(id=post_id).first()
+	form = EditPostForm()
+	
+	if form.validate_on_submit():
+		post.content = form.content.data
+		db.session.commit()
+		
+		flash("Post edited succesfully!")
+		return redirect(url_for("view_post", post_id=post.id))
+		
+	
+	form.content.default = post.content
+	form.process()
+	
+	if not post.creator == current_user:
+		flash("You must be logged in as the creator of this post in order to edit it.")
+		return redirect(url_for("view_post", post_id=post.id))
+	
+	
+
+	
+	return render_template("edit_post.html", form=form)
 	
 @app.route('/delete_post/<post_id>', methods=["GET", "POST"])
 def delete_post(post_id):
@@ -156,5 +184,20 @@ def delete_post(post_id):
 	
 	return redirect(url_for("index"))
 
+@app.route('/new_response/<post_id>', methods=["GET", "POST"])
+@login_required
+def new_response(post_id):
+	post = Post.query.filter_by(id=post_id).first()
+	
+	form = NewResponseForm()
+	
+	if form.validate_on_submit():
+		new_response = NewResponse(post, form.content.data)
+		new_response.add_response()
+		
+		flash("Response added succesfully!")
+		return redirect(url_for("view_post", post_id=post.id))
+	
+	return render_template("new_response.html", form=form, post=post)
 	
 

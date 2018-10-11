@@ -16,10 +16,11 @@ class Users(UserMixin, db.Model):
 	last_name = db.Column(db.String(128), index=True, unique=True)
 	email = db.Column(db.String(128), index=True, unique=True)
 	about = db.Column(db.Text(512), index=True, unique=True) 
-	password_hashed = db.Column(db.String(256), index=True, unique=True)
+	password_hashed = db.Column(db.String(255), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
 	post = db.relationship('Post', backref='creator')
+	response = db.relationship('Response', backref='creator')
 	
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -40,11 +41,11 @@ class Post(db.Model):
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
 	title = db.Column(db.String(128), index=True) 
-	content = db.Column(db.Text, index=True)
+	content = db.Column(db.Text(9990), index=True)
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
 	
-	topics = db.Column(db.Text, index=True, default="")	
+	topics = db.Column(db.Text(9999), index=True, default="")	
 	
 	response = db.relationship("Response", backref="origin_post")
 	
@@ -61,3 +62,11 @@ class Response(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	
 	post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
+	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+	
+	content = db.Column(db.Text(9990), index=True)
+	
+	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	
+	def __repr__(self):
+		return "<object Response post_id:{}>".format(post_id)

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>New Response</h1>
+	<p>Type your response for "{{ post.title }}"</p>
+	<hr>
+	
+	<form action="" method="POST" novalidate>
+		
+		{{ form.hidden_tag() }}
+		
+		<div class="form_block">
+			<p>{{ form.content.label }}</p>
+			{{ form.content(cols=100, rows=10) }}
+		</div>
+		
+		<br>
+		
+		<div class="submit_block">
+			{{ form.submit }}
+		</div>
+	
+	</form>
+
+	
+
+
+
+{% endblock %}
+
+

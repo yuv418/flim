@@ -12,6 +12,16 @@
 		<p>Well, normally we'd put the "About Me" description here, but there isn't one!</p>
 	{% endif %}
 	
+	<hr>
+	
+	<h3>{{ user.username }}'s Posts</h3>
+	
+	{% for post in user_posts %}
+		{% include "_post_listing.html" %}
+	{% endfor %}
+	
+	<hr>
+	
 	<a href="{{ url_for('update_profile') }}">Update Profile</a>
 	
 	
