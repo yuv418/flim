@@ -123,7 +123,6 @@ def view_post(post_id):
 	
 	post_responses = Response.query.filter_by(post_id=post_id).order_by(Response.id.desc()).all()
 	
-	
 	post = Post.query.filter_by(id=post_id).first()
 	
 	if post == None:
@@ -192,7 +191,7 @@ def new_response(post_id):
 	form = NewResponseForm()
 	
 	if form.validate_on_submit():
-		new_response = NewResponse(post, form.content.data)
+		new_response = NewResponse(current_user, post, form.content.data)
 		new_response.add_response()
 		
 		flash("Response added succesfully!")
