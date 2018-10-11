@@ -47,7 +47,7 @@ class Post(db.Model):
 	
 	topics = db.Column(db.Text(9999), index=True, default="")	
 	
-	response = db.relationship("Response", backref="origin_post")
+	response = db.relationship("Response", backref="parent_post")
 	
 	def get_topics_list(self):
 		return json.loads(self.topics)
@@ -64,7 +64,7 @@ class Response(db.Model):
 	post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
-	content = db.Column(db.Text(9990), index=True)
+	content = db.Column(db.Text(9990))
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 	
