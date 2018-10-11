@@ -4,6 +4,7 @@ class Config:
 	
 	
 	app_name = "Flim"
+	app_allow_anonymous_view_posts = True
 	
 	app_db_name = "bug_reporter_db"
 	app_db_username = "default_u"

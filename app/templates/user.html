@@ -2,6 +2,9 @@
 {% block content %}
 	<h1>User Profile for {{ user.username }} ({{ user.first_name + " " + user.last_name }})</h1>
 	
+	<p><b>Email:</b> {{ user.email }} </p>
+	
+	
 	{% if user.about %}
 		<p>{{ user.about }}</p>
 		

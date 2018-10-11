@@ -10,8 +10,25 @@
 		<p>{{ topic }}</p>
 	{% endfor %}
 
-	<h3>Content</h3>
+	<h2>Content</h2>
 	
 	<p> {{ post.content }}</p>
 
+	{% if post.creator == current_user %}
+		<!--if the logged-in user created this post-->
+		
+		<a href="{{ url_for('edit_post', post_id=post.id) }}">edit</a> <br>
+		<a href="{{ url_for('delete_post', post_id=post.id) }}">delete</a>
+		
+		<br>
+		<br>
+	{% endif %}
+	
+	
+	
+	{% if not current_user.is_anonymous %}
+		<!-- allow logged-in users to reply -->
+		<a href="#">reply (does nothing as of now)</a>
+	{% endif %}
+	
 {% endblock %}

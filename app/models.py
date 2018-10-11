@@ -19,7 +19,7 @@ class Users(UserMixin, db.Model):
 	password_hashed = db.Column(db.String(256), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
-	issue = db.relationship('Post', backref='post.creator')
+	post = db.relationship('Post', backref='creator')
 	
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -46,9 +46,18 @@ class Post(db.Model):
 	
 	topics = db.Column(db.Text, index=True, default="")	
 	
+	response = db.relationship("Response", backref="origin_post")
+	
 	def get_topics_list(self):
 		return json.loads(self.topics)
 	
 
 	def __repr__(self):
 		return "<object Post {} {}>".format(self.id, self.title)
+		
+class Response(db.Model):
+	__tablename__ = "responses"
+	
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	
+	post_id = db.Column(db.Integer, db.ForeignKey("post.id"))

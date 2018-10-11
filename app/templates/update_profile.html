@@ -3,32 +3,40 @@
 {% block content %}
 
 
-	<h1>Update Profile</h1>
+	<h1>Update Profile (Leave fields that aren't applicable blank)</h1>
 	
 	<form action="" method="POST" novalidate>
+		
+		{{ form.hidden_tag() }}
+		
 		<div class="form_block">
-			{{ form.first_name.label }}
-			{{ form.first_name(size=32) }}
+			<p>{{ form.first_name.label }}</p>
+			<p>{{ form.first_name(size=32) }}</p>
 		</div>
 		
 		<div class="form_block">
-			{{ form.last_name.label }}
-			{{ form.last_name(size=32) }}
+			<p>{{ form.last_name.label }}</p>
+			<p>{{ form.last_name(size=32) }}</p>
 		</div>
 		
 		<div class="form_block">
-			{{ form.password.label }}
-			{{ form.password(size=32) }}
+			<p>{{ form.password.label }}</p>
+			<p>{{ form.password(size=32) }}</p>
 		</div>
 		
 		<div class="form_block">
-			{{ form.password_validate.label }}
-			{{ form.password_validate(size=32) }}
+			<p>{{ form.password_validate.label }}</p>
+			<p>{{ form.password_validate(size=32) }}</p>
 		</div>
 		
 		<div class="form_block">
-			{{ form.about_me.label }}
-			{{ form.about_me(cols=100, rows=10) }}
+			<p>{{ form.email.label }}</p>
+			<p>{{ form.email(size=32) }}</p>
+		</div>
+		
+		<div class="form_block">
+			<p>{{ form.about_me.label }}</p>
+			<p>{{ form.about_me(cols=100, rows=10) }}</p>
 		</div>
 		
 		<div class="submit_block">

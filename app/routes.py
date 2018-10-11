@@ -2,10 +2,12 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import Users, Post
 from app import app
-from app import config
+from app import config, errors
 from app.forms import RegistrationForm, LoginForm, NewPostForm, UpdateProfileForm
 from app.register import Register
 from app.new_post import NewPost
+from app.update_user_profile import UpdateUserProfile
+from app import db
 import hashlib
 
 
@@ -18,7 +20,7 @@ def put_config():
 @app.route("/")
 @app.route("/index")
 def index():
-	all_posts = Post.query.all()
+	all_posts = Post.query.order_by(Post.id.desc()).all()
 	return render_template("index.html", all_posts=all_posts)
 
 
@@ -105,7 +107,8 @@ def new_post():
 		form=form,
 		title="New Post")
 		
-		
+
+
 @app.route('/post/<post_id>')
 @login_required
 def view_post(post_id):
@@ -123,10 +126,35 @@ def view_post(post_id):
 		post=post, title=post.title)
 		
 		
-@app.route('/update_profile')
+@app.route('/update_profile', methods=["GET", "POST"])
+@login_required
 def update_profile():
 	form = UpdateProfileForm()
 	
-	return render_template("update_profile.html", form=form)	
+	if form.validate_on_submit():
+		
+		u = UpdateUserProfile(form.first_name.data, form.last_name.data, form.email.data, form.password.data, form.password_validate.data, form.about_me.data, current_user)
+		u.update()
+		
+		flash("Updated profile succesfully.")
+		return redirect(url_for("user_profile", name=current_user.username))
+		
+	return render_template("update_profile.html", form=form)
+	
+@app.route('/edit_post/<post_id>', methods=["GET", "POST"])
+@login_required
+def edit_post(post_id):
+	return "Placeholder"
+	
+@app.route('/delete_post/<post_id>', methods=["GET", "POST"])
+def delete_post(post_id):
+	post = Post.query.filter_by(id=post_id).first()
+	db.session.delete(post)
+	db.session.commit()
+	
+	flash("Post succesfully deleted!")
+	
+	return redirect(url_for("index"))
+
 	
 

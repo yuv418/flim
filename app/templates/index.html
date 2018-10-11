@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h2>Welcome to {{config.app_name}}!</h2>
+	<h1>Welcome to {{config.app_name}}!</h1>
 	
-	{% for post in all_posts %}
+	<div class="posts_block">
+		<h4>Posts</h4>
 		
-		{% include "_post_listing.html" %}
+		{% for post in all_posts %}
+		
+			{% include "_post_listing.html" %}
+		
+		{% endfor %}
 	
-	{% endfor %}
+	</div>
+	
 {% endblock %}
