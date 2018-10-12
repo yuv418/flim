@@ -34,17 +34,17 @@
 			
 			{% endif %}
 		</div>
-		
-		{% with messages = get_flashed_messages() %}
-			{% if messages %}
-				{% for message in messages %}
-					<p class='msg'>{{ message }}</p>
-				{% endfor %}
-			{% endif %}
-			
-		{% endwith %}	
-				
 		<div class="content">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<p class='msg'>{{ message }}</p>
+					{% endfor %}
+				{% endif %}
+				
+			{% endwith %}	
+					
+		
 			{% block content %}{% endblock %}
 		</div>
 		

@@ -6,9 +6,7 @@
 	<h1>Post: {{ post.title }}</h1>
 
 	<h2>Topics</h2>
-	{% for topic in post.get_topics_list() %}
-		<p>{{ topic }}</p>
-	{% endfor %}
+	{% include "_topic_listing.html" %}
 
 	<h2>Content</h2>
 	

@@ -6,3 +6,23 @@
 	
 	margin-bottom: 10px;
 }
+
+.topic {
+	
+
+	padding: 5px;
+	
+	
+	display: inline-block; /* we use this to fit the div to the content inside */
+
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+.post_grouped_data .post_data {
+	display: inline-block;
+}
+
+#post_author_tagline {
+	margin-top: 2px; /* hack to get the author line to go up... */
+}

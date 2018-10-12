@@ -14,3 +14,11 @@ a {
 	font-family: Nunito, "Fira Sans", sans-serif;
 	color: blue;
 }
+
+.msg {
+	border-left: 6px solid #0032ee;
+	background-color: lightblue;
+	background-image: lightblue;
+	padding: 10px;
+	max-width: 15%;
+}

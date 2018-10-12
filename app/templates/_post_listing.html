@@ -1,14 +1,26 @@
-<table class="post_listing">
-	{% for topic in post.topics %}
-	
-	{% endfor %}
+<div class="post_listing">
 	
 	
-	<tr>
-		<td class='title'><a href="{{ url_for('view_post', post_id=post.id) }}"><b>{{ post.title }}</b></a></td>
-		<td class='content'>{{ post.content[0:64] }}...</td>
-	</tr>
-	<tr>
-		<td class='author'><b>By</b> {{ post.creator.username }}</td>
-	</tr>
-</table>
+		
+		{% include "_topic_listing.html" %}
+		
+		<div class="post_grouped_data">
+			<p id="post_title" class='post_data'>
+				<a href="{{ url_for('view_post', post_id=post.id) }}">
+					<b>{{ post.title }}</b>
+				</a>
+			</p>
+		
+			<p id="post_content_preview" class='post_data'>
+				{{ post.content[0:64].strip() }}...
+			</p>
+			
+			
+			
+			
+		</div>
+		
+		<p id="post_author_tagline" class='post_data'><b>By</b> {{ post.creator.username }}</p>
+	
+		
+</div>

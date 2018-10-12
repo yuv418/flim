@@ -1,0 +1,7 @@
+<div class="topics">
+	{% for topic in post.get_topics_list() %}
+		<div class="topic">
+			{{ topic }}
+		</div>
+	{% endfor %}
+</div>
