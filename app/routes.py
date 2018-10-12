@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import *
 from app import app
-from app import config, errors
+from app import config, errors, admin_routes
 from app.forms import *
 from app.register import Register
 from app.new_post import NewPost
@@ -85,11 +85,13 @@ def logout():
 def user_profile(name):
 	user = Users.query.filter_by(username=name).first_or_404()
 	posts = Post.query.filter_by(user_id=user.id).all()
+	responses = Post.query.filter_by(creator=user).all()
 	
 	return render_template("user.html", 
 		user=user,
 		title="User Profile",
-		user_posts=posts)
+		user_posts=posts, 
+		user_responses=responses)
 		
 		
 		
@@ -126,6 +128,7 @@ def view_post(post_id):
 	post_responses = Response.query.filter_by(post_id=post_id).order_by(Response.id.desc()).all()
 	
 	post = Post.query.filter_by(id=post_id).first()
+	
 	
 	if post == None:
 		return "Oops! That's not a valid post!"

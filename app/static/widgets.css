@@ -4,3 +4,6 @@ button, input[type="button"], input[type="submit"]{
 	background-color: lightblue;
 	color: black;
 }
+button:hover, input[type="button"]:hover, input[type="submit"]:hover{
+		cursor: pointer;
+}

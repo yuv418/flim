@@ -27,6 +27,15 @@
 		<p>There's nothing here!</p>
 	{% endif %}
 	
+	<hr>
+	
+	<h3>{{ user.username }}'s Responses</h3>
+	
+	<hr>
+		
+	{% for response in user_responses %}
+		{% include "_response_listing.html" %}
+	{% endfor %}
 	
 	
 	
