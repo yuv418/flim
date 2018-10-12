@@ -1,5 +1,9 @@
 <table class="post_listing">
-	<hr>
+	{% for topic in post.topics %}
+	
+	{% endfor %}
+	
+	
 	<tr>
 		<td class='title'><a href="{{ url_for('view_post', post_id=post.id) }}"><b>{{ post.title }}</b></a></td>
 		<td class='content'>{{ post.content[0:64] }}...</td>

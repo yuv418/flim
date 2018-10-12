@@ -1,0 +1,26 @@
+div.header {
+	background-color: lightblue; /* for browsers that don't like gradients */
+	background-image: linear-gradient(to right, lightblue, #0032ee);
+	
+	
+	width: 100%;
+	
+	padding: 20px;
+	
+	margin: 0;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+}
+
+div.header a {
+	color: white !important;
+}
+
+div.header p {
+	color: white !important;
+}
+

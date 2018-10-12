@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+:root {
+	--default-font-family: Nunito, "Fira Sans", sans-serif;
+}
+* {
+	font-family: Nunito, "Fira Sans", sans-serif;
+}
+
+.title {
+	font-family: Nunito, "Fira Sans", sans-serif;
+}
+
+a {
+	font-family: Nunito, "Fira Sans", sans-serif;
+	color: blue;
+}

@@ -1,0 +1,8 @@
+.post_listing {
+	border: 2px solid grey;
+	border-radius: 6px;
+	
+	padding: 5px;
+	
+	margin-bottom: 10px;
+}
