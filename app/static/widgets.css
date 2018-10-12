@@ -1,0 +1,6 @@
+button, input[type="button"], input[type="submit"]{
+	border: none;
+	padding: 10px;
+	background-color: lightblue;
+	color: black;
+}

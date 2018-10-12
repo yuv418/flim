@@ -11,10 +11,12 @@ class Config:
 	app_db_password = "letmeinmysql"
 	app_db_host = "localhost"
 	
-	app_post_topics_list = [("Announcement", "Announcement"), ("Help Needed", "Help Needed"), ("Idea", "Idea"), ("Not Urgent", "Not Urgent"), ("Urgent", "Urgent"), ("Windows", "Windows"), ("macOS", "macOS"), ("Linux", "Linux"),
-		("iOS", "iOS"), ("Android", "Android"), ("Windows Phone", "Windows Phone"), ("SIM Card Problem", "SIM Card Problem"), ("Phone", "Phone"), ("Desktop", "Desktop"), ("Laptop", "Laptop"),
-		("Broken", "Broken"), ("Data Recovery", "Data Recovery")] 
+	app_message_max_length = 9990
 		
+	app_post_topics_list = ["Announcement", "Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux", "iOS", "Android", "Windows Phone", 
+		"Ubuntu Touch", "KDE Plasma Mobile", "Question", "SIM Card Problem", "Cell Phone", "Desktop", "Laptop", "Broken", "Data Recovery"]
+	
+	app_allow_registration = True
 	
 	
 	
@@ -26,3 +28,6 @@ class Config:
 	SQLALCHEMY_DATABASE_URI = "mysql://{}:{}@{}/{}".format(app_db_username, app_db_password, app_db_host, app_db_name)
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	
+	
+	def get_post_topics_list(self):
+		return [(choice, choice) for choice in self.app_post_topics_list]

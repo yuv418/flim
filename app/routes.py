@@ -27,6 +27,9 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+	if not current_config.app_allow_registration:
+		flash("Registration is disallowed right now.")
+		return redirect(url_for('index'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		
@@ -106,7 +109,6 @@ def new_post():
 		
 		return redirect(url_for('view_post', post_id=new_post.id))
 	
-	
 	return render_template("new_post.html", 
 		form=form,
 		title="New Post")
@@ -155,19 +157,26 @@ def edit_post(post_id):
 	
 	if form.validate_on_submit():
 		post.content = form.content.data
+		post.topics = json.dumps(form.topics.data)
+		
 		db.session.commit()
 		
 		flash("Post edited succesfully!")
 		return redirect(url_for("view_post", post_id=post.id))
 		
-	
-	form.content.default = post.content
-	form.process()
-	
 	if not post.creator == current_user:
 		flash("You must be logged in as the creator of this post in order to edit it.")
 		return redirect(url_for("view_post", post_id=post.id))
 	
+	form.content.default = post.content	
+	
+	default_topics = []
+	
+	for topic in post.get_topics_list():
+		default_topics.append(topic)
+	
+	form.topics.default = default_topics
+	form.process()
 	
 
 	
@@ -176,6 +185,12 @@ def edit_post(post_id):
 @app.route('/delete_post/<post_id>', methods=["GET", "POST"])
 def delete_post(post_id):
 	post = Post.query.filter_by(id=post_id).first()
+	
+	if not current_user == post.creator:
+		flash("You do not have the correct permissions to perform this action.")
+		return redirect(url_for('view_post', post_id=post.id))
+	
+	
 	db.session.delete(post)
 	db.session.commit()
 	

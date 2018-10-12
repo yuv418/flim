@@ -7,7 +7,7 @@ from app.config import Config
 import hashlib
 import json
 
-currentconfig = Config()
+current_config = Config()
 
 class Users(UserMixin, db.Model):
 	__tablename__='users'
@@ -15,7 +15,7 @@ class Users(UserMixin, db.Model):
 	first_name = db.Column(db.String(128), index=True, unique=True)
 	last_name = db.Column(db.String(128), index=True, unique=True)
 	email = db.Column(db.String(128), index=True, unique=True)
-	about = db.Column(db.Text(512), index=True, unique=True) 
+	about = db.Column(db.Text(current_config.app_message_max_length), index=True, unique=True) 
 	password_hashed = db.Column(db.String(255), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
@@ -41,11 +41,11 @@ class Post(db.Model):
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
 	title = db.Column(db.String(128), index=True) 
-	content = db.Column(db.Text(9990), index=True)
+	content = db.Column(db.Text(current_config.app_message_max_length), index=True)
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
 	
-	topics = db.Column(db.Text(9999), index=True, default="")	
+	topics = db.Column(db.Text(current_config.app_message_max_length), index=True, default="")	
 	
 	response = db.relationship("Response", backref="parent_post")
 	
@@ -64,7 +64,7 @@ class Response(db.Model):
 	post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
-	content = db.Column(db.Text(9990))
+	content = db.Column(db.Text(current_config.app_message_max_length))
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 	

@@ -2,15 +2,19 @@
 {% block content %}
 
 	
+	<div class="post_title_block">
+		<h1>Post: {{ post.title }}</h1>
+	</div>
 	
-	<h1>Post: {{ post.title }}</h1>
-
-	<h2>Topics</h2>
 	{% include "_topic_listing.html" %}
 
-	<h2>Content</h2>
 	
-	<p> {{ post.content }}</p>
+	<div class="post_body">
+		<p>
+			{{ post.content | safe }}
+		</p>
+		
+	</div>
 
 
 	{% if post.creator == current_user %}
@@ -42,5 +46,9 @@
 		{% include "_response_listing.html" %}
 	
 	{% endfor %}
+	
+	{% if post_responses == [] %}
+		<p>There's nothing here. Press "reply" to get started.</p>
+	{% endif %}
 	
 {% endblock %}

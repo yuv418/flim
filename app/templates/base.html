@@ -12,16 +12,21 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='post_listing.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='forms.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='post.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='widgets.css') }}" />
 		
 	</head>
 	<body>
 		<div class="header">
 			<h2 class="title" style='display: inline'>{{ config.app_name }}</h2>
 			<a href="{{ url_for('index') }}">Home</a>
+			
+			{% if config.app_allow_registration %}
+				<a href="{{ url_for('register') }}">Register</a>
+			{% endif %}
 
 			{% if current_user.is_anonymous %}
 			
-				<a href="{{ url_for('register') }}">Register</a>
 				<a href="{{ url_for('login') }}">Log In</a>
 				
 			{% else %}

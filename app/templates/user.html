@@ -12,6 +12,8 @@
 		<p>Well, normally we'd put the "About Me" description here, but there isn't one!</p>
 	{% endif %}
 	
+	<a href="{{ url_for('update_profile') }}">Update Profile</a>
+	
 	<hr>
 	
 	<h3>{{ user.username }}'s Posts</h3>
@@ -20,9 +22,13 @@
 		{% include "_post_listing.html" %}
 	{% endfor %}
 	
-	<hr>
+	{% if user_posts == [] or user_posts == None %}
+		<p>There's nothing here!</p>
+	{% endif %}
 	
-	<a href="{{ url_for('update_profile') }}">Update Profile</a>
+	
+	
+	
 	
 	
 	
