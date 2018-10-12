@@ -16,6 +16,10 @@
 		
 	</div>
 
+	<p>
+		<b>By</b>
+		 <a href="{{ url_for('user_profile', name=post.creator.username) }}">{{ post.creator.username }}</a>
+	</p>
 
 	{% if post.creator == current_user %}
 		<!--if the logged-in user created this post-->

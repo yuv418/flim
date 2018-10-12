@@ -1,5 +1,5 @@
 <div class="response_listing">
-	<p><b>By</b> {{ response.creator.username }}</p>
+	<p><b>By</b> <a href="{{ url_for('user_profile', name=response.creator.username) }}">{{ response.creator.username }}</a></p>
 	
 	<p>{{ response.content | safe }}</p>
 	
