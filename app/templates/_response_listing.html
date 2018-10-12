@@ -2,5 +2,7 @@
 	<p><b>By</b> {{ response.creator.username }}</p>
 	
 	<p>{{ response.content }}</p>
+	
+	<a href="{{ url_for('edit_response', response_id=response.id) }}">edit</a>
 	<hr>
 </div>

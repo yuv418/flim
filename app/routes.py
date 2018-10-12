@@ -198,5 +198,25 @@ def new_response(post_id):
 		return redirect(url_for("view_post", post_id=post.id))
 	
 	return render_template("new_response.html", form=form, post=post)
+
+	
+@app.route("/edit_response/<response_id>", methods=["GET", "POST"])
+@login_required
+def edit_response(response_id):
+	response = Response.query.filter_by(id=response_id).first()
+	
+	form = EditResponseForm()
+		
+	if form.validate_on_submit():
+		
+		response.content = form.content.data
+		db.session.commit()
+		
+		return redirect(url_for("view_post", post_id=response.post_id))
+		
+	form.content.default = response.content
+	form.process()
+	
+	return render_template("edit_response.html", form=form)
 	
 

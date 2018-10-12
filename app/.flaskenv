@@ -1,1 +1,2 @@
 FLASK_APP=bugfiler.py
+FLASK_DEBUG=1

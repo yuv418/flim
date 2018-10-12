@@ -52,6 +52,10 @@ class NewResponseForm(FlaskForm):
 	content = TextAreaField("Response")
 	submit = SubmitField("Submit Response")
 	
+class EditResponseForm(FlaskForm):
+	content = TextAreaField("Edit Response")
+	submit = SubmitField("Update Response")
+	
 	
 
 	
