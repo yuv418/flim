@@ -235,7 +235,14 @@ def edit_response(response_id):
 	return render_template("edit_response.html", form=form)
 	
 	
-@app.("/topic/<topic_name>")
-def view_topics(ropic_name):
+@app.route("/topic/<topic_name>")
+def view_post_topics(topic_name):
+	posts = Post.query.all()
+	filtered_posts = []
 	
-
+	
+	for post in posts:
+		if topic_name in post.get_topics_list(): # if the topic is in the list of topics add to the filtered list
+			filtered_posts.append(post)
+		
+	return render_template("post_topic_listing.html", topic_name=topic_name, topic_posts=filtered_posts)

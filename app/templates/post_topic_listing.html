@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Posts with tag "{{ topic_name }}"</h2>
+	
+
+	{% for post in topic_posts %}
+		{% include "_post_listing.html" %}
+	{% endfor %} 
+	
+	{% if topic_posts == [] %}
+		<p>Sorry, but there are no posts under this topic.</p>
+	{% endif %}
+{% endblock %}
