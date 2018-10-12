@@ -234,4 +234,8 @@ def edit_response(response_id):
 	
 	return render_template("edit_response.html", form=form)
 	
+	
+@app.("/topic/<topic_name>")
+def view_topics(ropic_name):
+	
 
