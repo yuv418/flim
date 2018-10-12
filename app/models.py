@@ -47,7 +47,7 @@ class Post(db.Model):
 	
 	topics = db.Column(db.Text(current_config.app_message_max_length), index=True, default="")	
 	
-	response = db.relationship("Response", backref="parent_post")
+	response = db.relationship("Response", backref="parent_post", lazy="dynamic")
 	
 	def get_topics_list(self):
 		return json.loads(self.topics)
@@ -55,6 +55,9 @@ class Post(db.Model):
 
 	def __repr__(self):
 		return "<object Post {} {}>".format(self.id, self.title)
+		
+		
+		
 		
 class Response(db.Model):
 	__tablename__ = "responses"
@@ -68,5 +71,9 @@ class Response(db.Model):
 	
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 	
+	
+	
 	def __repr__(self):
-		return "<object Response post_id:{}>".format(post_id)
+		return "<object Response post_id:{}>".format(self.post_id)
+		
+

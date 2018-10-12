@@ -235,6 +235,24 @@ def edit_response(response_id):
 	return render_template("edit_response.html", form=form)
 	
 	
+@app.route('/delete_response/<response_id>')
+@login_required
+def delete_response(response_id):
+	response = Response.query.filter_by(id=response_id).first()
+	
+	response_post_id = response.parent_post.id
+	if not response.creator == current_user:
+		flash("You do not have the correct permissions to do this.")
+		return redirect(url_for("view_post", post_id=response_post_id))
+	
+	db.session.delete(response)
+	db.session.commit()
+	
+	
+	
+	flash("Post deleted succesfully.")
+	return redirect(url_for("view_post", post_id=response_post_id))
+
 @app.route("/topic/<topic_name>")
 def view_post_topics(topic_name):
 	posts = Post.query.all()
