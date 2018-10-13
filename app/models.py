@@ -9,6 +9,12 @@ import json
 
 current_config = Config()
 
+subresponses = db.Table('subresponses', 
+	db.Column('response_id', db.Integer, db.ForeignKey('responses.id')),
+	db.Column('subresponse_id', db.Integer, db.ForeignKey('responses.id'))
+)
+
+
 class Users(UserMixin, db.Model):
 	__tablename__='users'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -64,6 +70,13 @@ class Response(db.Model):
 	
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	
+	
+	response_subresponses = db.relationship(
+        'Response', secondary=subresponses,
+        primaryjoin=(subresponses.c.response_id == id),
+        secondaryjoin=(subresponses.c.subresponse_id == id),
+        backref=db.backref('subresponses', lazy='dynamic'), lazy='dynamic')
+	
 	post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
 	user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 	
@@ -72,8 +85,21 @@ class Response(db.Model):
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 	
 	
+	def add_subresponse(self, subresponse):
+		if not self.is_subresponse(subresponse):
+			self.response_subresponses.append(subresponse)
+		
+	def remove_subresponse(self, subresponse):
+		if self.is_subresponse(subresponse):
+			self.response_subrepsonses.remove(subresponse)
+	
+	def is_subresponse(self, subresponse):
+		return self.subresponses.filter(
+			subresponses.c.subresponse_id == subresponse.id).count() > 0
+	
 	
 	def __repr__(self):
 		return "<object Response post_id:{}>".format(self.post_id)
 		
+
 
