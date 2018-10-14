@@ -63,8 +63,8 @@ def login():
 			flash("Oops! Please try again.")
 			return redirect(url_for('login'))
 		
-		print(user.password_hashed)
-		print(hashlib.sha256(form.password.data.encode('utf-8')).hexdigest())
+		#print(user.password_hashed)
+		#print(hashlib.sha256(form.password.data.encode('utf-8')).hexdigest())
 		flash("Yay! You've succesfully logged in!")
 		login_user(user, remember=form.remember_me.data)
 		return redirect(url_for('index')) # this will be changed to user profile page TODO
@@ -267,3 +267,8 @@ def view_post_topics(topic_name):
 			filtered_posts.append(post)
 		
 	return render_template("post_topic_listing.html", topic_name=topic_name, topic_posts=filtered_posts)
+
+@app.route("/new_subresponse/<parent_response_id>")
+@login_required
+def new_subresponse(parent_response_id):
+	return "Placeholder"
