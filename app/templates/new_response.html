@@ -2,7 +2,11 @@
 
 {% block content %}
 	<h1>New Response</h1>
-	<p>Type your response for "{{ post.title }}"</p>
+	{% if not subresponse %}
+		<p>Type your response for "{{ post.title }}"</p>
+	{% else %}
+		<p>Type your subresponse for "{{ post.title }}"</p>
+	{% endif %}
 	<hr>
 	
 	<form action="" method="POST" novalidate>

@@ -9,6 +9,7 @@ from app.new_post import NewPost
 from app.update_user_profile import UpdateUserProfile
 from app import db
 from app.new_response import NewResponse
+from app.new_subresponse import NewSubResponse
 import hashlib
 
 
@@ -268,7 +269,19 @@ def view_post_topics(topic_name):
 		
 	return render_template("post_topic_listing.html", topic_name=topic_name, topic_posts=filtered_posts)
 
-@app.route("/new_subresponse/<parent_response_id>")
+@app.route("/new_subresponse/<parent_response_id>", methods=["GET", "POST"])
 @login_required
 def new_subresponse(parent_response_id):
-	return "Placeholder"
+	form = NewResponseForm()
+	response = Response.query.filter_by(id=parent_response_id).first()
+	post = Post.query.filter_by(id=response.parent_post.id).first()
+	
+	if form.validate_on_submit():
+		nrsp = NewSubResponse(form.content.data, response, current_user)
+		nrsp.create_subpresponse()
+		
+		flash("Subresponse added sucessfully!")
+		return redirect(url_for("view_post", post_id=response.parent_post.id))
+	
+	
+	return render_template("new_response.html", form=form, post=post, subresponse=True)
