@@ -128,6 +128,12 @@ def view_post(post_id):
 	
 	post_responses = Response.query.filter_by(post_id=post_id).order_by(Response.id.desc()).all()
 	
+	for response in post_responses: 
+		if response.is_subresponse(response):
+			post_responses.remove(response)
+			
+	
+	
 	post = Post.query.filter_by(id=post_id).first()
 	
 	

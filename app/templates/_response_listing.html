@@ -1,7 +1,13 @@
-<div class="response_listing">
+{% if response.is_subresponse(response) %}
+	<div class="subresponse_listing">
+{% else %}
+	<div class="response_listing">
+{% endif %}	
 	<p><b>By</b> <a href="{{ url_for('user_profile', name=response.creator.username) }}">{{ response.creator.username }}</a></p>
 	
 	<p>{{ response.content | safe }}</p>
+	
+	{% print(response.subresponses) %}
 	
 	<a href="{{ url_for('edit_response', response_id=response.id) }}">edit</a>
 	{% if response.creator == current_user %}
@@ -11,6 +17,13 @@
 	{% if not current_user.is_anonymous %}
 		<a href="{{ url_for('new_subresponse', parent_response_id=response.id) }}">reply</a>
 	{% endif %}
-	
+	 
+	 {% if not response.response_subresponses == [] %}
+		{% for response in response.response_subresponses %}
+			{% include "_response_listing.html" %}
+		{% endfor %}
+	 
+	 {% endif %}
+	 
 	<hr>
 </div>

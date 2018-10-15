@@ -93,13 +93,13 @@ class Response(db.Model):
 		if self.is_subresponse(subresponse):
 			self.response_subrepsonses.remove(subresponse)
 	
-	def is_subresponse(self, subresponse):
+	def is_subresponse(self, subresponse): #we'll not be removing the subresponse param because the program is more flexible then
 		return self.subresponses.filter(
 			subresponses.c.subresponse_id == subresponse.id).count() > 0
 	
 	
 	def __repr__(self):
-		return "<object Response post_id:{}>".format(self.post_id)
+		return "<object Response id:{}>".format(self.id)
 		
 
 
