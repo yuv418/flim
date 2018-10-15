@@ -7,9 +7,8 @@
 	
 	<p>{{ response.content | safe }}</p>
 	
-	{% print(response.subresponses) %}
-	
 	<a href="{{ url_for('edit_response', response_id=response.id) }}">edit</a>
+	
 	{% if response.creator == current_user %}
 		<a href="{{ url_for('delete_response', response_id=response.id) }}">delete</a>
 	{% endif %}
@@ -20,6 +19,7 @@
 	 
 	 {% if not response.response_subresponses == [] %}
 		{% for response in response.response_subresponses %}
+			
 			{% include "_response_listing.html" %}
 		{% endfor %}
 	 
