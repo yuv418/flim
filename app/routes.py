@@ -127,16 +127,11 @@ def view_post(post_id):
 		return "Oops! That's not a valid post!"
 	
 	post_responses = Response.query.filter_by(post_id=post_id).order_by(Response.id.desc()).all()
-	
+	filtered_post_responses = []
 	for response in post_responses: 
-		if response.is_subresponse(response):
-			del post_responses[post_responses.index(response)]
-			
-	print("POST RESPONSES is" + str(post_responses))
-			
-	
-			
-	
+		if not response.is_subresponse(response):
+			filtered_post_responses.append(response)			
+		
 			
 	
 	
@@ -147,7 +142,7 @@ def view_post(post_id):
 		return "Oops! That's not a valid post!"
 	
 	return render_template("view_post.html",
-		post=post, title=post.title, post_responses=post_responses, post_responses_len=len(post_responses))
+		post=post, title=post.title, post_responses=filtered_post_responses, post_responses_len=len(post_responses))
 		
 		
 @app.route('/update_profile', methods=["GET", "POST"])
