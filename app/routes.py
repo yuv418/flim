@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import *
 from app import app
-from app import config, errors, admin_routes
+from app import config, errors
 from app.forms import *
 from app.register import Register
 from app.new_post import NewPost
@@ -10,6 +10,9 @@ from app.update_user_profile import UpdateUserProfile
 from app import db
 from app.new_response import NewResponse
 from app.new_subresponse import NewSubResponse
+
+from app.admin import admin_routes
+
 import hashlib
 
 

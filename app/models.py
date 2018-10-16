@@ -25,6 +25,8 @@ class Users(UserMixin, db.Model):
 	password_hashed = db.Column(db.String(255), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
+	is_admin = db.Column(db.Boolean, index=True)
+	
 	post = db.relationship('Post', backref='creator')
 	response = db.relationship('Response', backref='creator')
 	
@@ -100,6 +102,13 @@ class Response(db.Model):
 	
 	def __repr__(self):
 		return "<object Response id:{}>".format(self.id)
+
+class Group(db.Model):
+	__tablename__ = 'groups'
+	
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	name = db.Column(db.String, index=True)
+	
 		
 
 
