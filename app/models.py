@@ -36,10 +36,7 @@ class Users(UserMixin, db.Model):
 	response = db.relationship('Response', backref='creator')
 	
 	groups = db.relationship(
-        'Response', secondary=subresponses,
-        primaryjoin=(group_associations.c.user_id == id),
-        secondaryjoin=(group_associations.c.group_id == id),
-        backref=db.backref('subresponses', lazy='dynamic'), lazy='dynamic')
+        'Group', secondary=group_associations)
 	
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -121,7 +118,7 @@ class Group(db.Model):
 	name = db.Column(db.String(256), index=True)	
 	
 	def __repr__(self):
-		return "<Group id: {} name: {}".format(id, name)
+		return "<Group id: {} name: {}".format(id, self.name)
 		
 		
 		
