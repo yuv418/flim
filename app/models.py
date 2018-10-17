@@ -128,6 +128,14 @@ class Group(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	name = db.Column(db.String(256), index=True)	
 	
+	def formatted_name(self):
+		return self.name.replace(" ", "_").lower()
+	
+	@staticmethod	
+	def admin_group():
+		
+		return Group.query.filter_by(id=1).first() # Force group admin to be created with GID 1
+		
 	def __repr__(self):
 		return "<Group id: {} name: {}".format(id, self.name)
 		
