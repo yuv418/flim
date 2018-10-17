@@ -30,8 +30,6 @@ class Users(UserMixin, db.Model):
 	password_hashed = db.Column(db.String(255), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
-	is_admin = db.Column(db.Boolean, index=True)
-	
 	post = db.relationship('Post', backref='creator')
 	response = db.relationship('Response', backref='creator')
 	
