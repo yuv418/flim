@@ -23,6 +23,7 @@ class Config:
 	
 	# DO NOT EDIT THE FOLLOWING!!!!!
 	
+	app_version = "TESTING"
 	app_static_files_directory = "/static" # do not change, just makes things easier for us
 	
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'afioj89498ffj98hiahffuihfihwilafhliuifhUIHFIUHFIUHfieuahhu8yh4ih4foh'

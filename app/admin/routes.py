@@ -22,5 +22,5 @@ def restrict_admin_access():
 
 @app.route('/admin/version')
 def admin_test():
-	return render_template("admin/version.html", sys=sys)
+	return render_template("admin/version.html", sys=sys, title="Version")
 
