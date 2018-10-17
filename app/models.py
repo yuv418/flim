@@ -37,6 +37,19 @@ class Users(UserMixin, db.Model):
 	
 	groups = db.relationship(
         'Group', secondary=group_associations)
+        
+	def add_to_group(self, group):
+		if not self.in_group(group):
+			self.groups.append(group)
+		
+		
+	def remove_from_group(self, group):
+		if self.in_group(group):
+			self.group.remove(group)
+		
+	def in_group(self, group):
+		return self.groups.filter(group_associations.c.group_id == group.id).count() > 0
+		# I really don't see why we can't just do return group in self.groups
 	
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
