@@ -11,7 +11,7 @@ from app import db
 from app.new_response import NewResponse
 from app.new_subresponse import NewSubResponse
 
-from app.admin import admin_routes
+from app.admin import routes
 
 import hashlib
 

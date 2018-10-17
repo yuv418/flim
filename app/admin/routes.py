@@ -4,7 +4,9 @@ import sys
 
 
 @app.before_request
-
+def restrict_admin_access():
+	request_paths = request.path.split('/')
+	
 
 
 @app.route('/admin/version')
