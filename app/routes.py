@@ -89,7 +89,7 @@ def logout():
 def user_profile(name):
 	user = Users.query.filter_by(username=name).first_or_404()
 	posts = Post.query.filter_by(user_id=user.id).all()
-	responses = Post.query.filter_by(creator=user).all()
+	responses = Response.query.filter_by(creator=user).all()
 	
 	return render_template("user.html", 
 		user=user,

@@ -26,7 +26,7 @@ class Users(UserMixin, db.Model):
 	first_name = db.Column(db.String(128), index=True, unique=True)
 	last_name = db.Column(db.String(128), index=True, unique=True)
 	email = db.Column(db.String(128), index=True, unique=True)
-	about = db.Column(db.Text(current_config.app_message_max_length), index=True, unique=True) 
+	about = db.Column(db.Text(9990), index=True, unique=True) 
 	password_hashed = db.Column(db.String(255), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
@@ -78,6 +78,7 @@ class Post(db.Model):
 	
 	def get_topics_list(self):
 		return json.loads(self.topics)
+	
 	
 
 	def __repr__(self):

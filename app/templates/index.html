@@ -12,6 +12,11 @@
 		
 		{% endfor %}
 	
+		{% if all_posts == [] %}
+			<p>There aren't any posts here!</p>
+		{% endif %}
+		
+	
 	</div>
 	
 {% endblock %}
