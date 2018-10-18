@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Stats</h1>
+	
+	<p>Total number of CPUs: {{ istats.cpu_all_cores() }}</p>
+	
+{% endblock %}

@@ -1,4 +1,4 @@
-import powertop
+import psutil
 
 class InstanceStats:
 	def __init__(self):
@@ -29,7 +29,7 @@ class InstanceStats:
 	def available_mem(self):
 		return psutil.virtual_memory().available #TODO divide
 	
-	def total_swap_mem(self)
+	def total_swap_mem(self):
 		return psutil.swap_memory().total
 	
 	def available_swap_mem(self):

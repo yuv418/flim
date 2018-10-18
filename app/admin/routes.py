@@ -4,6 +4,8 @@ from app.models import *
 from flask import render_template, abort, request
 from flask_login import current_user, login_manager
 
+from app.admin.instance_stats import InstanceStats
+
 import sys 
 
 
@@ -24,3 +26,9 @@ def restrict_admin_access():
 def admin_test():
 	return render_template("admin/version.html", sys=sys, title="Version")
 
+
+@app.route('/admin/stats')
+def stats():
+	istats = InstanceStats()
+	
+	return render_template('admin/stats.html', istats=istats, title="Stats")
