@@ -6,7 +6,8 @@ from flask_login import current_user, login_manager
 
 from app.admin.instance_stats import InstanceStats
 
-import sys 
+import sys
+import json
 
 
 @app.before_request
@@ -36,19 +37,19 @@ def stats():
 	return render_template('admin/stats.html', istats=istats, title="Stats")
 	
 @app.route('/admin/stats/cpuload_percent')
-def cpuload():
-	return str(istats.cpu_load_percent())
+def cpuload_percent():
+	return json.dumps(istats.cpu_load_percent())
 	
 @app.route('/admin/stats/cpuload_freq')
-def cpuload():
-	return str(istats.cpu_current_frequencies())
+def cpuload_freq():
+	return json.dumps(istats.cpu_current_frequencies())
 	
 @app.route('/admin/stats/avail_mem')
 def avail_mem():
 	return str(istats.available_mem())
 	
 @app.route('/admin/stats/avail_swap_mem')
-def avail_mem():
+def avail_swap_mem():
 	return str(istats.available_swap_mem())
 	
 	

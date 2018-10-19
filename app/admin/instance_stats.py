@@ -5,7 +5,7 @@ class InstanceStats:
 		pass
 	
 	def cpu_load_percent(self):
-		return psutil.cpu_percent(interval=0.2, percpu=True)
+		return psutil.cpu_percent(interval=1.0, percpu=True)
 		
 	def cpu_physical_cores(self):
 		return psutil.cpu_count(logical=True)
