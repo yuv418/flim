@@ -33,6 +33,6 @@ class InstanceStats:
 		return psutil.swap_memory().total / 10 ** 9 # divide for GB
 	
 	def available_swap_mem(self):
-		return psutil.swap_memory().free 
+		return psutil.swap_memory().free / 10 ** 9
 	
 			

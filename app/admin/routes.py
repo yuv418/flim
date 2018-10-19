@@ -46,11 +46,13 @@ def cpuload_freq():
 	
 @app.route('/admin/stats/avail_mem')
 def avail_mem():
-	return str(istats.available_mem())
+	print(round(istats.available_mem(), 2))
+	return str(round(istats.available_mem(), 2))
 	
 @app.route('/admin/stats/avail_swap_mem')
 def avail_swap_mem():
-	return str(istats.available_swap_mem())
+	print(round(istats.available_swap_mem(), 2))
+	return str(round(istats.available_swap_mem(), 2))
 	
 	
 	
