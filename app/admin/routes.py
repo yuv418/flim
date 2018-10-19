@@ -25,10 +25,33 @@ def restrict_admin_access():
 @app.route('/admin/version')
 def admin_test():
 	return render_template("admin/version.html", sys=sys, title="Version")
+	
+	
+#********************************************** INSTANCE STATS **********************************************
 
+istats = InstanceStats()
 
 @app.route('/admin/stats')
 def stats():
-	istats = InstanceStats()
-	
 	return render_template('admin/stats.html', istats=istats, title="Stats")
+	
+@app.route('/admin/stats/cpuload_percent')
+def cpuload():
+	return str(istats.cpu_load_percent())
+	
+@app.route('/admin/stats/cpuload_freq')
+def cpuload():
+	return str(istats.cpu_current_frequencies())
+	
+@app.route('/admin/stats/avail_mem')
+def avail_mem():
+	return str(istats.available_mem())
+	
+@app.route('/admin/stats/avail_swap_mem')
+def avail_mem():
+	return str(istats.available_swap_mem())
+	
+	
+	
+	
+#********************************************** END INSTANCE STATS **********************************************

@@ -13,7 +13,7 @@ class InstanceStats:
 	def cpu_all_cores(self):
 		return psutil.cpu_count()
 	
-	def get_current_cpu_frequencies(self):
+	def cpu_current_frequencies(self):
 		full_cpu_freqs = psutil.cpu_freq(percpu=True)
 		current_cpu_freqs = []
 		
@@ -24,13 +24,13 @@ class InstanceStats:
 		return current_cpu_freqs
 		
 	def total_mem(self):
-		return psutil.virtual_memory().total #TODO divide
+		return psutil.virtual_memory().total / 10 ** 9 # divide for GB
 		
 	def available_mem(self):
-		return psutil.virtual_memory().available #TODO divide
+		return psutil.virtual_memory().available / 10 ** 9 #divide for GB
 	
 	def total_swap_mem(self):
-		return psutil.swap_memory().total
+		return psutil.swap_memory().total / 10 ** 9 # divide for GB
 	
 	def available_swap_mem(self):
 		return psutil.swap_memory().free 
