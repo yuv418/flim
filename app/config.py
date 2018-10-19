@@ -6,7 +6,7 @@ class Config:
 	app_name = "Flim"
 	app_allow_anonymous_view_posts = True #TODO actually make this work
 	
-	app_db_name = "flimdb"
+	app_db_name = "bug_reporter_db"
 	app_db_username = "default_u"
 	app_db_password = "letmeinmysql"
 	app_db_host = "localhost"
