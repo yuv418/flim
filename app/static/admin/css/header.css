@@ -10,7 +10,7 @@ div.admin_header {
 	margin: 0;
 	
 	position: absolute;
-	top: 100%;
+	top: 70px;
 	left: 0;
 	right: 0;
 	
@@ -21,6 +21,12 @@ div.admin_header {
 	color: white;
 
 }
+
+.first_header_navbtn {
+	margin-left: 20px;
+}
+
+
 div.header a {
 	color: white !important;
 }
@@ -29,3 +35,6 @@ div.header p {
 	color: white !important;
 }
 
+.content  {
+	margin-top: 175px !important;
+}
