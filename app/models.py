@@ -19,6 +19,10 @@ group_associations = db.Table('group_associations',
 	db.Column('group_id', db.Integer, db.ForeignKey('groups.id'))
 )
 
+class Topic(db.Model):
+	__tablename__ = 'topics'
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	name = db.Column(db.String(512), index=True)
 
 class Users(UserMixin, db.Model):
 	__tablename__='users'
