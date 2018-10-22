@@ -1,0 +1,31 @@
+div.admin_header {
+	background-color: lightblue; /* for browsers that don't like gradients */
+	background-image: linear-gradient(to right, black, white);
+	
+	
+	width: 100%;
+	
+	padding: 20px;
+	
+	margin: 0;
+	
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	
+	z-index: 999;
+	
+}
+.admin_title {
+	color: white;
+
+}
+div.header a {
+	color: white !important;
+}
+
+div.header p {
+	color: white !important;
+}
+

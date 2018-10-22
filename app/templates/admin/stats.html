@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 
-{% block content %}
+{% block admin_content %}
 
 	<script src="{{ url_for('static', filename='admin/js/stats.js') }}"></script>
 	
@@ -13,7 +13,6 @@
 	<p>Total swap memory: {{ istats.total_swap_mem() | round(2) }} GB</p>
 	<p id="available_memory"></p>
 	<p id="available_swap_memory"></p>
-	
 	<div id="cpu_current_load_percent"></div>
 	<div id="cpu_current_load_freq"></div>
 	
