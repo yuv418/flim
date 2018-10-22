@@ -11,6 +11,7 @@
 	<p>Total number of physical CPU cores: {{ istats.cpu_physical_cores() }}</p>
 	<p>Total memory: {{ istats.total_mem() | round(2) }} GB</p>
 	<p>Total swap memory: {{ istats.total_swap_mem() | round(2) }} GB</p>
+	
 	<p id="available_memory"></p>
 	<p id="available_swap_memory"></p>
 	<div id="cpu_current_load_percent"></div>

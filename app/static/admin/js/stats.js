@@ -24,4 +24,14 @@ window.setInterval(function() {
 			
 		})
 		
+		$.get("/admin/stats/avail_swap_mem", function(data) {
+			
+			var avail_mem = Number(data).toFixed(2)
+			
+			var avail_mem_string = "Amount of free swap memory: " + avail_mem + "GB"
+			
+			$("#available_swap_memory").html(avail_mem_string)
+			
+		})
+		
 }, 1000);
