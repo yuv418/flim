@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
+	<script src="{{ url_for('static', filename='js/new_topic.js') }}"></script>
+	<script src="{{ url_for('static', filename='css/new_topic.css') }}"></script>
+
 	<h1>New Post</h1>
 	<form action="" method="POST" novalidate>
 		
@@ -18,7 +21,18 @@
 		
 		<div class="form_block">
 			<p>{{ form.topics.label }}</p>
-			{{ form.topics }}
+			{{ form.topics }}<br>
+			
+			<div class="new_topic_box">
+					<button class="add_topic_button" type="button">+</button>
+			
+			</div>
+			
+		
+			
+			
+			<br><br>
+			
 		</div>
 		
 		{{ form.submit }}
