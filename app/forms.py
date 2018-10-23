@@ -6,19 +6,11 @@ from app.config import Config
 
 current_config = Config()
 
-class NoValidateSelectMultipleField(SelectMultipleField):
-    """
-    graciously from https://stackoverflow.com/questions/14433104/how-can-i-disable-the-wtforms-selectfield-choices-validation 
-    Attempt to make an open ended select multiple field that can accept dynamic
-    choices added by the browser.
-    """
-    def pre_validate(self, form):
-        pass
-	
+
 
 class RegistrationForm(FlaskForm):
 	first_name = StringField('First Name', validators=[DataRequired()])
-	last_name = StringField('Last Name', validators=[DataRequired()])
+	last_name = StringField('Last Name', validators=[DataRequired()]) 
 	username = StringField('Username', validators=[DataRequired()])
 	email = EmailField('Email', validators=[DataRequired()])
 	password = PasswordField('Password', validators=[DataRequired(), EqualTo('password_validate', message='The passwords must match')])
@@ -40,6 +32,9 @@ class NewPostForm(FlaskForm):
 	
 	submit = SubmitField("Post")
 	
+def validate_newpost_form(form):
+	return form.title.data and form.content.data
+	
 class UpdateProfileForm(FlaskForm):
 	first_name = StringField('First Name')
 	last_name = StringField('Last Name')
@@ -55,7 +50,7 @@ class UpdateProfileForm(FlaskForm):
 	
 class EditPostForm(FlaskForm):
 	content = TextAreaField("New Content")
-	topics = NoValidateSelectMultipleField("Update Topics/Tags", choices=current_config.get_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
+	topics = SelectMultipleField("Update Topics/Tags", choices=current_config.get_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
 	
 	submit = SubmitField("Update Post")
 	

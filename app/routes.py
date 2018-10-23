@@ -104,11 +104,13 @@ def user_profile(name):
 def new_post():
 	form = NewPostForm()
 	
-	print("New post validated? " + str(form.validate_on_submit()))
+
 	
-	if form.validate_on_submit():
+	if validate_newpost_form(form):
 		
-		make_new_post = NewPost(current_user.id, form.title.data, form.content.data, form.topics.data)
+		stripped_topics_data = [data.strip() for data in form.topics.data]
+		
+		make_new_post = NewPost(current_user.id, form.title.data.strip(), form.content.data, stripped_topics_data)
 		new_post = make_new_post.create_new_post()
 		
 		flash('Post "{}" created succesfully!'.format(str(new_post.title)))
