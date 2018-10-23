@@ -104,7 +104,7 @@ def user_profile(name):
 def new_post():
 	form = NewPostForm()
 	
-	print(form.validate_on_submit())
+	print("New post validated? " + str(form.validate_on_submit()))
 	
 	if form.validate_on_submit():
 		
