@@ -19,6 +19,8 @@ class Config:
 	
 	app_allow_registration = True
 	
+	app_admin_group_id = 1
+	
 	
 	
 	# DO NOT EDIT THE FOLLOWING!!!!!

@@ -10,6 +10,11 @@ import sys
 import json
 
 
+# ADMIN ROUTES
+
+# All admin route functions are prepended by 'admin_'
+
+
 @app.before_request
 def restrict_admin_access():
 	
@@ -33,7 +38,7 @@ def admin_test():
 istats = InstanceStats()
 
 @app.route('/admin/stats')
-def stats():
+def admin_stats():
 	return render_template('admin/stats.html', istats=istats, title="Stats")
 	
 @app.route('/admin/stats/cpuload_percent')

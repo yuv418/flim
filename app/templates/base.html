@@ -28,21 +28,30 @@
 			<h2 class="title" style='display: inline'>{{ config.app_name }}</h2>
 			<a href="{{ url_for('index') }}">Home</a>
 			
-			{% if config.app_allow_registration %}
-				<a href="{{ url_for('register') }}">Register</a>
-			{% endif %}
-
+			
+			
+			
 			{% if current_user.is_anonymous %}
 			
+				{% if config.app_allow_registration %}
+					<a href="{{ url_for('register') }}">Register</a>
+				{% endif %}
+				
 				<a href="{{ url_for('login') }}">Log In</a>
 				
+				
 			{% else %}
+			
+				{% if current_user.is_admin() %}
+					<a href="{{ url_for('admin_stats') }}">Admin</a>
+				{% endif %}
+
 			
 				<a href="{{ url_for('logout') }}">Log Out</a>
 				<a href="{{ url_for('new_post') }}">Post</a>
 
 			
-			<p style='display:inline'>Hey, <a href='{{ url_for("user_profile", name=current_user.username) }}'>{{ current_user.username }}</a>!</p>
+				<p style='display:inline'>Hey, <a href='{{ url_for("user_profile", name=current_user.username) }}'>{{ current_user.username }}</a>!</p>
 			
 			{% endif %}
 		</div>
@@ -53,7 +62,6 @@
 						<p class='msg'>{{ message }}</p>
 					{% endfor %}
 				{% endif %}
-				
 			{% endwith %}	
 					
 		

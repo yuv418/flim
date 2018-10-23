@@ -52,6 +52,9 @@ class Users(UserMixin, db.Model):
 	def in_group(self, group):
 		return self.groups.filter(group_associations.c.group_id == group.id).count() > 0
 		# I really don't see why we can't just do return group in self.groups
+		
+	def is_admin(self):
+		return Group.admin_group() in self.groups
 	
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -138,8 +141,7 @@ class Group(db.Model):
 	
 	@staticmethod	
 	def admin_group():
-		
-		return Group.query.filter_by(id=1).first() # Force group admin to be created with GID 1
+		return Group.query.filter_by(id=current_config.app_admin_group_id).first() # Force group admin to be created with GID 1
 		
 	def __repr__(self):
 		return "<Group id: {} name: {}".format(id, self.name)
