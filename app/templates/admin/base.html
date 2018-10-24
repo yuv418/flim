@@ -6,11 +6,11 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin/css/header.css') }}" />
 		<div class="admin_header">
 			<h2 class="admin_title" style='display: inline'>Admin Panel</h2>
-			<a class="first_header_navbtn" href="{{ url_for('admin_stats') }}"><button>Stats</button></a>
-			<a class="header_navbtn" href="#"><button>Users</button></a>
-			<a class="header_navbtn" href="#"><button>Groups</button></a>
-			<a class="header_navbtn" href="#"><button>Forums</button></a>
-			<a class="header_navbtn" href="#"><button>Instance Settings</button></a>
+			<a class="first_header_navbtn header_navbtn" id="admin-stats-btn" href="{{ url_for('admin_stats') }}"><button>Stats</button></a>
+			<a class="header_navbtn" id="admin-user-btn" href="#"><button>Users</button></a>
+			<a class="header_navbtn" id="admin=group-btn"  href="#"><button>Groups</button></a>
+			<a class="header_navbtn" id="admin-forums-btn" href="#"><button>Forums</button></a>
+			<a class="header_navbtn" id="admin-isetttings-btn" href="#"><button>Instance Settings</button></a>
 		</div>
 
 		<div class="admin_content_container">
