@@ -45,22 +45,38 @@ div.link_box {
 	padding: 5px 10px;
 	
 	position: absolute;
-	z-index: 999;
+	z-index: 1000;
+	
+	border: 2px solid black;
 	
 	display: block;
 	max-width: 60%;
-	max-height: 10%;
+	max-height: 100%;
+	
+	border-radius: 6px; 
 	
 
 }
 
 div.header_submenu_item  {
-		display: inline-block;
+	display: inline-block;
 
 
 }
 
 div.link_box a {
 	clear: both;
+	text-decoration: none;
+	
+	color: black;
+	padding: 5px 5px;
+	width: 100%:
+	
+
+}
+
+div.link_box a:hover {
+	background-color: lightblue
+	
 
 }
