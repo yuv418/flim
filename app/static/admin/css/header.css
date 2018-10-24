@@ -2,6 +2,7 @@ div.admin_header {
 	background-color: lightblue; /* for browsers that don't like gradients */
 	background-image: linear-gradient(to right, black, white);
 	
+	display: inline-block;
 	
 	width: 100%;
 	
@@ -37,4 +38,29 @@ div.header p {
 
 .content  {
 	margin-top: 175px !important;
+}
+
+div.link_box {
+	background-color: white;
+	padding: 5px 10px;
+	
+	position: absolute;
+	z-index: 999;
+	
+	display: block;
+	max-width: 60%;
+	max-height: 10%;
+	
+
+}
+
+div.header_submenu_item  {
+		display: inline-block;
+
+
+}
+
+div.link_box a {
+	clear: both;
+
 }
