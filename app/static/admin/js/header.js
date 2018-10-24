@@ -27,8 +27,10 @@ $(function() {
 				link.attr('href', link)
 				
 				div_links_box.append(link)
+				div_links_box.append("<br>")
 				
 				$(this).parent().append(div_links_box)
+			
 
 				console.log("Preivew would be: " + link_preview)
 				console.log("Link would be: " + link)
