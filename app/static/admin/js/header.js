@@ -12,6 +12,12 @@ var admin_navbtn_links = {
 				
 				
 					],
+					
+					"admin-forums-btn": [
+							{"preview": "Topics Preferences", 'link': "/admin/topics/preferences"},
+				
+				
+					],
 		
 		}
    
@@ -24,13 +30,23 @@ $(function() {
 		if ($(this).attr('data-menu-showing') === 'true') {
 			$('#' + $(this).attr('id') + '-link-box').remove()
 			
+			$(".link_box").remove()
+			
+			
 			$(this).attr('data-menu-showing', 'false')
 		}
 		else {
 			// TODO convert the displaying of options here to get links and names from the (future) REST API
+		
+			$(".header_navbtn").attr('data-menu-showing', 'false')
+		
 			div_links_box = $("<div></div>")
 			div_links_box.attr('class', 'link_box')
 			div_links_box.attr('id', $(this).attr('id') + "-link-box")
+			
+			
+			// remove all link boxes
+			$(".link_box").remove()
 			
 			links = admin_navbtn_links.links[$(this).attr('id')]
 			
