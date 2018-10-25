@@ -40,11 +40,11 @@ $(function() {
 				var link = links[i].link
 
 
-				link = $("<a></a>")
-				link.html(link_preview)
-				link.attr('href', link)
+				link_obj = $("<a></a>")
+				link_obj.html(link_preview)
+				link_obj.attr('href', link)
 				
-				div_links_box.append(link)
+				div_links_box.append(link_obj)
 				div_links_box.append("<br>")
 				
 				$(this).parent().append(div_links_box)
