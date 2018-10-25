@@ -71,6 +71,10 @@ def avail_swap_mem():
 @app.route('/admin/forum/topics')
 def admin_topics_prefs():
 	return render_template("admin/topics.html", title="Manage Topics")
+	
+@app.route('/admin/forum/topics/new_topic')
+def admin_new_topic():
+	return "Placeholder"
 
 
 #********************************************** END /forum/* ROUTES *********************************************
