@@ -135,7 +135,7 @@ class Group(db.Model):
 	__tablename__ = 'groups'
 	
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	name = db.Column(db.String(256), index=True)	
+	name = db.Column(db.String(256), index=True)
 	
 	def formatted_name(self):
 		return self.name.replace(" ", "_").lower()

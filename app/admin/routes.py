@@ -1,3 +1,4 @@
+from app import db
 from app import app
 from app.models import *
 
@@ -63,3 +64,13 @@ def avail_swap_mem():
 	
 	
 #********************************************** END INSTANCE STATS **********************************************
+
+
+#********************************************** /forum/* ROUTES *************************************************
+
+@app.route('/admin/forum/topics')
+def admin_topics_prefs():
+	return render_template("admin/topics.html", title="Manage Topics")
+
+
+#********************************************** END /forum/* ROUTES *********************************************

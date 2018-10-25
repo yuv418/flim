@@ -13,8 +13,8 @@ var admin_navbtn_links = {
 				
 					],
 					
-					"admin-forums-btn": [
-							{"preview": "Topics Preferences", 'link': "/admin/topics/preferences"},
+					"admin-forum-btn": [
+							{"preview": "Topics Preferences", 'link': "/admin/forum/topics"},
 				
 				
 					],
