@@ -1,9 +1,19 @@
-var admin_user_btn_options = {
-    "links": [{'preview': 'Nothing Here!', 'link' :  '#'},
-    
-				{'preview': 'Nothing here again!', 'link' : '#'}
-    
-    ]
+var admin_navbtn_links = {
+    "links": 	{"admin-user-btn": 
+					[		{'preview': 'Nothing Here!', 'link' :  "#"},
+							{'preview': 'Nothing here again!', 'link' : "#"},
+							{'preview': 'VOID', 'link' : "#"},
+				
+					],
+				
+				
+					"admin-group-btn": [
+							{"preview": "Random Test", 'link': "#"}
+				
+				
+					],
+		
+		}
    
 };
 
@@ -22,33 +32,34 @@ $(function() {
 			div_links_box.attr('class', 'link_box')
 			div_links_box.attr('id', $(this).attr('id') + "-link-box")
 			
-			if ($(this).attr('id') === "admin-user-btn") {
+			links = admin_navbtn_links.links[$(this).attr('id')]
+			
 				
-				for (var i = 0; i < admin_user_btn_options.links.length; i++) {
-					var link_preview = admin_user_btn_options.links[i].preview
-					var link = admin_user_btn_options.links[i].link
+			for (var i = 0; i < links.length; i++) {
+				var link_preview = links[i].preview
+				var link = links[i].link
 
 
-					link = $("<a></a>")
-					link.html(link_preview)
-					link.attr('href', link)
-					
-					div_links_box.append(link)
-					div_links_box.append("<br>")
-					
-					$(this).parent().append(div_links_box)
+				link = $("<a></a>")
+				link.html(link_preview)
+				link.attr('href', link)
 				
-
-					console.log("Preivew would be: " + link_preview)
-					console.log("Link would be: " + link)
-					
-					
-					
-				}
+				div_links_box.append(link)
+				div_links_box.append("<br>")
 				
-				$(this).attr('data-menu-showing', 'true')
+				$(this).parent().append(div_links_box)
+			
 
+				console.log("Preivew would be: " + link_preview)
+				console.log("Link would be: " + link)
+				
+				
+				
 			}
+			
+			$(this).attr('data-menu-showing', 'true')
+
+			
 		}
 	    
 	    
