@@ -70,6 +70,7 @@ def avail_swap_mem():
 
 @app.route('/admin/forum/topics')
 def admin_topics_prefs():
+	topics = Topic.query.all()
 	return render_template("admin/topics.html", title="Manage Topics")
 	
 @app.route('/admin/forum/topics/new_topic')

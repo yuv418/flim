@@ -6,6 +6,11 @@
 	
 	<a href="{{ url_for('admin_new_topic') }}">New Topic</a>
 	
+	{{ topics }}
 	
+	{% if topics == [] %}
+		<p>There are no preset topics! Click on "New Topic"</p>
+	
+	{% endif %}
 	
 {% endblock %}
