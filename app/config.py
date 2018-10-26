@@ -34,4 +34,5 @@ class Config:
 	
 	
 	def get_post_topics_list(self):
-		return [(choice, choice) for choice in self.app_post_topics_list]
+		config_topics_list = [(topic, topic) for topic in self.app_post_topics_list]
+		return config_topics_list

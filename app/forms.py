@@ -3,6 +3,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextA
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, EqualTo
 from app.config import Config
+from app import config_helper
 
 current_config = Config()
 
@@ -28,7 +29,7 @@ class NewPostForm(FlaskForm):
 	title = StringField("Title", validators=[DataRequired()])
 	content = TextAreaField("Content", validators=[DataRequired()])
 		
-	topics = SelectMultipleField("Topics/Tags (Check all that apply)", choices=current_config.get_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
+	topics = SelectMultipleField("Topics/Tags (Check all that apply)", choices=config_helper.get_full_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
 	
 	submit = SubmitField("Post")
 	
@@ -50,7 +51,7 @@ class UpdateProfileForm(FlaskForm):
 	
 class EditPostForm(FlaskForm):
 	content = TextAreaField("New Content")
-	topics = SelectMultipleField("Update Topics/Tags", choices=current_config.get_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
+	topics = SelectMultipleField("Update Topics/Tags", choices=config_helper.get_full_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
 	
 	submit = SubmitField("Update Post")
 	
