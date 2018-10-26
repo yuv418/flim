@@ -63,6 +63,10 @@ class EditResponseForm(FlaskForm):
 	submit = SubmitField("Update Response")
 	
 	
+class NewTopicForm(FlaskForm):
+	topic_name = StringField("Topic Name: ")
+	submit = SubmitField("Create")
+	
 
 	
 	

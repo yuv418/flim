@@ -1,8 +1,9 @@
 from app import db
 from app import app
 from app.models import *
+from app.forms import NewTopicForm
 
-from flask import render_template, abort, request
+from flask import render_template, abort, request, redirect
 from flask_login import current_user, login_manager
 
 from app.admin.instance_stats import InstanceStats
@@ -32,6 +33,15 @@ def restrict_admin_access():
 @app.route('/admin/version')
 def admin_test():
 	return render_template("admin/version.html", sys=sys, title="Version")
+	
+#********************************************** ADMIN HOME **********************************************
+
+@app.route('/admin')
+def admin_home():
+	return redirect(url_for("admin_stats"))
+
+
+#********************************************** END ADMIN HOME **********************************************
 	
 	
 #********************************************** INSTANCE STATS **********************************************
@@ -63,6 +73,9 @@ def avail_swap_mem():
 	
 	
 	
+
+	
+	
 #********************************************** END INSTANCE STATS **********************************************
 
 
@@ -71,11 +84,24 @@ def avail_swap_mem():
 @app.route('/admin/forum/topics')
 def admin_topics_prefs():
 	topics = Topic.query.all()
-	return render_template("admin/topics.html", title="Manage Topics")
 	
-@app.route('/admin/forum/topics/new_topic')
+	print(f"DEBUG: topics is {topics}")
+	
+	return render_template("admin/topics.html", title="Manage Topics", topics=topics)
+	
+@app.route('/admin/forum/topics/new_topic', methods=["GET", "POST"])
 def admin_new_topic():
-	return "Placeholder"
+	form = NewTopicForm()
+	
+	if form.validate_on_submit():
+		new_topic = Topic(name=form.topic_name.data)
+		db.session.add(new_topic)
+		db.session.commit()
+		
+		
+		return redirect(url_for("admin_topics_prefs"))
+	
+	return render_template("admin/new_topic.html", title="New Topic", form=form)
 
 
 #********************************************** END /forum/* ROUTES *********************************************

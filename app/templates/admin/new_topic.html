@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+
+
+{% block admin_content %}
+	<h1>New Topic</h1>
+	<form action="" method="POST" novalidate>
+		
+		{{ form.hidden_tag() }}
+		
+		
+		<div class="form_block">
+			<p>{{ form.topic_name.label }}</p>
+			{{ form.topic_name(size=64) }}		
+		</div>
+		
+		
+		
+		<div class="submit_block">
+			<p>{{ form.submit }}</p>
+		</div>
+		
+		
+		
+		
+	</form>
+
+{% endblock %}

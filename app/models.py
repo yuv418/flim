@@ -23,6 +23,9 @@ class Topic(db.Model):
 	__tablename__ = 'topics'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	name = db.Column(db.String(512), index=True)
+	
+	def __repr__(self):
+		return f"<Topic {self.name}>"
 
 class Users(UserMixin, db.Model):
 	__tablename__='users'
