@@ -3,7 +3,7 @@ from app import app
 from app.models import *
 from app.forms import NewTopicForm
 
-from flask import render_template, abort, request, redirect
+from flask import render_template, abort, request, redirect, flash
 from flask_login import current_user, login_manager
 
 from app.admin.instance_stats import InstanceStats
@@ -89,6 +89,8 @@ def admin_topics_prefs():
 	
 	return render_template("admin/topics.html", title="Manage Topics", topics=topics)
 	
+	
+
 @app.route('/admin/forum/topics/new_topic', methods=["GET", "POST"])
 def admin_new_topic():
 	form = NewTopicForm()
@@ -98,10 +100,26 @@ def admin_new_topic():
 		db.session.add(new_topic)
 		db.session.commit()
 		
+		flash("Topic added succesfully.")
 		
 		return redirect(url_for("admin_topics_prefs"))
 	
 	return render_template("admin/new_topic.html", title="New Topic", form=form)
+	
+@app.route('/admin/forum/topics/delete_topic/<topic_id>', methods=["GET", "POST"])
+def admin_delete_topic(topic_id):
+	topic = Topic.query.filter_by(id=topic_id).first()
+	
+	if topic != None:
+		db.session.delete(topic)
+		db.session.commit()
+		
+		flash("Topic removed succesfully.")
+		
+		return redirect(url_for("admin_topics_prefs"))
+		
+	flash("Topic removed unsuccesfully.")	
+	return redirect(url_for("admin_topics_prefs"))
 
 
 #********************************************** END /forum/* ROUTES *********************************************

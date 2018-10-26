@@ -6,17 +6,21 @@
 	
 	<a href="{{ url_for('admin_new_topic') }}">New Topic</a>
 	
-	{% if topics == [] %}
-		<p>There are no preset topics! Click on "New Topic"</p>
-	{% endif %}
+	
 	
 	
 	<h2>Topics List</h2>
+	
+	{% if topics == [] %}
+		<p>There are no preset topics! Click on "New Topic" to add one.</p>
+	{% endif %}
+	
 	<ul>
 		{% for topic in topics %}
 			<li>
 				<div class="topic_block">
 					<p class="topic_name">{{ topic.name }}</p>
+					<a href="{{ url_for('admin_delete_topic', topic_id=topic.id) }}">Delete</a>
 				</div>
 			</li>
 		{% endfor %}
