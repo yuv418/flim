@@ -1,7 +1,7 @@
 from app import db
 from app import app
 from app.models import *
-from app.forms import NewTopicForm
+from app.forms import NewTopicForm, EditTopicForm
 
 from flask import render_template, abort, request, redirect, flash
 from flask_login import current_user, login_manager
@@ -85,7 +85,7 @@ def avail_swap_mem():
 def admin_topics_prefs():
 	topics = Topic.query.all()
 	
-	print(f"DEBUG: topics is {topics}")
+	#print(f"DEBUG: topics is {topics}")
 	
 	return render_template("admin/topics.html", title="Manage Topics", topics=topics)
 	
@@ -120,6 +120,25 @@ def admin_delete_topic(topic_id):
 		
 	flash("Topic removed unsuccesfully.")	
 	return redirect(url_for("admin_topics_prefs"))
+	
+	
+@app.route('/admin/forum/topics/edit_topic/<topic_id>', methods=["GET", "POST"])
+def admin_edit_topic(topic_id):
+	topic = Topic.query.filter_by(id=topic_id).first()
+	form = EditTopicForm()
+	
+	if form.validate_on_submit():
+		topic.name = form.new_topic_name.data
+		db.session.commit()
+		
+		flash("Topic updated succesfully.")
+		
+		return redirect(url_for("admin_topics_prefs"))
+	
+	form.new_topic_name.default = topic.name
+	form.process()
+	
+	return render_template("admin/edit_topic.html", form=form, title="Edit Topic")
 
 
 #********************************************** END /forum/* ROUTES *********************************************

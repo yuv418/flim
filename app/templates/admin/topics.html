@@ -21,6 +21,7 @@
 				<div class="topic_block">
 					<p class="topic_name">{{ topic.name }}</p>
 					<a href="{{ url_for('admin_delete_topic', topic_id=topic.id) }}">Delete</a>
+					<a href="{{ url_for('admin_edit_topic', topic_id=topic.id) }}">Edit</a>
 				</div>
 			</li>
 		{% endfor %}
