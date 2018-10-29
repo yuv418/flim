@@ -151,7 +151,9 @@ class Group(db.Model):
 		return "<Group id: {} name: {}".format(id, self.name)
 		
 		
-class Config(db.Model):
+class DBConfig(db.Model):
+	__tablename__ = 'config'
+	
 	config_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	
 	key = db.Column(db.String(128), index=True)
@@ -160,6 +162,9 @@ class Config(db.Model):
 	@staticmethod
 	def get_value(key):
 		return Config.query.filter_by(key=key).first()
+		
+
+
 	
 		
 
