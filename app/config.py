@@ -2,24 +2,38 @@ import os
 
 class Config:
 	
+	#************************ THE FOLLOWING SETTINGS **CANNOT BE** TO BE EDITABLE OUT OF THE CONFIG FILE *********************************************************
+	
 	
 	app_name = "Flim"
 	app_allow_anonymous_view_posts = True #TODO actually make this work
 	
-	app_db_name = "flimdb"
-	app_db_username = "default_u"
-	app_db_password = "letmeinmysql"
-	app_db_host = "localhost"
-	app_db_provider = "mysql"
+	app_db_name = "flimdb" # no edits outside of config file.
+	app_db_username = "default_u" # no edits outside of config file.
+	app_db_password = "letmeinmysql" # no edits outside of config file.
+	app_db_host = "localhost" # no edits outside of config file.
+	app_db_provider = "mysql" # no edits outside of config file.
 	
-	app_message_max_length = 9990
+	app_message_max_length = 9990 # no edits outside of config file.
 		
+	
+	#************************ END SECTION *********************************************************
+	
+	
+	
+	#************************ THE FOLLOWING SETTINGS HAVE TO BE EDITABLE OUT OF THE CONFIG FILE *********************************************************
+	
+	
+	
 	app_post_topics_list = ["Announcement", "Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux", "iOS", "Android", "Windows Phone", 
-		"Ubuntu Touch", "KDE Plasma Mobile", "Question", "SIM Card Problem", "Cell Phone", "Desktop", "Laptop", "Broken", "Data Recovery"]
+		"Ubuntu Touch", "KDE Plasma Mobile", "Question", "SIM Card Problem", "Cell Phone", "Desktop", "Laptop", "Broken", "Data Recovery"] # allow edits outside of config file.
 	
-	app_allow_registration = True
+	app_allow_registration = True # allow edits outside of config file.
 	
-	app_admin_group_id = 1
+	app_admin_group_id = 1 # allow edits outside of config file.
+	
+	#************************ END SECTION *********************************************************
+	
 	
 	
 	

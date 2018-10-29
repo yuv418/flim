@@ -6,7 +6,7 @@ current_config = config.Config()
 def get_full_post_topics_list():
 	config_topics_list = current_config.get_post_topics_list()
 	
-	print(f'Topic list {Topic.query.all()}')
+	print('Topic list {}'.format(Topic.query.all()))
 	
 	db_topics_list = [(topic.name, topic.name) for topic in Topic.query.all()]
 	
