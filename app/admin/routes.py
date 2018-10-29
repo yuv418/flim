@@ -36,18 +36,17 @@ def admin_test():
 	
 #********************************************** ADMIN HOME **********************************************
 
-@app.route('/admin')
-def admin_home():
-	return redirect(url_for("admin_stats"))
+
 
 
 #********************************************** END ADMIN HOME **********************************************
 	
 	
-#********************************************** INSTANCE STATS **********************************************
+#********************************************** INSTANCE STATS ROUTES **********************************************
 
 istats = InstanceStats()
 
+@app.route('/admin')
 @app.route('/admin/stats')
 def admin_stats():
 	return render_template('admin/stats.html', istats=istats, title="Stats")
@@ -79,7 +78,7 @@ def avail_swap_mem():
 #********************************************** END INSTANCE STATS **********************************************
 
 
-#********************************************** /forum/* ROUTES *************************************************
+#********************************************** forum/* ROUTES *************************************************
 
 @app.route('/admin/forum/topics')
 def admin_topics_prefs():
@@ -141,4 +140,14 @@ def admin_edit_topic(topic_id):
 	return render_template("admin/edit_topic.html", form=form, title="Edit Topic")
 
 
-#********************************************** END /forum/* ROUTES *********************************************
+#********************************************** END forum/* ROUTES *********************************************
+
+
+#********************************************** /admin/user/* ROUTES********************************************
+
+@app.route('/admin/users/signup_settings')
+def admin_signup_settings():
+	return "Placeholder"
+
+
+#********************************************** /admin/user/* ROUTES********************************************

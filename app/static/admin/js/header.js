@@ -1,6 +1,6 @@
 var admin_navbtn_links = {
     "links": 	{"admin-user-btn": 
-					[		{'preview': 'Nothing Here!', 'link' :  "#"},
+					[		{'preview': 'Signup Settings', 'link' :  "/admin/users/signup_settings"},
 							{'preview': 'Nothing here again!', 'link' : "#"},
 							{'preview': 'VOID', 'link' : "#"},
 				
