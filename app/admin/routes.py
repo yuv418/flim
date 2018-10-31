@@ -1,7 +1,8 @@
 from app import db
 from app import app
 from app.models import *
-from app.forms import NewTopicForm, EditTopicForm
+from app.admin.forms import NewTopicForm, EditTopicForm, SignUpPermissionsForm
+
 
 from flask import render_template, abort, request, redirect, flash
 from flask_login import current_user, login_manager
@@ -147,7 +148,8 @@ def admin_edit_topic(topic_id):
 
 @app.route('/admin/users/signup_settings')
 def admin_signup_settings():
-	return "Placeholder"
+	form = SignUpPermissionsForm()
+	return render_template("admin/signup_settings.html", title="Sign-up Settings", form=form)
 
 
 #********************************************** /admin/user/* ROUTES********************************************

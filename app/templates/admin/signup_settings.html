@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+
+{% block admin_content %}
+
+<h1>Sign-up Settings</h1>
+
+<form action="" method="POST">
+	<div class="form_block">
+		<label for="allow_registration">{{ form.allow_registration.label }}</label>
+		{{ form.allow_registration }}
+	</div>
+	
+	<div class="submit_block">
+		<p>{{ form.submit }}</p>
+	</div>
+</form>
+
+{% endblock %}
