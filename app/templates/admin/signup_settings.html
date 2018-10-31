@@ -4,15 +4,18 @@
 
 <h1>Sign-up Settings</h1>
 
-<form action="" method="POST">
-	<div class="form_block">
-		<label for="allow_registration">{{ form.allow_registration.label }}</label>
-		{{ form.allow_registration }}
-	</div>
+	<form action="" method="POST">
+		<div class="form_block">
+			<label for="allow_registration">{{ perms_form.allow_registration.label }}</label>
+			{{ perms_form.allow_registration }}
+		</div>
+		
+		<div class="submit_block">
+			<p>{{ perms_form.submit }}</p>
+		</div>
+	</form>
 	
-	<div class="submit_block">
-		<p>{{ form.submit }}</p>
-	</div>
-</form>
+	
+	
 
 {% endblock %}

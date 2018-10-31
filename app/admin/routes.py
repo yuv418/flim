@@ -146,10 +146,15 @@ def admin_edit_topic(topic_id):
 
 #********************************************** /admin/user/* ROUTES********************************************
 
-@app.route('/admin/users/signup_settings')
+@app.route('/admin/users/signup_settings', methods=["GET", "POST"])
 def admin_signup_settings():
-	form = SignUpPermissionsForm()
-	return render_template("admin/signup_settings.html", title="Sign-up Settings", form=form)
+	perms_form = SignUpPermissionsForm()
+	
+	if perms_form.validate_on_submit():
+		print(perms_form.allow_registration.data)
+	
+	
+	return render_template("admin/signup_settings.html", title="Sign-up Settings", perms_form=perms_form)
 
 
 #********************************************** /admin/user/* ROUTES********************************************
