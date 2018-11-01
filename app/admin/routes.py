@@ -154,7 +154,10 @@ def admin_signup_settings():
 	if perms_form.validate_on_submit():
 		print(f"allow_registration is {perms_form.allow_registration.data}")
 		
+		flash("Settings changed succesfully!")
 		config_helper.add_config_keypair("app_allow_registration", perms_form.allow_registration.data) 
+		
+		return redirect(url_for("admin_signup_settings"))
 	
 	
 	return render_template("admin/signup_settings.html", title="Sign-up Settings", perms_form=perms_form)

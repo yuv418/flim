@@ -157,11 +157,10 @@ class DBConfig(db.Model):
 	config_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	
 	key = db.Column(db.String(128), index=True)
-	value = db.Column(db.Text(9999))\
-	
+	value = db.Column(db.Text(9999))	
 	@staticmethod
 	def get_value(key):
-		return Config.query.filter_by(key=key).first()
+		return DBConfig.query.filter_by(key=key).first()
 		
 
 

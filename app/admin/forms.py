@@ -1,8 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, StringField, SubmitField
 
+from app.models import DBConfig
+
+
 class SignUpPermissionsForm(FlaskForm):
-	allow_registration = BooleanField('Allow registration', default=True)
+	allow_registration = BooleanField('Allow registration', default=bool(DBConfig.get_value("app_allow_registration")))
 	submit = SubmitField("Update")
 	
 	
