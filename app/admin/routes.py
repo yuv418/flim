@@ -3,6 +3,7 @@ from app import app
 from app.models import *
 from app.admin.forms import NewTopicForm, EditTopicForm, SignUpPermissionsForm
 
+from app import config_helper
 
 from flask import render_template, abort, request, redirect, flash
 from flask_login import current_user, login_manager
@@ -151,7 +152,9 @@ def admin_signup_settings():
 	perms_form = SignUpPermissionsForm()
 	
 	if perms_form.validate_on_submit():
-		print(perms_form.allow_registration.data)
+		print(f"allow_registration is {perms_form.allow_registration.data}")
+		
+		config_helper.add_config_keypair("app_allow_registration", perms_form.allow_registration.data) 
 	
 	
 	return render_template("admin/signup_settings.html", title="Sign-up Settings", perms_form=perms_form)

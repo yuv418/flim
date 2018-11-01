@@ -1,6 +1,8 @@
 from app.models import Topic, DBConfig
 from app import config
 
+from app import db
+
 current_config = config.Config()
 
 def get_full_post_topics_list():
@@ -17,6 +19,8 @@ def get_full_post_topics_list():
 	
 def add_config_keypair(key, value):
 	new_config = DBConfig(key=key, value=value)
+	
+	print(f"Adding new config set: {key}: {value}")
 	
 	db.session.add(new_config)
 	db.session.commit()
