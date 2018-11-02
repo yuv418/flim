@@ -143,6 +143,13 @@ class Group(db.Model):
 	def formatted_name(self):
 		return self.name.replace(" ", "_").lower()
 	
+	@staticmethod
+	def create_group(group_name):
+		new_group = Group(name=group_name)
+		db.session.add(new_group)
+		db.session.commit()
+	
+	
 	@staticmethod	
 	def admin_group():
 		return Group.query.filter_by(id=current_config.app_admin_group_id).first() # TODO Force group admin to be created with GID 1

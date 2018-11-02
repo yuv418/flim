@@ -8,7 +8,7 @@ var admin_navbtn_links = {
 				
 				
 					"admin-group-btn": [
-							{"preview": "Random Test", 'link': "#"}
+							{"preview": "Create Group", 'link': "/admin/group/create_group"}
 				
 				
 					],

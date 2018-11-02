@@ -1,4 +1,9 @@
-window.setInterval(function() {
+setStats()
+
+window.setInterval(setStats, 1000);
+
+
+function setStats() {
 		$.get("/admin/stats/cpuload_percent", function(data) {
 			$("#cpu_current_load_percent").html("")
 			var cpu_load_percent = JSON.parse(data)
@@ -34,4 +39,4 @@ window.setInterval(function() {
 			
 		})
 		
-}, 1000);
+}

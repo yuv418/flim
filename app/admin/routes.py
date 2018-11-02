@@ -1,7 +1,7 @@
 from app import db
 from app import app
 from app.models import *
-from app.admin.forms import NewTopicForm, EditTopicForm, SignUpPermissionsForm
+from app.admin.forms import *
 
 from app import config_helper
 
@@ -48,7 +48,7 @@ def admin_test():
 
 istats = InstanceStats()
 
-@app.route('/admin')
+@app.route('/admin/')
 @app.route('/admin/stats')
 def admin_stats():
 	return render_template('admin/stats.html', istats=istats, title="Stats")
@@ -164,3 +164,21 @@ def admin_signup_settings():
 
 
 #********************************************** /admin/user/* ROUTES********************************************
+
+#********************************************** /admin/group/* ROUTES********************************************
+
+@app.route("/admin/group/create_group", methods=["GET", "POST"])
+def admin_create_group():
+	form = CreateGroupForm()
+	
+	if form.validate_on_submit():	
+		Group.create_group(form.group_name.data)
+		flash("Group created succesfully!")
+		
+		return redirect(url_for("admin_stats"))
+		
+	
+	return render_template("admin/new_group.html", title="Create Group", form=form)
+
+#********************************************** /admin/group/* ROUTES********************************************
+
