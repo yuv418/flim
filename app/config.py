@@ -25,21 +25,32 @@ class Config:
 	
 	
 	
-	app_post_topics_list = ["Announcement", "Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux", "iOS", "Android", "Windows Phone", 
+	file_app_post_topics_list = ["Announcement", "Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux", "iOS", "Android", "Windows Phone", 
 		"Ubuntu Touch", "KDE Plasma Mobile", "Question", "SIM Card Problem", "Cell Phone", "Desktop", "Laptop", "Broken", "Data Recovery"] # allow edits outside of config file.
 	
-	app_allow_registration = True # allow edits outside of config file.
+	file_app_allow_registration = True # allow edits outside of config file.
 	
-	app_admin_group_id = 1 # allow edits outside of config file.
+	file_app_admin_group_id = 1 # allow edits outside of config file.
 	
 	#************************ END SECTION *********************************************************
 	
 	
 	
+	#*********************** DEFINE DB-EDITABLE VARS **********************************************
 	
+	app_allow_registration = file_app_allow_registration
+	app_post_topics_list = file_app_post_topics_list
+	app_admin_group_id = file_app_admin_group_id
+	
+	
+	#**********************************************************************************************
 	
 	
 	# DO NOT EDIT THE FOLLOWING!!!!!
+	
+	
+	
+	
 	
 	app_version = "TESTING"
 	app_static_files_directory = "/static" # do not change, just makes things easier for us
