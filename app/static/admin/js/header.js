@@ -8,13 +8,14 @@ var admin_navbtn_links = {
 				
 				
 					"admin-group-btn": [
-							{"preview": "Create Group", 'link': "/admin/group/create_group"}
-				
+							{"preview": "Create Group", 'link': "/admin/group/create_group"},
+							{"preview": "Manage Groups", 'link': "/admin/group/manage_group"},
 				
 					],
 					
 					"admin-forum-btn": [
 							{"preview": "Topics Preferences", 'link': "/admin/forum/topics"},
+							
 				
 				
 					],

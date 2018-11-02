@@ -179,6 +179,9 @@ def admin_create_group():
 		
 	
 	return render_template("admin/new_group.html", title="Create Group", form=form)
+	
+	
+
 
 #********************************************** /admin/group/* ROUTES********************************************
 
