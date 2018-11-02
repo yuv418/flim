@@ -181,6 +181,13 @@ def admin_create_group():
 	return render_template("admin/new_group.html", title="Create Group", form=form)
 	
 	
+@app.route('/admin/group/manage_groups')
+def admin_manage_groups():
+	all_groups = Group.query.all()
+	
+	return render_template("admin/manage_groups.html", title="Manage Groups", all_groups=all_groups)
+	
+	
 
 
 #********************************************** /admin/group/* ROUTES********************************************
