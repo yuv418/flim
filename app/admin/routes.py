@@ -188,7 +188,9 @@ def admin_manage_groups():
 	return render_template("admin/manage_groups.html", title="Manage Groups", all_groups=all_groups)
 	
 	
-
+@app.route('/admin/group/delete_group/<group_id>')
+def admin_delete_group(group_id):
+	return "Placeholder"
 
 #********************************************** /admin/group/* ROUTES********************************************
 
