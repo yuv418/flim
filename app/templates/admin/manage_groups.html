@@ -5,10 +5,20 @@
 	<h1>Manage Groups</h1>
 	
 	<div class="all_groups_list">
-		{% for group in all_groups %}
-			<p>{{ group.name }}</p>
+		<ul>
+			{% for group in all_groups %}
+				<li>
+					<div>
+						<p>{{ group.name }}</p>
+						<a href="#">delete</a>
+					</div>
+				</li>
 		
-		{% endfor %}
+			{% endfor %}
+		
+		
+		</ul>
+		
 	
 	</div>
 

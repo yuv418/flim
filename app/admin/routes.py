@@ -175,7 +175,7 @@ def admin_create_group():
 		Group.create_group(form.group_name.data)
 		flash("Group created succesfully!")
 		
-		return redirect(url_for("admin_stats"))
+		return redirect(url_for("admin_manage_groups"))
 		
 	
 	return render_template("admin/new_group.html", title="Create Group", form=form)
