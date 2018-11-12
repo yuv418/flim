@@ -22,4 +22,8 @@ class CreateGroupForm(FlaskForm):
 	group_name = StringField("Group Name:", validators=[InputRequired()])
 	submit = SubmitField("Create")
 	
+class EditGroupForm(FlaskForm):
+	group_name = StringField("New Group Name:", validators=[InputRequired()])
+	submit = SubmitField("Update")
+	
 

@@ -10,7 +10,8 @@
 				<li>
 					<div>
 						<p>{{ group.name }}</p>
-						<a href="#">delete</a>
+						<a href="{{ url_for('admin_delete_group', group_id=group.id) }}">delete</a>
+						<a href="{{ url_for('admin_edit_group', group_id=group.id) }}">edit</a>
 					</div>
 				</li>
 		

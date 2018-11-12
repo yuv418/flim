@@ -190,7 +190,21 @@ def admin_manage_groups():
 	
 @app.route('/admin/group/delete_group/<group_id>')
 def admin_delete_group(group_id):
-	return "Placeholder"
-
+	group_to_delete = Group.query.filter_by(id=group_id).first()
+	
+	db.session.delete(group_to_delete)
+	db.session.commit()
+	
+	flash("Group deleteed succesfully!")
+	
+	return redirect(url_for("admin_manage_groups"))
+	
+	
+	
+@app.route('/admin/group/edit_group/<group_id>')
+def admin_edit_group(group_id):
+	form = EditGroupForm()
+	
+	return render_template(
 #********************************************** /admin/group/* ROUTES********************************************
 
