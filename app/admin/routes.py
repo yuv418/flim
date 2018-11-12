@@ -195,16 +195,31 @@ def admin_delete_group(group_id):
 	db.session.delete(group_to_delete)
 	db.session.commit()
 	
-	flash("Group deleteed succesfully!")
+	flash("Group deleted succesfully!")
 	
 	return redirect(url_for("admin_manage_groups"))
 	
 	
 	
-@app.route('/admin/group/edit_group/<group_id>')
+@app.route('/admin/group/edit_group/<group_id>', methods=["GET", "POST"])
 def admin_edit_group(group_id):
+	group_to_edit = Group.query.filter_by(id=group_id).first()
+	
 	form = EditGroupForm()
 	
-	return render_template(
+	
+	if form.validate_on_submit():
+		group_to_edit.name = form.group_name.data
+		db.session.commit()
+		
+		flash("Group modified succesfully!")
+		
+		return redirect(url_for("admin_manage_groups"))
+	
+	
+	form.group_name.default = group_to_edit.name
+	form.process()
+	
+	return render_template('admin/edit_group.html', form=form)
 #********************************************** /admin/group/* ROUTES********************************************
 
