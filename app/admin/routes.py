@@ -2,6 +2,7 @@ from app import db
 from app import app
 from app.models import *
 from app.admin.forms import *
+from app.register import Register
 
 from app.forms import RegistrationForm
 
@@ -172,6 +173,7 @@ def admin_create_user():
 	if form.validate_on_submit():
 		flash(f"Your username is {form.username.data}")
 		
+		re = Register(form.first_name.data, form.last_name.data, form.email.data, form.password.data, form.username.data)
 		
 	
 	return render_template("admin/create_user.html", title="Create User", form=form)
