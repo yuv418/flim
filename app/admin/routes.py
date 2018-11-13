@@ -3,6 +3,8 @@ from app import app
 from app.models import *
 from app.admin.forms import *
 
+from app.forms import RegistrationForm
+
 from app import config_helper
 
 from flask import render_template, abort, request, redirect, flash
@@ -80,7 +82,7 @@ def avail_swap_mem():
 #********************************************** END INSTANCE STATS **********************************************
 
 
-#********************************************** forum/* ROUTES *************************************************
+#********************************************** /admin/forum/* ROUTES *************************************************
 
 @app.route('/admin/forum/topics')
 def admin_topics_prefs():
@@ -142,7 +144,7 @@ def admin_edit_topic(topic_id):
 	return render_template("admin/edit_topic.html", form=form, title="Edit Topic")
 
 
-#********************************************** END forum/* ROUTES *********************************************
+#********************************************** END /admin/forum/* ROUTES *********************************************
 
 
 #********************************************** /admin/user/* ROUTES********************************************
@@ -162,6 +164,15 @@ def admin_signup_settings():
 	
 	return render_template("admin/signup_settings.html", title="Sign-up Settings", perms_form=perms_form)
 
+
+@app.route("/admin/users/create_user")
+def admin_create_user():
+	form = RegistrationForm()
+
+	
+	return render_template("admin/create_user.html", title="Create User", form=form)
+	
+	
 
 #********************************************** /admin/user/* ROUTES********************************************
 
@@ -220,6 +231,21 @@ def admin_edit_group(group_id):
 	form.group_name.default = group_to_edit.name
 	form.process()
 	
-	return render_template('admin/edit_group.html', form=form)
+	return render_template('admin/edit_group.html', form=form, title="Edit Group")
 #********************************************** /admin/group/* ROUTES********************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
