@@ -165,10 +165,14 @@ def admin_signup_settings():
 	return render_template("admin/signup_settings.html", title="Sign-up Settings", perms_form=perms_form)
 
 
-@app.route("/admin/users/create_user")
+@app.route("/admin/users/create_user", methods=["GET", "POST"])
 def admin_create_user():
 	form = RegistrationForm()
 
+	if form.validate_on_submit():
+		flash(f"Your username is {form.username.data}")
+		
+		
 	
 	return render_template("admin/create_user.html", title="Create User", form=form)
 	
