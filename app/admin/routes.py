@@ -171,14 +171,23 @@ def admin_create_user():
 	form = RegistrationForm()
 
 	if form.validate_on_submit():
-		flash(f"Your username is {form.username.data}")
 		
 		re = Register(form.first_name.data, form.last_name.data, form.email.data, form.password.data, form.username.data)
+		re.register()
+		
+		flash(f"User created succesfully.")
+		
+		return redirect(url_for("admin_manage_users"))
 		
 	
 	return render_template("admin/create_user.html", title="Create User", form=form)
 	
 	
+@app.route('/admin/users/manage_users', methods=["GET", "POST"])
+def admin_manage_users():
+	all_users = Users.query.all()
+	
+	return render_template("admin/manage_users.html", users=all_users)
 
 #********************************************** /admin/user/* ROUTES********************************************
 

@@ -1,0 +1,7 @@
+.users_list_table, .users_list_table th, .users_list_table tr, .users_list_table td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+	padding: 10px;
+
+}

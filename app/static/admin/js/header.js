@@ -2,7 +2,7 @@ var admin_navbtn_links = {
     "links": 	{"admin-user-btn": 
 					[		{'preview': 'Signup Settings', 'link' :  "/admin/users/signup_settings"},
 							{'preview': 'Create User', 'link' : "/admin/users/create_user"},
-							{'preview': 'VOID', 'link' : "#"},
+							{'preview': 'Manage Users', 'link' : "/admin/users/manage_users"},
 				
 					],
 				
