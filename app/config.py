@@ -8,7 +8,7 @@ class Config:
 	app_name = "Flim"
 	app_allow_anonymous_view_posts = True #TODO actually make this work
 	
-	app_db_name = "flimdb" # no edits outside of config file.
+	app_db_name = "bug_reporter_db" # no edits outside of config file.
 	app_db_username = "default_u" # no edits outside of config file.
 	app_db_password = "letmeinmysql" # no edits outside of config file.
 	app_db_host = "localhost" # no edits outside of config file.
@@ -30,7 +30,7 @@ class Config:
 	
 	file_app_allow_registration = True # allow edits outside of config file.
 	
-	file_app_admin_group_id = 1 # allow edits outside of config file.
+	file_app_admin_group_id = 2 # allow edits outside of config file.
 	
 	#************************ END SECTION *********************************************************
 	

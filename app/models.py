@@ -46,11 +46,13 @@ class Users(UserMixin, db.Model):
 	def add_to_group(self, group):
 		if not self.in_group(group):
 			self.groups.append(group)
+			db.session.commit()
 		
 		
 	def remove_from_group(self, group):
 		if self.in_group(group):
 			self.group.remove(group)
+			db.session.commit()
 		
 	def in_group(self, group):
 		#return self.groups.filter(group_associations.c.group_id == group.id).count() > 0
