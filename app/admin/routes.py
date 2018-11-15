@@ -4,7 +4,7 @@ from app.models import *
 from app.admin.forms import *
 from app.register import Register
 
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, UpdateProfileForm
 
 from app import config_helper
 
@@ -19,7 +19,7 @@ import json
 
 # ADMIN ROUTES
 
-# All admin route functions are prepended by 'admin_'
+# All admin route functions are prepended by 'admin_' 
 
 
 @app.before_request
@@ -183,11 +183,36 @@ def admin_create_user():
 	return render_template("admin/create_user.html", title="Create User", form=form)
 	
 	
-@app.route('/admin/users/manage_users', methods=["GET", "POST"])
+@app.route('/admin/users/manage_users')
 def admin_manage_users():
 	all_users = Users.query.all()
 	
 	return render_template("admin/manage_users.html", users=all_users)
+	
+@app.route('/admin/users/manage_user/<user_id>', methods=["GET", "POST"])
+def admin_manage_user(user_id):
+	user_to_manage = Users.query.filter_by(id=user_id).first()
+	
+	
+	form = UpdateProfileForm()
+	
+	# Set form default values from the user's current information
+	
+	form.first_name.default = user_to_manage.first_name
+	form.last_name.default = user_to_manage.last_name
+	form.email.default = user_to_manage.email 
+	form.about_me.default = user_to_manage.about
+	
+	# Set form default values form the user's current information
+	
+	
+	form.about_me.label = "About" # Set this label to something more appropriate for admins
+	
+	form.process()
+	
+	
+	
+	return render_template("admin/manage_user.html", user=user_to_manage, form=form)
 
 #********************************************** /admin/user/* ROUTES********************************************
 

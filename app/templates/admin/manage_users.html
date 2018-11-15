@@ -15,6 +15,7 @@
 			<th>Last Name</th>
 			<th>E-Mail</th>
 			<th>Biography</th>
+			<th>Manage</th>
 			
 		</tr>
 		
@@ -25,6 +26,7 @@
 				<td>{{ user.last_name }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.about }}</td>
+				<td><a href="{{ url_for('admin_manage_user', user_id=user.id) }}"><button>Edit</button></a></td>
 			</tr>
 		{% endfor %}
 
