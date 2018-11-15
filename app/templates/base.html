@@ -34,7 +34,11 @@
 			{% if current_user.is_anonymous %}
 			
 				{% if config.app_allow_registration %}
-					<a href="{{ url_for('register') }}">Register</a>
+					
+					{% if config_helper.get_config_value("app_allow_registration") == '1'%}
+						<a href="{{ url_for('register') }}">Register</a>
+					{% endif %}
+					
 				{% endif %}
 				
 				<a href="{{ url_for('login') }}">Log In</a>

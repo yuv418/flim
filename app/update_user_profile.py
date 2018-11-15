@@ -13,14 +13,22 @@ class UpdateUserProfile:
 		self.user = user
 	
 	def update(self):
+		status = True
+		
 		if not self.first_name == "":
 			self.user.first_name = self.first_name
+		else:
+			status = False
 		
 		if not self.last_name == "":
 			self.user.last_name = self.last_name
+		else: 
+			status = False
 		
 		if not self.email == "":
 			self.user.email = self.email
+		else: 
+			status = False
 		
 		if not self.password == "":
 			if self.password_validate == self.password:

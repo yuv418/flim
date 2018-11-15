@@ -2,13 +2,15 @@ from app import db
 from app import app
 from app.models import *
 from app.admin.forms import *
+
 from app.register import Register
+from app.update_user_profile import UpdateUserProfile
 
 from app.forms import RegistrationForm, UpdateProfileForm
 
 from app import config_helper
 
-from flask import render_template, abort, request, redirect, flash
+from flask import render_template, abort, request, redirect, flash, abort
 from flask_login import current_user, login_manager
 
 from app.admin.instance_stats import InstanceStats
@@ -30,7 +32,9 @@ def restrict_admin_access():
 	
 	if request_paths[1] == "admin":
 		if not admin_group in current_user.groups: # not an admin
-			return 'Permission Denied', 403 
+			abort(404)
+			
+			
 	
 	
 
@@ -154,15 +158,25 @@ def admin_edit_topic(topic_id):
 def admin_signup_settings():
 	perms_form = SignUpPermissionsForm()
 	
+	print(f'After commiting to database, the app_allow_registration value is {int(config_helper.get_config_value("app_allow_registration"))}')
+	
+	if config_helper.get_config_value('app_allow_registration') == '1':
+		perms_form.allow_registration.default = True
+	else:
+		perms_form.allow_registration.default = False
+	
+	
 	if perms_form.validate_on_submit():
 		print(f"allow_registration is {perms_form.allow_registration.data}")
 		
 		flash("Settings changed succesfully!")
-		config_helper.add_config_keypair("app_allow_registration", perms_form.allow_registration.data) 
+		config_helper.add_config_keypair("app_allow_registration", perms_form.allow_registration.data)
+		
+		print(f'[dbg] After commiting to database, the app_allow_registration value is {config_helper.get_config_value("app_allow_registration")}')
 		
 		return redirect(url_for("admin_signup_settings"))
 	
-	
+	perms_form.process()
 	return render_template("admin/signup_settings.html", title="Sign-up Settings", perms_form=perms_form)
 
 
@@ -193,8 +207,23 @@ def admin_manage_users():
 def admin_manage_user(user_id):
 	user_to_manage = Users.query.filter_by(id=user_id).first()
 	
-	
 	form = UpdateProfileForm()
+	
+	
+	if form.validate_on_submit():
+		if form.password.data == form.password_validate.data:
+			update_user_profile = UpdateUserProfile(form.first_name.data, form.last_name.data, form.email.data, form.password.data, 
+														form.password_validate.data, form.about_me.data, user_to_manage)
+														
+			update_user_profile.update()
+			
+			flash("User updated succesfully!")
+			return redirect(url_for("admin_manage_users"))
+			
+		else:
+			flash("Error: The passwords do not match.")	
+		
+		
 	
 	# Set form default values from the user's current information
 	

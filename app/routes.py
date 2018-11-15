@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import *
 from app import app
-from app import config, errors
+from app import config, errors, config_helper
 from app.forms import *
 from app.register import Register
 from app.new_post import NewPost
@@ -20,7 +20,7 @@ current_config = config.Config()
 
 @app.context_processor
 def put_config():
-    return dict(config=current_config)
+    return dict(config=current_config, config_helper=config_helper)
 
 @app.route("/")
 @app.route("/index")
