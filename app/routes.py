@@ -69,7 +69,7 @@ def login():
 		
 		#print(user.password_hashed)
 		#print(hashlib.sha256(form.password.data.encode('utf-8')).hexdigest())
-		flash("Yay! You've succesfully logged in!")
+		flash("You've succesfully logged in.")
 		login_user(user, remember=form.remember_me.data)
 		return redirect(url_for('index')) # this will be changed to user profile page TODO
 	
