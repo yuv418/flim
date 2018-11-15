@@ -24,6 +24,9 @@ class Topic(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	name = db.Column(db.String(512), index=True)
 	
+	def as_dict():
+		ndict = {}
+	
 	def __repr__(self):
 		return f"<Topic {self.name}>"
 

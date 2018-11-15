@@ -12,6 +12,7 @@ from app.new_response import NewResponse
 from app.new_subresponse import NewSubResponse
 
 from app.admin import routes
+from app.rest_api import routes
 
 import hashlib
 
