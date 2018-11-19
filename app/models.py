@@ -24,8 +24,7 @@ class Topic(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	name = db.Column(db.String(512), index=True)
 	
-	def as_dict():
-		ndict = {}
+		
 	
 	def __repr__(self):
 		return f"<Topic {self.name}>"
@@ -45,6 +44,18 @@ class Users(UserMixin, db.Model):
 	
 	groups = db.relationship(
         'Group', secondary=group_associations)
+        
+	def as_dict(self):
+		ndict = {}
+		ndict['id'] = self.id
+		ndict['first_name'] = self.first_name
+		ndict['last_name'] = self.last_name
+		ndict['email'] = self.email
+		ndict['about'] = self.about
+		ndict['password_hashed'] = self.password_hashed
+		ndict['username'] = self.username
+		
+		return ndict
         
 	def add_to_group(self, group):
 		if not self.in_group(group):
@@ -74,6 +85,9 @@ class Users(UserMixin, db.Model):
 	@login.user_loader
 	def load_user(id):
 		return Users.query.get(int(id))
+	
+	
+	
 	
 	def __repr__(self): 
 		return "<object User {}>".format(self.username)
