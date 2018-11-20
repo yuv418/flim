@@ -106,6 +106,28 @@ class Post(db.Model):
 	
 	response = db.relationship("Response", backref="parent_post", lazy="dynamic")
 	
+	def as_dict(self):
+		ndict = {}
+		ndict["id"] = self.id
+		ndict["title"] = self.title
+		ndict["content"] = self.content
+		ndict["timestamp"] = str(self.timestamp)
+		
+		ndict["creator_id"] = Users.query.filter_by(id=self.user_id).first().id
+				
+				
+		responses = Response.query.filter_by(parent_post=self).all()
+		
+		responses_list = []
+		
+		for response in responses:
+			responses_list.append(response.id)
+			
+		ndict['response_ids'] = responses_list
+		
+		
+		return ndict
+	
 	def get_topics_list(self):
 		return json.loads(self.topics)
 	
@@ -137,6 +159,17 @@ class Response(db.Model):
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 	
 	
+	def as_dict(self):
+		ndict = {}
+		ndict['post_id'] = self.post_id
+		ndict['user_id'] = self.user_id
+		ndict['content'] = self.content
+		ndict['timestamp'] = str(self.timestamp)
+		
+		return ndict
+		
+	
+	
 	def add_subresponse(self, subresponse):
 		if not self.is_subresponse(subresponse):
 			self.response_subresponses.append(subresponse)
@@ -161,6 +194,13 @@ class Group(db.Model):
 	
 	def formatted_name(self):
 		return self.name.replace(" ", "_").lower()
+	
+	def as_dict(self):
+		ndict = {}
+		ndict["id"] = self.id
+		ndict["name"] = self.name
+		
+		return ndict
 	
 	@staticmethod
 	def create_group(group_name):
