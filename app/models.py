@@ -24,6 +24,21 @@ class Topic(db.Model):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	name = db.Column(db.String(512), index=True)
 	
+	def as_json(self):
+		ndict = {}
+		ndict['id'] = self.id
+		ndict['name'] = self.name
+		posts_relating = []
+		posts_list = Post.query.all()
+		
+		for post in posts_list:
+			topics_list = post.get_topics_list()
+			if self.name in topics_list:
+				posts_relating.append(post.id)
+	
+		ndict['posts'] = posts_relating
+		
+		return ndict
 		
 	
 	def __repr__(self):
@@ -124,6 +139,8 @@ class Post(db.Model):
 			responses_list.append(response.id)
 			
 		ndict['response_ids'] = responses_list
+		
+		ndict['topic_list'] = self.get_topics_list()
 		
 		
 		return ndict

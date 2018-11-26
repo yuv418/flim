@@ -25,6 +25,17 @@ class ResponseResource(Resource):
 		response = Response.query.filter_by(id=response_id).first()
 		return response.as_dict()
 		
+class TopicResource(Resource):
+	def get(self, topic_name):
+		posts_relating = []
+		posts_list = Post.query.all()
+		
+		for post in posts_list:
+			topics_list = post.get_topics_list()
+			if self.name in topics_list:
+				posts_relating.append(post.id)
+	
+		ndict['posts'] = posts_relating
 	
 
 				
@@ -34,6 +45,7 @@ api.add_resource(UserResource, "/api/user/<user_id>")
 api.add_resource(GroupResource, "/api/group/<group_id>")
 api.add_resource(PostResource, "/api/post/<post_id>")
 api.add_resource(ResponseResource, "/api/response/<response_id>")
+api.add_resource(TopicResource, "/api/topic/<topic_name>")
 		
 		
 	
