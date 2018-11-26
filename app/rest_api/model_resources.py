@@ -27,15 +27,19 @@ class ResponseResource(Resource):
 		
 class TopicResource(Resource):
 	def get(self, topic_name):
+		
+		ndict = {}
 		posts_relating = []
 		posts_list = Post.query.all()
 		
 		for post in posts_list:
 			topics_list = post.get_topics_list()
-			if self.name in topics_list:
+			if topic_name in topics_list:
 				posts_relating.append(post.id)
 	
 		ndict['posts'] = posts_relating
+		
+		return ndict
 	
 
 				
