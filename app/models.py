@@ -144,6 +144,16 @@ class Post(db.Model):
 		
 		
 		return ndict
+	 
+	@staticmethod 
+	def get_all_posts_list():
+		"""Returns all post ids in a list"""
+		all_posts = Post.query.all()
+		all_post_id_list = []
+		for post in all_posts:
+			 all_post_id_list.append(post.id)
+			 
+		return all_post_id_list
 	
 	def get_topics_list(self):
 		return json.loads(self.topics)

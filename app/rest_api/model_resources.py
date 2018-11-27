@@ -18,6 +18,10 @@ class PostResource(Resource):
 	def get(self, post_id):
 		post = Post.query.filter_by(id=post_id).first()
 		return post.as_dict()
+
+class AllPostsResource(Resource):
+	def get(self):
+		return Post.get_all_posts_list()
 		
 		
 class ResponseResource(Resource):
@@ -40,6 +44,8 @@ class TopicResource(Resource):
 		ndict['posts'] = posts_relating
 		
 		return ndict
+		
+
 	
 
 				
@@ -48,6 +54,7 @@ class TopicResource(Resource):
 api.add_resource(UserResource, "/api/user/<user_id>")
 api.add_resource(GroupResource, "/api/group/<group_id>")
 api.add_resource(PostResource, "/api/post/<post_id>")
+api.add_resource(AllPostsResource, "/api/all_posts")
 api.add_resource(ResponseResource, "/api/response/<response_id>")
 api.add_resource(TopicResource, "/api/topic/<topic_name>")
 		
