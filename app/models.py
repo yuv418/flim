@@ -153,7 +153,7 @@ class Post(db.Model):
 		for post in all_posts:
 			 all_post_id_list.append(post.id)
 			 
-		return all_post_id_list
+		return {"all_posts": all_post_id_list}
 	
 	def get_topics_list(self):
 		return json.loads(self.topics)
