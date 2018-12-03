@@ -69,23 +69,29 @@ Another important point to be mentioned is the fact that any links to other mode
 Let's take a look at adding information using this REST API. You'll have to use PUT requests in order to do this. Typically, the program will return
 
 ### Models
-
-	To add an entry to a model, you must submit a PUT request with parameters containing similar information to what **you would recieve with a get** request.
+To add an entry to a model, you must submit a PUT request with parameters containing similar information to what **you would recieve with a get** request.
 	
-	Let's take a look at example data that you would put in a PUT request if we were, for example, adding a response to a post, you would send the data:
-	```json
-	{
-		"parent_post": 3171,
-		"creator": 3843,
-		"content": "I want to second this idea. I really think that this can <b>add a lot of potential</b> to the project.",
-		
-		
-		
-	}
-	```	
+Let's take a look at example data that you would put in a PUT request if we were, for example, adding a response to a post, you would send the data:
+
+```json	
+{
+	"parent_post": 3171,
+	"creator": 3843,
+	"content": "I want to second this idea. I really think that this can <b>add a lot of potential</b> to the project.",
+}
+```
 	
-	Note: we omit the timestamp because Python will take care of this for us.
+Note: we omit the timestamp because Python will take care of this for us.
+
+## Authentication
+
+To keep things simple, we omitted API keys and HTTP basic authentication
+
+### Using API Keys
+
+In order to retrieve an API key, access `/api/key/retrieve` with HTTP basic authentication, with your username as the username and password that you normally use to log in to Flim. The API key retrieval will then send you a response such as this:
 
 
 
 
+	
