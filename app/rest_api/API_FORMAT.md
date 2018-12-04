@@ -125,7 +125,8 @@ In order to destroy an API key, send a PUT request to `/api/key/destroy` with th
 ### Finding and Using URLs
 
 With access URLs, you can append `/by-<column_name>` in order to access the model by a certain value. For example, if we wanted to access the user with `id` 3291, we would send a GET request to `/api/user/by-id/3291`. Similarly, if we wanted to access posts with topic "Announcements", we would send our GET request to `/api/user/by-topic/Announcement`.
-
+With delete URLs, you must append a valid column identifier. 
+With modify URLs, you must append a valid column identifier along with the new values for the columns that you wish to alter.
 
 
 Model|Access URL|Add URL|Modify URL|Delete URL
