@@ -4,11 +4,7 @@ from flask_restful import Resource
 
 from app.models import *
 
-class UserResource(Resource):
-	def get(self, user_id):
-		user = Users.query.filter_by(id=user_id).first()
-		return user.as_dict()
-		
+
 class GroupResource(Resource):
 	def get(self, group_id):
 		group = Group.query.filter_by(id=group_id).first()
@@ -51,7 +47,9 @@ class TopicResource(Resource):
 				
 				
 		
-api.add_resource(UserResource, "/api/user/<user_id>")
+
+
+
 api.add_resource(GroupResource, "/api/group/<group_id>")
 api.add_resource(PostResource, "/api/post/<post_id>")
 api.add_resource(AllPostsResource, "/api/all_posts")
