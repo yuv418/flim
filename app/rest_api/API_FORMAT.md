@@ -129,6 +129,17 @@ With delete URLs, you must append a valid column identifier.
 With modify URLs, you must append a valid column identifier along with the new values for the columns that you wish to alter.
 
 
+### Valid Users Model API Retrievals
+
+URL
+|---|
+|`/api/user/by-id`|
+|`/api/user/by-first_name`|
+|`/api/user/by-last_name`|
+|`/api/user/by-username`|
+
+
+
 Model|Access URL|Add URL|Modify URL|Delete URL
 --- | --- | --- | --- | ---
 |Users|`/api/user/retrieve`|`/api/user/add`|`/api/user/modify`|`/api/user/delete`
