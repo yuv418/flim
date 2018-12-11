@@ -58,7 +58,6 @@ class UserByEmailResource(Resource):  # Return a list of user IDs for each perso
 
 api.add_resource(UserByIDResource, "/api/user/by-id/<user_id>")
 api.add_resource(UserByUsernameResource, "/api/user/by-username/<user_name>")
-
 api.add_resource(UserByFirstNameResource, "/api/user/by-first_name/<first_name>")
 api.add_resource(UserByLastNameResource, "/api/user/by-last_name/<last_name>")
 api.add_resource(UserByEmailResource, "/api/user/by-email/<email>")
