@@ -15,7 +15,7 @@ class PostByUserIDResource(Resource):
 		post_id_list = []
 		
 		for post in posts:
-			post_id_list.append(post.user_id)
+			post_id_list.append(post.id)
 		
 		return post_id_list
 	
@@ -26,7 +26,7 @@ class PostByTitleResource(Resource):
 		post_id_list = []
 		
 		for post in posts:
-			post_id_list.append(post.user_id)
+			post_id_list.append(post.id)
 		
 		return post_id_list
 		
@@ -41,8 +41,29 @@ class PostByTimestampResource(Resource):
 		
 		return post_id_list
 		
+class PostByTopicResource(Resource):
+	def get(self, topic):
+		posts = Post.query.all()
+		
+		filtered_post_list = []
+		for post in posts:
+			if topic in post.get_topics_list():
+				filtered_post_list.append(post)
+		
+		
+		
+		post_id_list = []
+		
+		for post in filtered_post_list: 
+			
+			post_id_list.append(post.id)
+			
+		
+		return post_id_list
+		
 		
 api.add_resource(PostByIDResource, "/api/post/by-id/<post_id>")
 api.add_resource(PostByUserIDResource, "/api/post/by-user_id/<user_id>")
 api.add_resource(PostByTimestampResource, "/api/post/by-timestamp/<timestamp>")
 api.add_resource(PostByTitleResource, "/api/post/by-user_id/<user_id>")
+api.add_resource(PostByTopicResource, "/api/post/by-topic/<topic>")
