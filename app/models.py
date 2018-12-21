@@ -170,7 +170,7 @@ class Response(db.Model):
 	__tablename__ = "responses"
 	
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	
+				
 	
 	response_subresponses = db.relationship(
         'Response', secondary=subresponses,

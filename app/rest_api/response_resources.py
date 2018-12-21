@@ -44,7 +44,18 @@ class ResponseByTimestampResource(Resource):
 		
 		return posts_id_list
 	
+class ResponseByResponseIDResource(Resource):
+	def get(self, response_id):
+		parent_post = Response.query.filter_by(id=response_id).first()
+		posts = parent_post.response_subresponses
+		posts_id_list = []
+		for post in posts:
+			posts_id_list.append(post.id)
+		
+		return posts_id_list
+
 api.add_resource(ResponseByIDResource, "/api/response/by-id/<response_id>")
 api.add_resource(ResponseByPostIDResource, "/api/response/by-post_id/<post_id>")
 api.add_resource(ResponseByUserIDResource, "/api/response/by-user_id/<user_id>")
-api.add_resource(ResponseByUserIDResource, "/api/response/by-timestamp/<timestamp>")
+api.add_resource(ResponseByTimestampResource, "/api/response/by-timestamp/<timestamp>")
+api.add_resource(ResponseByResponseIDResource, "/api/response/by-response_id/<response_id>")
