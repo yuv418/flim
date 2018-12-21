@@ -51,7 +51,6 @@ class PostByTopicResource(Resource):
 				filtered_post_list.append(post)
 		
 		
-		
 		post_id_list = []
 		
 		for post in filtered_post_list: 
