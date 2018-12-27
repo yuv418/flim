@@ -7,5 +7,6 @@ from app.rest_api import model_resources
 from app.rest_api import user_resources
 from app.rest_api import post_resources
 from app.rest_api import response_resources
+from app.rest_api import group_resources
 
 

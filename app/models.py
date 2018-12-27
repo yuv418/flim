@@ -9,6 +9,18 @@ import json
 
 current_config = Config()
 
+# Handy little function to get an list of IDs from a list of models.
+def get_id_list(models):
+	model_id_list = []
+	
+	# We can add an ID here because no matter what model it is, it has an ID.
+	
+	for model in models:
+		model_id_list.append(model.id)
+	
+	return model_id_list
+	
+
 subresponses = db.Table('subresponses', 
 	db.Column('response_id', db.Integer, db.ForeignKey('responses.id')),
 	db.Column('subresponse_id', db.Integer, db.ForeignKey('responses.id'))
@@ -63,6 +75,14 @@ class Users(UserMixin, db.Model):
 	def as_dict(self):
 		ndict = {}
 		ndict['id'] = self.id
+		
+		group_ids_list = []
+		for group in self.groups:
+			group_ids_list.append(group.id)
+		
+		ndict['groups'] = group_ids_list
+		
+		ndict['admin'] = self.is_admin()
 		ndict['first_name'] = self.first_name
 		ndict['last_name'] = self.last_name
 		ndict['email'] = self.email
