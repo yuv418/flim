@@ -72,9 +72,9 @@ class Users(UserMixin, db.Model):
 	groups = db.relationship(
         'Group', secondary=group_associations)
     
-    # The users have a relationship to the APIKeys class.
+    # The users have a relationship to the APIKey class.
     
-	api_keys = db.relationship("APIKeys")
+	api_keys = db.relationship("APIKey")
         
 	def as_dict(self):
 		ndict = {}
