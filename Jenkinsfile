@@ -9,6 +9,7 @@ pipeline {
             }
             steps {
                 sh "ls app/"
+				sh "apk add tar"
             }
         }
     }
