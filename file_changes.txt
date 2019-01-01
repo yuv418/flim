@@ -1,0 +1,7 @@
+add_group -> create/group
+new_post -> create/post
+new_response -> create/response
+new_subresponse -> create/subresponse
+register -> create/user
+update_user_profile -> update/user_profile
+errors -> error_handlers
