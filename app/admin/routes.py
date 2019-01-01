@@ -3,8 +3,8 @@ from app import app
 from app.models import *
 from app.admin.forms import *
 
-from app.register import Register
-from app.update_user_profile import UpdateUserProfile
+from app.create.user import Register
+from app.update.user_profile import UpdateUserProfile
 
 from app.forms import RegistrationForm, UpdateProfileForm
 

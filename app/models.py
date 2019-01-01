@@ -4,6 +4,8 @@ from flask import url_for
 from flask_login import UserMixin
 from datetime import datetime
 from app.config import Config
+from app.rest_api.models import *
+
 import hashlib
 import json
 

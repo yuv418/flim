@@ -1,19 +1,24 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
-from app.rest_api.models import *
-from app.models import *
-from app import app
-from app import config, errors, config_helper
+
+from app import app, config, error_handlers, config_helper, db
+
 from app.forms import *
-from app.register import Register
-from app.new_post import NewPost
-from app.update_user_profile import UpdateUserProfile
-from app import db
-from app.new_response import NewResponse
-from app.new_subresponse import NewSubResponse
 
 from app.admin import routes
 from app.rest_api import routes
+
+
+from app.models import *
+
+
+from app.update.user_profile import UpdateUserProfile
+
+from app.create.response import NewResponse
+from app.create.subresponse import NewSubResponse
+from app.create.post import NewPost
+from app.create.user import Register
+
 
 import hashlib
 
