@@ -9,7 +9,7 @@ from flask_restful import Api
 
 
 
-from app import config
+
 
 current_config = config.Config()
 
@@ -26,3 +26,4 @@ api = Api(app)
 
 
 from app import routes
+

@@ -3,14 +3,20 @@ from app import config
 
 from app import db
 
+# Prevent flask from breaking itself if the db is not installed yet.
+from sqlalchemy.exc import ProgrammingError
+
 current_config = config.Config()
 
 def get_full_post_topics_list():
 	config_topics_list = current_config.get_post_topics_list()
 	
 	#print('Topic list {}'.format(Topic.query.all()))
-	
-	db_topics_list = [(topic.name, topic.name) for topic in Topic.query.all()]
+	try:
+		db_topics_list = [(topic.name, topic.name) for topic in Topic.query.all()]
+	except ProgrammingError:
+		# Set a blank list if the db is not initialized
+		db_topics_list = []
 	
 	#for topic in db_topics_list:
 		#print(topic)

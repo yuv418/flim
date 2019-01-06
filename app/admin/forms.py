@@ -4,9 +4,15 @@ from wtforms.validators import InputRequired, DataRequired
 
 from app.models import DBConfig
 
+# Prevent flask from breaking itself if the db is not installed yet.
+from sqlalchemy.exc import ProgrammingError
 
 class SignUpPermissionsForm(FlaskForm):
-	allow_registration = BooleanField('Allow registration', default=bool(DBConfig.get_value("app_allow_registration")))
+	try:
+		allow_registration = BooleanField('Allow registration', default=bool(DBConfig.get_value("app_allow_registration")))
+	except ProgrammingError:
+		allow_registration = BooleanField('Allow registration', default=False)
+	
 	submit = SubmitField("Update")
 	
 	
