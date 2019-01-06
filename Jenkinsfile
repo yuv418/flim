@@ -3,8 +3,11 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-				withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']) {  
-					sh 'docker build -t flim_docker .'
+				node {
+					checkout scm
+
+					def customImage = docker.build("my-image:${env.BUILD_ID}")
+					
 				}
 			}
         }
