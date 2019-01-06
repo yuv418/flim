@@ -1,16 +1,19 @@
 pipeline {
-    agent none 
-    stages {
-        stage('Build') { 
-            steps {
-				node {
-					checkout scm
+agent none 
+	stages {
+		stage('Build') { 
+				agent{
+					node {
+						checkout scm
 
-					def customImage = docker.build("my-image:${env.BUILD_ID}")
+						def customImage = docker.build(":${env.BUILD_ID}")
+						
+					}
 					
-				}
 			}
-        }
-        
-    }
+				
+		}
+	}
+	
 }
+
