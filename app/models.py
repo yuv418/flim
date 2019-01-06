@@ -64,7 +64,7 @@ class Users(UserMixin, db.Model):
 	first_name = db.Column(db.String(128), index=True, unique=True)
 	last_name = db.Column(db.String(128), index=True, unique=True)
 	email = db.Column(db.String(128), index=True, unique=True)
-	about = db.Column(db.Text(9990), unique=True) 
+	about = db.Column(db.Text(9990)) 
 	password_hashed = db.Column(db.String(255), index=True, unique=True)
 	username = db.Column(db.String(32), index=True, unique=True)
 	
