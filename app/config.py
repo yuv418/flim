@@ -28,7 +28,14 @@ class Config:
 	file_app_post_topics_list = ["Announcement", "Help Needed", "Idea", "Not Urgent", "Urgent", "Windows", "macOS", "Linux", "iOS", "Android", "Windows Phone", 
 		"Ubuntu Touch", "KDE Plasma Mobile", "Question", "SIM Card Problem", "Cell Phone", "Desktop", "Laptop", "Broken", "Data Recovery"] # allow edits outside of config file.
 	
-	file_app_allow_registration = True # allow edits outside of config file.
+	file_app_allow_registration_tmp = os.getenv("FLIM_ALLOW_REGISTRATION") # allow edits outside of config file.
+	file_app_allow_registration = False
+	
+	if file_app_allow_registration_tmp == '1':
+		file_app_allow_registration = True
+	elif file_app_allow_registration_tmp == '0':
+		file_app_allow_registration = False
+	
 	
 	file_app_admin_group_id = 1 # allow edits outside of config file.
 	
@@ -36,7 +43,8 @@ class Config:
 	
 	#************************ HOST INFORMATION SECTION ********************************************
 
-	app_host = '0.0.0.0'
+	app_host = os.getenv("FLIM_HOST", "127.0.0.1")
+	app_port = int(os.getenv("FLIM_PORT", "5000"))
 
 
 	#************************ END SECTION *********************************************************

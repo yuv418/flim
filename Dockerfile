@@ -11,6 +11,13 @@ MAINTAINER Ramesh Balaji "post2rb@hotmail.com"
 # FLIM_DB_USERNAME
 # FLIM_DB_PASSWORD
 
+# Furthermore, you can set the following configuration variables
+
+# FLIM_ALLOW_REGISTRATION (can be either 0 or 1, True or False)
+# FLIM_HOST (IP Address Flim runs on)
+# FLIM_PORT (Port Flim runs on)
+
+
 # I think you can figure out what all of the environment variables mean, if you cannot, you are probably not qualified enough to set this system up.
 
 

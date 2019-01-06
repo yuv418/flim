@@ -37,7 +37,11 @@
 					
 					{% if config_helper.get_config_value("app_allow_registration") == '1'%}
 						<a href="{{ url_for('register') }}">Register</a>
+					{% else %}
+						<a href="{{ url_for('register') }}">Register</a>
 					{% endif %}
+					
+					
 					
 				{% endif %}
 				

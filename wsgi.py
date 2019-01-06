@@ -8,4 +8,4 @@ current_config = config.Config()
 db.create_all()
 
 if __name__ == "__main__":
-	app.run(host = current_config.app_host)
+	app.run(host = current_config.app_host, port = current_config.app_port)
