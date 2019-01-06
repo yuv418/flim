@@ -1,19 +1,10 @@
-pipeline {
-agent none 
-	stages {
-		stage('Build') { 
-				agent{
-					node {
-						checkout scm
-
-						def customImage = docker.build(":${env.BUILD_ID}")
-						
-					}
-					
-			}
-				
-		}
-	}
-	
+pipeline { 
+    agent any 
+    stages {
+        stage('Build') { 
+            steps { 
+                sh 'docker build -t flim_docker .' 
+            }
+        }
+    }
 }
-
