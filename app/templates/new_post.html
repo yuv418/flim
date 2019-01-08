@@ -9,17 +9,17 @@
 		
 		{{ form.hidden_tag() }}
 		
-		<div class="form_block">
+		<div class="form_block form-group">
 			<p>{{ form.title.label }}</p>
-			{{ form.title(size=32) }}
+			{{ form.title(size=32, class_="form-control" ) }}
 		</div>
 		
-		<div class="form_block">
+		<div class="form_block form-group">
 			<p>{{ form.content.label }}</p>
-			{{ form.content(cols=100, rows=10) }}
+			{{ form.content(cols=100, rows=10, class_="form-control") }}
 		</div>
 		
-		<div class="form_block">
+		<div class="form_block form-group">
 			<p>{{ form.topics.label }}</p>
 			{{ form.topics }}<br>
 			
@@ -35,7 +35,7 @@
 			
 		</div>
 		
-		{{ form.submit }}
+		{{ form.submit(class_="btn btn-success") }}
 	</form>
 
 {% endblock %}

@@ -3,9 +3,9 @@
 {% block content %}
 	<h1>New Response</h1>
 	{% if not subresponse %}
-		<p>Type your response for "{{ post.title }}"</p>
+		<p>Type your response to "{{ post.title }}"</p>
 	{% else %}
-		<p>Type your subresponse for "{{ post.title }}"</p>
+		<p>Type your subresponse to "{{ post.title }}"</p>
 	{% endif %}
 	<hr>
 	
@@ -13,15 +13,15 @@
 		
 		{{ form.hidden_tag() }}
 		
-		<div class="form_block">
-			<p>{{ form.content.label }}</p>
-			{{ form.content(cols=100, rows=10) }}
+		<div class="form-group">
+			{{ form.content.label }}
+			{{ form.content(cols=100, rows=10, class_="form-control") }}
 		</div>
 		
 		<br>
 		
 		<div class="submit_block">
-			{{ form.submit }}
+			{{ form.submit(class_="btn btn-success") }}
 		</div>
 	
 	</form>
