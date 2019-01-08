@@ -1,7 +1,11 @@
-<div class="topics">
-	{% for topic in post.get_topics_list() %}
-		<div class="topic">
-			<a href="{{ url_for('view_post_topics', topic_name=topic) }}">{{ topic }}</a>
-		</div>
-	{% endfor %}
-</div>
+
+
+{% for topic in post.get_topics_list() %}
+
+
+		  <a href="{{ url_for('view_post_topics', topic_name=topic) }}" class="d-inline-block mr-2">
+	            <button class="btn btn-primary">{{ topic }}</button>
+		  </a>
+
+{% endfor %}
+
