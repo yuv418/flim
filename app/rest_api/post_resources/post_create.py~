@@ -1,0 +1,18 @@
+from app import app, api
+from flask import request
+from flask_restful import Resource
+
+from app.models import *
+
+class CreatePostResoruce(Resource):
+	""" 
+	A resource that allows you to create a post from the REST API.
+	Takes parameters: 
+	    user_id: int
+	    title: string
+	    content: string
+	    topics: list
+	Returns: 
+	"""
+	def put(self):
+		
