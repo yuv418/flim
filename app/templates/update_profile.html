@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -9,38 +10,38 @@
 		
 		{{ form.hidden_tag() }}
 		
-		<div class="form_block">
+		<div class="form_block form-group">
 			<p>{{ form.first_name.label }}</p>
-			<p>{{ form.first_name(size=32) }}</p>
+			<p>{{ form.first_name(size=32, class_="form-control") }}</p>
 		</div>
 		
 		<div class="form_block">
 			<p>{{ form.last_name.label }}</p>
-			<p>{{ form.last_name(size=32) }}</p>
+			<p>{{ form.last_name(size=32, class_="form-control") }}</p>
 		</div>
 		
 		<div class="form_block">
 			<p>{{ form.password.label }}</p>
-			<p>{{ form.password(size=32) }}</p>
+			<p>{{ form.password(size=32, class_="form-control") }}</p>
 		</div>
 		
 		<div class="form_block">
 			<p>{{ form.password_validate.label }}</p>
-			<p>{{ form.password_validate(size=32) }}</p>
+			<p>{{ form.password_validate(size=32, class_="form-control") }}</p>
 		</div>
 		
 		<div class="form_block">
 			<p>{{ form.email.label }}</p>
-			<p>{{ form.email(size=32) }}</p>
+			<p>{{ form.email(size=32, class_="form-control") }}</p>
 		</div>
 		
 		<div class="form_block">
 			<p>{{ form.about_me.label }}</p>
-			<p>{{ form.about_me(cols=100, rows=10) }}</p>
+			<p>{{ form.about_me(cols=100, rows=10, class_="form-control") }}</p>
 		</div>
 		
 		<div class="submit_block">
-			{{ form.submit }}
+			{{ form.submit(class_="btn btn-success") }}
 		</div>
 		
 		
