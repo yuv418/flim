@@ -267,7 +267,7 @@ class Group(db.Model):
 		return Group.query.filter_by(id=current_config.app_admin_group_id).first() # TODO Force group admin to be created with GID 1
 		
 	def __repr__(self):
-		return "<Group id: {} name: {}".format(id, self.name)
+		return "<Group id: {} name: {}".format(self.id, self.name)
 		
 		
 class DBConfig(db.Model):

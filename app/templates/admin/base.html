@@ -5,9 +5,10 @@
 
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin/css/header.css') }}" />
 		<script src="{{ url_for('static', filename='admin/js/header.js') }}"></script>
-		<div class="admin_header">
+<!--		<div class="admin_header">
 			<h2 class="admin_title" style='display: inline'>Admin Area</h2>
 			<a class="first_header_navbtn header_navbtn" id="admin-stats-btn" href="{{ url_for('admin_stats') }}"><button>Stats</button></a>
+
 			<div class="header_submenu_item">
 				<a class="header_navbtn" id="admin-user-btn" href="#"><button>Users</button></a>
 			</div>
@@ -24,7 +25,7 @@
 			
 			</div>
 			
-		</div>
+		</div>-->
 
 		<div class="admin_content_container">
 			{% block admin_content %}{% endblock %}
