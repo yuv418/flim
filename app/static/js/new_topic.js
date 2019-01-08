@@ -12,7 +12,7 @@ $(function() {
 			$(".add_topic_button").html("X")
 			
 			new_topic_name = $("<input size='50' class='new_topic_name' />")
-			new_topic_submit = $("<button type='button' class='new_topic_submit'></button")
+			new_topic_submit = $("<button type='button' class='new_topic_submit btn btn-success'></button")
 			
 			new_topic_name.hide()
 			new_topic_submit.hide()

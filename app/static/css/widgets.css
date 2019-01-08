@@ -1,4 +1,4 @@
-button, input[type="button"], input[type="submit"]{
+/*button, input[type="button"], input[type="submit"]{
 	border: none;
 	padding: 10px;
 	background-color: lightblue;
@@ -6,4 +6,6 @@ button, input[type="button"], input[type="submit"]{
 }
 button:hover, input[type="button"]:hover, input[type="submit"]:hover{
 		cursor: pointer;
-}
+}*/
+
+/* Removed for bootstrap migration */

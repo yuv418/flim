@@ -1,3 +1,5 @@
 .content {
 /* removed because of bootstrap ui rewrite */
+    margin: 1%;
+    /* This makes the application usable */
 }

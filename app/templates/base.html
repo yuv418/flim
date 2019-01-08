@@ -6,7 +6,12 @@
 		{% else %}
 			<title>{{ config.app_name }}</title>
 		{% endif %}
+
+		<!-- allow users to have a good experience on different displays -->
+
 		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 		
 		<script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -33,10 +38,10 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		
 	</head>
-	<body>
+	<body class="">
 		<div class="navbar navbar-expand-lg navbar-light bg-light">
 
-		  <a class="navbar-brand" style='display: inline'>{{ config.app_name }}</a>
+		  <a class="navbar-brand navbar">{{ config.app_name }}</a>
 
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
@@ -77,17 +82,20 @@
 			{% else %}
 			
 				{% if current_user.is_admin() %}
-					<a href="{{ url_for('admin_stats') }}">Admin</a>
+          			  <li class="nav-item active">
+				    <a class="nav-link" href="{{ url_for('admin_stats') }}">Admin</a>
+				  </li>
+				 
 				{% endif %}
 
-			  <li class="nav-item active">
-			    <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
-			  </li>
 
 			  <li class="nav-item active">
 			    <a class="nav-link" href="{{ url_for('new_post') }}">Post</a>
 			  </li>
 
+			  <li class="nav-item active">
+			    <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+			  </li>
 			  
 
 
@@ -108,11 +116,11 @@
 			{% endif %}
 			
 		</div>
-		<div class="content">
+		<div class="content container">
 			{% with messages = get_flashed_messages() %}
 				{% if messages %}
 					{% for message in messages %}
-						<p class='msg'>{{ message }}</p>
+						<p class='alert alert-info'>{{ message }}</p>
 					{% endfor %}
 				{% endif %}
 			{% endwith %}	
