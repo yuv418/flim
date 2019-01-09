@@ -1,9 +1,0 @@
-from app import app, api, db
-from app.models import *
-from app.create.post import NewPost
-
-from flask import request
-from flask_restful import Resource
-
-class UpdatePostResource(Resource):
-	
