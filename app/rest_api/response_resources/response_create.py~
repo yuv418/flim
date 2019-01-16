@@ -1,0 +1,18 @@
+from app import app, api
+from app.create.user import Register
+
+from flask import request
+from flask_restful import Resource
+
+from app.models import * 
+
+
+class CreateResponseResource(Resource):
+	"""
+	Class to create a response from the REST API.
+
+	"""
+
+
+
+	

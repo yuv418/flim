@@ -106,7 +106,7 @@ class Users(UserMixin, db.Model):
 		
 	def remove_from_group(self, group):
 		if self.in_group(group):
-			self.group.remove(group)
+			self.groups.remove(group)
 			db.session.commit()
 		
 	def in_group(self, group):
@@ -126,8 +126,13 @@ class Users(UserMixin, db.Model):
 	@login.user_loader
 	def load_user(id):
 		return Users.query.get(int(id))
-	
-	
+
+	@staticmethod
+	def get_user_from_api_key(api_key):
+		api_key_inst = APIKey.query.filter_by(api_key=api_key).first()
+		user = Users.query.filter_by(id=api_key_inst.user_id).first()
+		return user
+		
 	
 	
 	def __repr__(self): 

@@ -9,3 +9,5 @@ class AddGroup:
 		group = Group(name=self.group_name)
 		db.session.add(group)
 		db.session.commit()
+
+		return group
