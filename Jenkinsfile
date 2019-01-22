@@ -9,11 +9,11 @@ pipeline {
         
         stage('Deliver') {
 			steps {
-			        sh 'rm flim_docker_image.tar'
-				sh 'rm flim_docker_image.tar.gz'
+			        sh 'rm -f flim_docker_image.tar'
+				sh 'rm -f flim_docker_image.tar.gz'
 				sh 'docker save flim_docker > flim_docker_image.tar'
 				sh 'gzip flim_docker_image.tar'
-				sh 'rm flim_docker_image.tar'
+				sh 'rm -f flim_docker_image.tar'
 			}
 			
 			post {
