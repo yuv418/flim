@@ -1,8 +1,0 @@
-$(functionj() {
-	$("#navbtn").click(function() {
-		
-		
-	});
-	
-	
-});
