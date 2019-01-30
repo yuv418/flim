@@ -55,6 +55,7 @@ def check_apikey_rest_api():
 from app.rest_api.api_resources import api_manage
 
 from app.rest_api.user_resources import user_retrieve
+from app.rest_api.user_resources import user_update
 from app.rest_api.post_resources import post_retrieve
 from app.rest_api.response_resources import response_retrieve
 from app.rest_api.response_resources import response_create
