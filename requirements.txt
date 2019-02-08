@@ -10,3 +10,4 @@ WTForms==2.2.1
 mysqlclient
 psutil
 flask-dotenv
+flask-httpauth
