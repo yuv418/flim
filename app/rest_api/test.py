@@ -1,12 +1,19 @@
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
-from app import api
+from app import api, app
+from app.rest_api.api_resources import api_decorators
+
+@app.route("/api/test")
+@api_decorators.api_check_auth
+def test_api():
+		return jsonify({"status": True, "msg": "test"})
 
 
-class Test(Resource):
-	def get(self):
-		return {"status": True, "msg": "test"}
+@app.route("/api/version")
+def api_version():
+	version_report = {}
+	version_report['version'] = "TESTING"
+	return jsonify(version_report)
 
 
 
-api.add_resource(Test, "/api/test")

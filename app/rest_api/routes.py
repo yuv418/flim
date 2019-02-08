@@ -5,11 +5,13 @@ from app.rest_api.models import *
 
 # Check for a valid api key before the user is allowed to access data.
 
-@app.before_request
+
+
+"""@app.before_request
 def check_apikey_rest_api():
 	
 	request_paths = request.path.split("/") # looks like ['', 'api', 'blah', 'blah', 'blah'] so we want the first index not the zeroeth index.
-	
+
 	
 	if request_paths[1] == "api" and request_paths[2] + "/" + request_paths[3] != 'key/add':
 		# An API request (unless we are trying to add a key)
@@ -48,12 +50,12 @@ def check_apikey_rest_api():
 			
 				
 		# The user does have access to the API. The function may return empty for everything to proceed.
-
+"""
 	
 	
 
 from app.rest_api.api_resources import api_manage
-
+from app.rest_api import test
 from app.rest_api.user_resources import user_retrieve
 from app.rest_api.user_resources import user_update
 from app.rest_api.post_resources import post_retrieve

@@ -10,6 +10,7 @@ from app.rest_api import routes
 
 
 from app.models import *
+from app.schemas import *
 
 
 from app.update.user_profile import UpdateUserProfile

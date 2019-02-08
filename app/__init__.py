@@ -6,7 +6,7 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_restful import Api
-
+from flask_marshmallow import Marshmallow
 
 
 
@@ -20,7 +20,8 @@ login = LoginManager(app)
 login.login_view='login'
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+ma = Marshmallow(app)
+nmigrate = Migrate(app, db)
 
 api = Api(app)
 
