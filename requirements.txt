@@ -11,3 +11,4 @@ mysqlclient
 psutil
 flask-dotenv
 flask-httpauth
+flask-marshmallow
