@@ -1,10 +1,10 @@
 from flask import request, jsonify
 from flask_restful import Resource
 from app import api, app
-from app.rest_api.api_resources import api_decorators
+from app.rest_api.api_resources.api_decorators import *
 
 @app.route("/api/test")
-@api_decorators.api_check_auth
+@api_check_auth
 def test_api():
 		return jsonify({"status": True, "msg": "test"})
 
