@@ -7,7 +7,7 @@ from app.forms import *
 
 from app.admin import routes
 from app.rest_api import routes
-
+from app.sp_routes.user_routes import *
 
 from app.models import *
 from app.schemas import *
@@ -28,7 +28,7 @@ current_config = config.Config()
 
 @app.context_processor
 def put_config():
-    return dict(config=current_config, config_helper=config_helper)
+		return dict(config=current_config, config_helper=config_helper)
 
 @app.route("/")
 @app.route("/index")
@@ -36,7 +36,7 @@ def index():
 	all_posts = Post.query.order_by(Post.id.desc()).all()
 	return render_template("index.html", all_posts=all_posts)
 
-
+"""
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	if not current_config.app_allow_registration:
@@ -44,25 +44,23 @@ def register():
 		return redirect(url_for('index'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		
-		
-			
+
 		register = Register(form.first_name.data,
 			form.last_name.data,
 			form.email.data,
 			form.password.data,
 			form.username.data)
-			
+
 		register.register()
-		
+
 		flash('Registration requested for user!')
-		
+
 		return redirect('/index')
-	
+
 	return render_template("register.html", 
 		form=form,
 		title="Register")
-		
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -104,7 +102,7 @@ def user_profile(name):
 		title="User Profile",
 		user_posts=posts, 
 		user_responses=responses)
-		
+"""		
 		
 		
 @app.route("/new_post", methods=["GET", "POST"])
