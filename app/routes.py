@@ -7,7 +7,9 @@ from app.forms import *
 
 from app.admin import routes
 from app.rest_api import routes
+
 from app.sp_routes.user_routes import *
+from app.sp_routes.post_routes import *
 
 from app.models import *
 from app.schemas import *
@@ -104,21 +106,22 @@ def user_profile(name):
 		user_responses=responses)
 """		
 		
-		
+"""		
 @app.route("/new_post", methods=["GET", "POST"])
 @login_required
 def new_post():
 	form = NewPostForm()
-	
 
-	
+
+
 	if validate_newpost_form(form):
-		
+
+
 		stripped_topics_data = [data.strip() for data in form.topics.data]
-		
+
 		make_new_post = NewPost(current_user.id, form.title.data.strip(), form.content.data, stripped_topics_data)
 		new_post = make_new_post.create_new_post()
-		
+
 		flash('Post "{}" created succesfully!'.format(str(new_post.title)))
 		
 		return redirect(url_for('view_post', post_id=new_post.id))
@@ -154,8 +157,8 @@ def view_post(post_id):
 	
 	return render_template("view_post.html",
 		post=post, title=post.title, post_responses=filtered_post_responses, post_responses_len=len(post_responses))
-		
-		
+"""		
+"""		
 @app.route('/update_profile', methods=["GET", "POST"])
 @login_required
 def update_profile():
@@ -170,7 +173,8 @@ def update_profile():
 		return redirect(url_for("user_profile", name=current_user.username))
 		
 	return render_template("update_profile.html", form=form)
-	
+"""
+"""	
 @app.route('/edit_post/<post_id>', methods=["GET", "POST"])
 @login_required
 def edit_post(post_id):
@@ -219,6 +223,7 @@ def delete_post(post_id):
 	flash("Post succesfully deleted!")
 	
 	return redirect(url_for("index"))
+"""
 
 @app.route('/new_response/<post_id>', methods=["GET", "POST"])
 @login_required

@@ -80,3 +80,20 @@ def user_profile(name):
 		title="User Profile",
 		user_posts=posts,
 		user_responses=responses)
+
+@app.route('/update_profile', methods=["GET", "POST"])
+@login_required
+def update_profile():
+	form = UpdateProfileForm()
+	
+	if form.validate_on_submit():
+		
+		u = UpdateUserProfile(form.first_name.data, form.last_name.data, form.email.data, form.password.data, form.password_validate.data, form.about_me.data, current_user)
+		u.update()
+		
+		flash("Updated profile succesfully.")
+		return redirect(url_for("user_profile", name=current_user.username))
+		
+	return render_template("update_profile.html", form=form)
+
+
