@@ -10,6 +10,7 @@ from app.rest_api import routes
 
 from app.sp_routes.user_routes import *
 from app.sp_routes.post_routes import *
+from app.sp_routes.response_routes import *
 
 from app.models import *
 from app.schemas import *
@@ -224,7 +225,7 @@ def delete_post(post_id):
 	
 	return redirect(url_for("index"))
 """
-
+"""
 @app.route('/new_response/<post_id>', methods=["GET", "POST"])
 @login_required
 def new_response(post_id):
@@ -260,8 +261,8 @@ def edit_response(response_id):
 	form.process()
 	
 	return render_template("edit_response.html", form=form)
-	
-	
+"""	
+"""	
 @app.route('/delete_response/<response_id>')
 @login_required
 def delete_response(response_id):
@@ -279,6 +280,8 @@ def delete_response(response_id):
 	
 	flash("Post deleted succesfully.")
 	return redirect(url_for("view_post", post_id=response_post_id))
+"""
+
 
 @app.route("/topic/<topic_name>")
 def view_post_topics(topic_name):
@@ -292,6 +295,7 @@ def view_post_topics(topic_name):
 		
 	return render_template("post_topic_listing.html", topic_name=topic_name, topic_posts=filtered_posts)
 
+"""
 @app.route("/new_subresponse/<parent_response_id>", methods=["GET", "POST"])
 @login_required
 def new_subresponse(parent_response_id):
@@ -308,3 +312,4 @@ def new_subresponse(parent_response_id):
 	
 	
 	return render_template("new_response.html", form=form, post=post, subresponse=True)
+"""
