@@ -61,11 +61,11 @@ class Topic(db.Model):
 class Users(UserMixin, db.Model):
 	__tablename__='users'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	first_name = db.Column(db.String(128), index=True, unique=True)
-	last_name = db.Column(db.String(128), index=True, unique=True)
-	email = db.Column(db.String(128), index=True, unique=True)
-	about = db.Column(db.Text(9990)) 
-	password_hashed = db.Column(db.String(255), index=True, unique=True)
+	first_name = db.Column(db.String(128), index=True)
+	last_name = db.Column(db.String(128), index=True)
+	email = db.Column(db.String(128), index=True)
+	about = db.Column(db.Text(9990))
+	password_hashed = db.Column(db.String(255))
 	username = db.Column(db.String(32), index=True, unique=True)
 	
 	post = db.relationship('Post', backref='creator')
