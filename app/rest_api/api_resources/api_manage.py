@@ -88,65 +88,6 @@ def api_key_add():
 	return jsonify(report)
 
 
-
-
-
-
-
-class APIKeyAddResource(Resource):
-	
-	
-	
-	
-	def put(self):
-		
-		"""
-		This function is designed to generate and return a new API key for a user based on description and user ID provided.
-		"""
-		
-		
-		# A blank report variable is generated.
-		
-		report = {} 
-		
-		# STEP 1: Retrieve values from request and check if they are valid.
-		
-		user_id = request.values.get("user_id")
-		description = request.values.get("description")
-		
-		if user_id == None:
-			
-			# User ID is not valid! Return failing report.
-			
-			
-			report['status'] = False
-			report['msg'] = "No user ID was provided"
-			
-			return report
-		
-		
-		# STEP 2: Generate the API key.
-		
-		# STEP 2a: Check if description is valid, we do not want to pass a None value to the database. If it isn't, we will give description a blank value.
-		
-		if description == None:
-			description = "" 
-		
-		# Step 2b: Create user object
-		
-		user = Users.query.filter_by(id=user_id).first()
-		
-		# Step 2c: Generate API key.
-		
-		new_api_key = APIKey.create_api_key(user, description)
-		
-		# Step 3: Generate report and send off.
-		
-		report['status'] = True
-		report['api_key'] = new_api_key
-		
-		return report
-		
 class APIKeyInfoResource(Resource):
 	
 	# This is a simple function. All it requires is api_key in order to view information about the API key.
