@@ -14,16 +14,16 @@ current_config = Config()
 # Handy little function to get an list of IDs from a list of models.
 def get_id_list(models):
 	model_id_list = []
-	
+
 	# We can add an ID here because no matter what model it is, it has an ID.
-	
+
 	for model in models:
 		model_id_list.append(model.id)
-	
-	return model_id_list
-	
 
-subresponses = db.Table('subresponses', 
+	return model_id_list
+
+
+subresponses = db.Table('subresponses',
 	db.Column('response_id', db.Integer, db.ForeignKey('responses.id')),
 	db.Column('subresponse_id', db.Integer, db.ForeignKey('responses.id'))
 )
@@ -37,24 +37,21 @@ class Topic(db.Model):
 	__tablename__ = 'topics'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	name = db.Column(db.String(512), index=True)
-	
+
 	def as_json(self):
 		ndict = {}
 		ndict['id'] = self.id
 		ndict['name'] = self.name
 		posts_relating = []
 		posts_list = Post.query.all()
-		
 		for post in posts_list:
 			topics_list = post.get_topics_list()
 			if self.name in topics_list:
 				posts_relating.append(post.id)
-	
 		ndict['posts'] = posts_relating
-		
 		return ndict
-		
-	
+
+
 	def __repr__(self):
 		return f"<Topic {self.name}>"
 
@@ -67,27 +64,27 @@ class Users(UserMixin, db.Model):
 	about = db.Column(db.Text(9990))
 	password_hashed = db.Column(db.String(255))
 	username = db.Column(db.String(32), index=True, unique=True)
-	
+
 	post = db.relationship('Post', backref='creator')
 	response = db.relationship('Response', backref='creator')
-	
+
 	groups = db.relationship(
         'Group', secondary=group_associations)
-    
+
     # The users have a relationship to the APIKey class.
-    
+
 	api_keys = db.relationship("APIKey")
-        
+
 	def as_dict(self):
 		ndict = {}
 		ndict['id'] = self.id
-		
+
 		group_ids_list = []
 		for group in self.groups:
 			group_ids_list.append(group.id)
-		
+
 		ndict['groups'] = group_ids_list
-		
+
 		ndict['admin'] = self.is_admin()
 		ndict['first_name'] = self.first_name
 		ndict['last_name'] = self.last_name
