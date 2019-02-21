@@ -5,9 +5,12 @@ from flask_restful import Resource
 from app.rest_api.models import *
 from app.models import *
 
-# Authentication is NOT required for this.
+from app.rest_api.api_resources.api_decorators import *
+# Authentication for adding an API key is present for security reasons, which are obvious.
 
 @app.route("/api/key/add", methods=["PUT"])
+@api_check_auth
+@api_require("api_key", str)
 def api_key_add():
     # In order to add an API key, you MUST provide a user by their ID.
     # Request parmeters: username (mandatory): user ID to add API key for

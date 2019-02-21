@@ -6,6 +6,7 @@ from app.rest_api.api_resources.api_decorators import *
 @app.route("/api/test")
 @api_check_auth
 @api_require("test", int)
+@api_require("test2", float )
 def test_api():
 		return jsonify({"status": True, "msg": "test"})
 
