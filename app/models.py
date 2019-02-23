@@ -92,34 +92,33 @@ class Users(UserMixin, db.Model):
 		ndict['about'] = self.about
 		ndict['password_hashed'] = self.password_hashed
 		ndict['username'] = self.username
-		
+
 		return ndict
-        
+
 	def add_to_group(self, group):
 		if not self.in_group(group):
 			self.groups.append(group)
 			db.session.commit()
-		
-		
+
 	def remove_from_group(self, group):
 		if self.in_group(group):
 			self.groups.remove(group)
 			db.session.commit()
-		
+
 	def in_group(self, group):
 		#return self.groups.filter(group_associations.c.group_id == group.id).count() > 0
 		return group in self.groups
 		# I really don't see why we can't just do return group in self.groups
-		
+
 	def is_admin(self):
 		return Group.admin_group() in self.groups
-	
+
 	def set_password(self, password):
 		self.password_hashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
-	
+
 	def check_password(self, check_password):
 		return self.password_hashed ==  hashlib.sha256(check_password.encode('utf-8')).hexdigest()
-		
+
 	@login.user_loader
 	def load_user(id):
 		return Users.query.get(int(id))

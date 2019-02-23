@@ -51,11 +51,11 @@ def check_apikey_rest_api():
 				
 		# The user does have access to the API. The function may return empty for everything to proceed.
 """
-	
-	
+
 
 from app.rest_api.api_resources import api_manage
 from app.rest_api import test
+from app.rest_api.user_resources import user_create
 from app.rest_api.user_resources import user_retrieve
 from app.rest_api.user_resources import user_update
 from app.rest_api.post_resources import post_retrieve

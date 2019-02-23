@@ -9,13 +9,13 @@ from app.rest_api.api_resources.api_decorators import *
 # Authentication for adding an API key is present for security reasons, which are obvious.
 
 @app.route("/api/key/add", methods=["PUT"])
-@api_check_auth
-@api_require("api_key", str)
+@api_require_auth
+@api_require("description", str)
 def api_key_add():
     # In order to add an API key, you MUST provide a user by their ID.
     # Request parmeters: username (mandatory): user ID to add API key for
 	# Request parameters: password (mandatory): password for user ID
-	# Request parmeters: description (optional) description for API key added to database
+	# Request parmeters: description description for API key added to database
 	# Request returns "api_key" : string value of your API key. Keep this value VERY SAFE. Request also returns "status": true. (IF SUCCESSFUL)
 	# Request returns "msg" : string, "status" : false. (IF FAILED)
 
@@ -29,7 +29,7 @@ def api_key_add():
 
 	# STEP 1: Retrieve values from request and check if they are valid.
 
-	user_id = request.values.get("user_id")
+	username = request.values.get("username")
 	password = request.values.get("password")
 	description = request.values.get("description")
 
@@ -55,7 +55,7 @@ def api_key_add():
 
 	# Check user ID and password to be valid
 
-	api_user = Users.query.filter_by(id=user_id).first()
+	api_user = Users.query.filter_by(username=username).first()
 
 	if not api_user.check_password(password):
 
