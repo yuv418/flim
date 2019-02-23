@@ -7,7 +7,7 @@ from app.models import *
 class ResponseByIDResource(Resource):
 	def get(self, response_id):
 		return Response.query.filter_by(id=response_id).first().as_dict()
-	
+
 class ResponseByPostIDResource(Resource):
 	def get(self, post_id):
 		responses = Response.query.filter_by(post_id=post_id).all()
