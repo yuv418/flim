@@ -4,8 +4,12 @@ import json
 # Open the config.json file in the 'app' directory
 
 config_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
-with open(config_file_path) as config_file_object:
-	config_json = json.load(config_file_object)
+try:
+	with open(config_file_path) as config_file_object:
+		config_json = json.load(config_file_object)
+except FileNotFoundError:
+	# File doesn't exist, move on
+	config_json = {}
 
 class Config:
 
@@ -15,10 +19,21 @@ class Config:
 	app_name = "Flim"
 	app_allow_anonymous_view_posts = True #TODO actually make this work
 
-	app_db_name = config_json['database']['name'] or os.getenv("FLIM_DB_NAME", default="flim") # no edits outside of config file.
-	app_db_username = config_json['database']['username'] or os.getenv("FLIM_DB_USERNAME", "") # no edits outside of config file.
-	app_db_password = config_json['database']['password'] or os.getenv("FLIM_DB_PASSWORD", "") # no edits outside of config file.
-	app_db_host = config_json['database']['hostname'] or os.getenv("FLIM_DB_HOST", "") # no edits outside of config file.
+	try:
+		_dbname = config_json.get('database').get('name')
+		_dbusername = config_json.get('database').get('username')
+		_dbpassword = config_json.get('database').get('password')
+		_dbhost = config_json.get('database').get('hostname')
+	except AttributeError:
+		_dbname = None
+		_dbusername = None
+		_dbpassword = None
+		_dbhost = None
+
+	app_db_name = _dbname or os.getenv("FLIM_DB_NAME", default="flim") # no edits outside of config file.
+	app_db_username = _dbusername or os.getenv("FLIM_DB_USERNAME", "") # no edits outside of config file.
+	app_db_password = _dbpassword or os.getenv("FLIM_DB_PASSWORD", "") # no edits outside of config file.
+	app_db_host = _dbhost or os.getenv("FLIM_DB_HOST", "") # no edits outside of config file.
 	app_db_provider = os.getenv("FLIM_DB_PROVIDER", "mysql") # no edits outside of config file.
 
 	app_message_max_length = 9990 # no edits outside of config file.
@@ -76,7 +91,12 @@ class Config:
 	app_static_files_directory = "/static" # do not change, just makes things easier for us
 
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'afioj89498ffj98hiahffuihfihwilafhliuifhUIHFIUHFIUHfieuahhu8yh4ih4foh'
-	SQLALCHEMY_DATABASE_URI = "{}://{}:{}@{}/{}".format(app_db_provider, app_db_username, app_db_password, app_db_host, app_db_name)
+
+	if app_db_provider == None or app_db_username == None or app_db_password == None or app_db_host == None or app_db_name == None:
+		# Blank, use sqlite
+		SQLALCHEMY_DATABASE_URI = "sqlite://"
+	else:
+		SQLALCHEMY_DATABASE_URI = "{}://{}:{}@{}/{}".format(app_db_provider, app_db_username, app_db_password, app_db_host, app_db_name)
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
