@@ -22,7 +22,10 @@ def rest_user_by_field(field, value):
 		if str(user[field]) == value:
 			filtered_users.append(user)
 
-	# Return filtered users
+	# Return filtered users unless field is ID, then just return one user.
+
+	if field == "id":
+		return jsonify(filtered_users[0])
 
 	return jsonify(filtered_users)
 
