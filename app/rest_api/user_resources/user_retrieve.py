@@ -26,7 +26,7 @@ def rest_user_by_field(field, value):
 
 	return jsonify(filtered_users)
 
-@app.route("/api/user-all")
+@app.route("/api/user/all")
 @api_require_auth
 def rest_user_all():
 	userschema = UserSchema(many=True)
