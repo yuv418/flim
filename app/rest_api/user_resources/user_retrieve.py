@@ -15,16 +15,19 @@ def rest_user_by_field(field, value):
 	all_users = Users.query.all()
 	users_list = userschema.dump(all_users).data
 
-	# Filter the users
+	# Filter the users, handle if field is invalid
 
-	filtered_users = []
-	for user in users_list:
-		if str(user[field]) == value:
-			filtered_users.append(user)
+	try:
+		filtered_users = []
+		for user in users_list:
+			if str(user[field]) == value:
+				filtered_users.append(user)
+	except KeyError:
+		return jsonify({"status": False, "msg": "Invalid field."}), 400
 
 	# Return filtered users unless field is ID, then just return one user.
 
-	if field == "id":
+	if field == "id" and len(filtered_users) != 0:
 		return jsonify(filtered_users[0])
 
 	return jsonify(filtered_users)
