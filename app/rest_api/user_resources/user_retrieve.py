@@ -41,8 +41,7 @@ class UserByEmailResource(Resource):  # Return a list of user IDs for each perso
 def rest_user_all():
 	userschema = UserSchema(many=True)
 	all_users = Users.query.all()
-	result = userschema.dump(all_users)
-	return userschema.jsonify(result.data)
+	return userschema.jsonify(all_users)
 
 
 api.add_resource(UserByIDResource, "/api/user/by-id/<user_id>")

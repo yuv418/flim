@@ -4,10 +4,14 @@ from app import ma
 
 class UserSchema(ma.ModelSchema):
 	class Meta:
-		fields = ('id', 'first_name', 'last_name', 'email', 'about', 'username')
+		fields = ('id', 'first_name', 'last_name', 'email', 'groups', 'post', 'response')
 		model = Users
+
 
 class PostSchema(ma.ModelSchema):
     class Meta:
         model = Post
 
+class GroupSchema(ma.ModelSchema):
+	class Meta:
+		model = Group
