@@ -1,12 +1,13 @@
 from app import app, api
 from flask import request
 from flask_restful import Resource
+from flask import request
 
 from app.models import *
 from app.schemas import *
 from app.rest_api.api_resources.api_decorators import *
 
-@app.route("/api/user/<field>/<value>")
+@app.route("/api/user/<field>/<value>", methods=["GET", "DELETE"])
 @api_require_auth
 def rest_user_by_field(field, value):
 	"""Filter a user by field and value"""
@@ -25,10 +26,37 @@ def rest_user_by_field(field, value):
 	except KeyError:
 		return jsonify({"status": False, "msg": "Invalid field."}), 400
 
+	# Delete the user
+	if request.method == "DELETE":
+
+
+
+		for user_dict in filtered_users:
+
+			# First, retrieve the user
+			user_to_delete = Users.query.filter_by(id=user_dict['id']).first()
+
+			# Then, delete the user
+			db.session.delete(user_to_delete)
+
+		# Commit the changes and return a successful report.
+
+		db.session.commit()
+
+		report = {}
+		report['status'] = True
+		report['msg'] = "The user(s) were deleted successfully."
+
+		return jsonify(report)
+
+
+
+
 	# Return filtered users unless field is ID, then just return one user.
 
-	if field == "id" and len(filtered_users) != 0:
+	if (field == "id" or field == "username") and len(filtered_users) != 0:
 		return jsonify(filtered_users[0])
+
 
 	return jsonify(filtered_users)
 

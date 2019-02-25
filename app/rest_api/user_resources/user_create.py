@@ -8,7 +8,7 @@ from app.models import *
 from app.rest_api.api_resources.api_decorators import *
 
 
-@app.route("/api/user/create", methods=["PUT"])
+@app.route("/api/user/create", methods=["POST"])
 @api_require_auth
 @api_require_admin
 @api_require("first_name", str)
