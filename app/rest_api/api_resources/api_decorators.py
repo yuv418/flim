@@ -63,7 +63,7 @@ def api_require(param_name, param_type):
 	def dec(f):
 		@wraps(f)
 		def dec_fn(*args, **kwargs):
-			if request.values.get(param_name) != None:
+			if request.values.get(param_name) != None and request.values.get(param_name).strip() != "":
 				try:
 					# Try to turn param_name into param_type
 					cast = param_type(request.values.get(param_name))

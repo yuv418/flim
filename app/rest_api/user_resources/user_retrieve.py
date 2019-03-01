@@ -7,7 +7,7 @@ from app.models import *
 from app.schemas import *
 from app.rest_api.api_resources.api_decorators import *
 
-@app.route("/api/user/<field>/<value>", methods=["GET", "DELETE"])
+@app.route("/api/user/<field>/<value>", methods=["GET", "DELETE", "PUT"])
 @api_require_auth
 def rest_user_by_field(field, value):
 	"""Filter a user by field and value"""

@@ -106,7 +106,7 @@ class Users(UserMixin, db.Model):
 			db.session.commit()
 
 	def in_group(self, group):
-		#return self.groups.filter(group_associations.c.group_id == group.id).count() > 0
+		#retur n self.groups.filter(group_associations.c.group_id == group.id).count() > 0
 		return group in self.groups
 		# I really don't see why we can't just do return group in self.groups
 
