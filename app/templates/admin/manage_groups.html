@@ -3,24 +3,24 @@
 
 {% block admin_content %}
 	<h1>Manage Groups</h1>
-	
+
 	<div class="all_groups_list">
-		<ul>
+		<ul class="list-group">
 			{% for group in all_groups %}
-				<li>
+				<li class="list-group-item">
 					<div>
-						<p>{{ group.name }}</p>
-						<a href="{{ url_for('admin_delete_group', group_id=group.id) }}">delete</a>
-						<a href="{{ url_for('admin_edit_group', group_id=group.id) }}">edit</a>
+						<p class="d-inline">{{ group.name }}</p>
+						<a class="d-inline " href="{{ url_for('admin_delete_group', group_id=group.id) }}">delete</a>
+						<a class="d-inline" href="{{ url_for('admin_edit_group', group_id=group.id) }}">edit</a>
 					</div>
 				</li>
-		
+
 			{% endfor %}
-		
-		
+
+
 		</ul>
-		
-	
+
+
 	</div>
 
 {% endblock %}
