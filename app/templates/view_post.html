@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-	
+
 	<div class="post_title_block">
 		<h1>Post: {{ post.title }}</h1>
 	</div>
-	
+
 	<div>
 	  {% include "_topic_listing.html" %}
 	</div>
 
 	<br>
-	
-	<div class="post_body">
+
+	<div class="">
 		<p>
 			{{ post.content | safe }}
 		</p>
-		
+
 	</div>
 
 	<p>
@@ -26,35 +26,35 @@
 
 	{% if post.creator == current_user %}
 		<!--if the logged-in user created this post-->
-		
+
 		<a href="{{ url_for('edit_post', post_id=post.id) }}">edit</a> <br>
 		<a href="{{ url_for('delete_post', post_id=post.id) }}">delete</a>
-		
+
 		<br>
 		<br>
 	{% endif %}
-	
-	
-	
+
+
+
 	{% if not current_user.is_anonymous %}
 		<!-- allow logged-in users to reply -->
 		<a href="{{ url_for('new_response', post_id=post.id) }}">reply</a>
 	{% endif %}
-	
+
 	<br>
-	
+
 	<hr>
-	
+
 	<h3>Responses</h3>
-	
+
 	<hr>
 
 	{% for response in post_responses %}
 		{% include "_response_listing.html" %}
 	{% endfor %}
-	
+
 	{% if post_responses == [] %}
 		<p>There's nothing here. Press "reply" to get started.</p>
 	{% endif %}
-	
+
 {% endblock %}
