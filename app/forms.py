@@ -29,7 +29,7 @@ class NewPostForm(FlaskForm):
 	title = StringField("Title", validators=[DataRequired()])
 	content = TextAreaField("Content", validators=[DataRequired()])
 
-	topics = SelectMultipleField("Topics/Tags (Check all that apply)", choices=config_helper.get_full_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
+	topics = SelectMultipleField("Topics", choices=config_helper.get_full_post_topics_list())
 
 	submit = SubmitField("Post")
 

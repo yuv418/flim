@@ -2,35 +2,35 @@
 
 
 {% block admin_content %}
-	<link rel="stylesheet" href="{{ url_for('static', filename='admin/manage_users.css') }}" />
+<!-- 	<link rel="stylesheet" href="{{ url_for('static', filename='admin/manage_users.css') }}" />-->
 
 	<h1>Manage Users</h1>
 	<p>The following is a list of all the users in the database.</p>
-	
-	
-	<table class="users_list_table">
+
+
+	<table class=" table">
 		<tr>
-			<th>Username</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>E-Mail</th>
-			<th>Biography</th>
-			<th>Manage</th>
-			
+			<th scope="col">Username</th>
+			<th scope="col">First Name</th>
+			<th scope="col">Last Name</th>
+			<th scope="col">E-Mail</th>
+			<th scope="col">Biography</th>
+			<th scope="col">Manage</th>
+
 		</tr>
-		
+
 		{% for user in users %}
 			<tr>
-				<td>{{ user.username }}</td>
+				<td scope="row">{{ user.username }}</td>
 				<td>{{ user.first_name }}</td>
 				<td>{{ user.last_name }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.about }}</td>
-				<td><a href="{{ url_for('admin_manage_user', user_id=user.id) }}"><button>Edit</button></a></td>
+				<td><a href="{{ url_for('admin_manage_user', user_id=user.id) }}"><button class="btn-success">Edit</button></a></td>
 			</tr>
 		{% endfor %}
 
-	
+
 	</table>
-	
+
 {% endblock %}

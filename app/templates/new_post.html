@@ -1,41 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/js/bootstrap-select.min.js"></script>
+
 
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new_topic.css') }}" />
 	<script src="{{ url_for('static', filename='js/new_topic.js') }}"></script>
 
-	<h1>New Post</h1>
-	<form action="" method="POST" novalidate>
-		
+	<h1 class="form_block form-group col-lg-3">New Post</h1>
+	<form action="" method="POST">
+
 		{{ form.hidden_tag() }}
-		
-		<div class="form_block form-group">
-			<p>{{ form.title.label }}</p>
-			{{ form.title(size=32, class_="form-control" ) }}
+
+		<div class="form_block form-group col-lg-3">
+			{{ form.title(size=32, class_="form-control", placeholder=form.title.label.text ) }}
 		</div>
-		
-		<div class="form_block form-group">
-			<p>{{ form.content.label }}</p>
-			{{ form.content(cols=100, rows=10, class_="form-control") }}
+
+		<div class="form_block form-group col-lg-10">
+			{{ form.content(cols=100, rows=10, class_="form-control", placeholder=form.content.label.text) }}
 		</div>
-		
-		<div class="form_block form-group">
+
+		<div class="form_block form-group col-lg-10">
 			<p>{{ form.topics.label }}</p>
-			{{ form.topics }}<br>
-			
-			<div class="new_topic_box">
+			{{ form.topics(class_="selectpicker", data_live_search="true") }}
+    </div>
+
+<!-- 			<div class="new_topic_box">
 					<button class="add_topic_button btn btn-primary" type="button">+</button>
-			
-			</div>
-			
-		
-			
-			
-			<br><br>
-			
+		</div>-->
+
+
+
+
+    <div class="form_block form-group col-lg-3">
+      {{ form.submit(class_="btn btn-success") }}
+    </div>
+
+
 		</div>
-		
-		{{ form.submit(class_="btn btn-success") }}
-	</form>
+  </form>
 
 {% endblock %}

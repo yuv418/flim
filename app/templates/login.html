@@ -5,34 +5,32 @@
 <html>
 	<body>
 		<h1>Log in to {{ config.app_name }}</h1>
-		
+
 		<form method="POST" novalidate>
 			{{ form.hidden_tag() }}
-			
+
 			<div class="input_block form-group">
 				<p>{{ form.username.label }}</p>
 				{{ form.username(size=32, class_="form-control") }}
 			</div>
-			
+
 			<div class="input_block form-group">
 				<p>{{ form.password.label }}</p>
 				{{ form.password(class_="form-control") }}
 			</div>
-			
+
 			<div class="input_block form-group">
 				<p>{{ form.remember_me.label }}</p>
 				{{ form.remember_me }}
 			</div>
-			
+
 			<div class="submit">
 				<br>
 				{{ form.submit(class_="btn btn-success") }}
 			</div>
-			
-			
-			
+
 		</form>
-		
+
 	</body>
 
 </html>
