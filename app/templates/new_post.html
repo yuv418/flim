@@ -11,36 +11,7 @@
 	<script src="{{ url_for('static', filename='js/new_topic.js') }}"></script>
 
 	<h1 class="form_block form-group col-lg-3">New Post</h1>
-	<form action="" method="POST">
-
-		{{ form.hidden_tag() }}
-
-		<div class="form_block form-group col-lg-3">
-			{{ form.title(size=32, class_="form-control", placeholder=form.title.label.text ) }}
-		</div>
-
-		<div class="form_block form-group col-lg-10">
-			{{ form.content(cols=100, rows=10, class_="form-control", placeholder=form.content.label.text) }}
-		</div>
-
-		<div class="form_block form-group col-lg-10">
-			<p>{{ form.topics.label }}</p>
-			{{ form.topics(class_="selectpicker", data_live_search="true") }}
-    </div>
-
-<!-- 			<div class="new_topic_box">
-					<button class="add_topic_button btn btn-primary" type="button">+</button>
-		</div>-->
-
-
-
-
-    <div class="form_block form-group col-lg-3">
-      {{ form.submit(class_="btn btn-success") }}
-    </div>
-
-
-		</div>
-  </form>
+	
+	{% include "_post_form.html" %}
 
 {% endblock %}

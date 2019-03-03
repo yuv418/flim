@@ -1,24 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<form action="" method="POST" novalidate>
+
+
+	<h1>Edit Post</h1>	
+	{% with %}
 		
-		{{ form.hidden_tag() }}
-		
-		<div class="form_block form-group">
-			<p>{{ form.content.label }}:</p>
-			{{ form.content(rows=10, cols=100, class_="form-control") }}
-		</div>
-		
-		<div class="form_block form-group">
-			{{ form.topics.label }}
-			{{ form.topics }}
-		</div>
-		
-		<div class="submit_block form-group">
-		  {{ form.submit(class_="btn btn-success") }}
-		</div>
+		{% set edit_post=True %}
+		{% include "_post_form.html" %} 
+
+	{% endwith %}
 	
-	</form>
 
 {% endblock %}

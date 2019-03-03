@@ -15,7 +15,7 @@ from app.create.post import NewPost
 @app.route("/new_post", methods=["GET", "POST"])
 @login_required
 def new_post():
-	form = NewPostForm()
+	form = PostForm()
 
 	if validate_newpost_form(form):
 
@@ -68,9 +68,11 @@ def view_post(post_id):
 @login_required
 def edit_post(post_id):
 	post = Post.query.filter_by(id=post_id).first()
-	form = EditPostForm()
+	form = PostForm()
+	form.edit_post = True
+	print(form.edit_post)
 
-	if form.validate_on_submit():
+	if validate_newpost_form(form):
 		post.content = form.content.data
 		post.topics = json.dumps(form.topics.data)
 
