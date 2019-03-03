@@ -10,12 +10,11 @@
 	  {% include "_topic_listing.html" %}
 	</div>
 
-	<br>
+	
 
-	<div class="">
-		<p>
-			{{ post.content | safe }}
-		</p>
+	<div class="post-listing" style="margin-top: 1%">
+
+			{{ post.content | markdown | safe}}
 
 	</div>
 

@@ -4,6 +4,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app import app, config, error_handlers, config_helper, db
 
 from app.forms import *
+from app.filters import *
 
 from app.admin import routes
 from app.rest_api import routes
@@ -46,12 +47,12 @@ def index():
 def view_post_topics(topic_name):
 	posts = Post.query.all()
 	filtered_posts = []
-	
-	
+
+
 	for post in posts:
 		if topic_name in post.get_topics_list(): # if the topic is in the list of topics add to the filtered list
 			filtered_posts.append(post)
-		
+
 	return render_template("post_topic_listing.html", topic_name=topic_name, topic_posts=filtered_posts)
 
 

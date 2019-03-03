@@ -17,14 +17,13 @@ from app.create.post import NewPost
 def new_post():
 	form = NewPostForm()
 
-
-
 	if validate_newpost_form(form):
 
+		print(f"Form.content.data is {repr(form.content.data)}")
 
 		stripped_topics_data = [data.strip() for data in form.topics.data]
 
-		make_new_post = NewPost(current_user.id, form.title.data.strip(), form.content.data, stripped_topics_data)
+		make_new_post = NewPost(current_user.id, form.title.data.strip(), form.content.data.strip(), stripped_topics_data)
 		new_post = make_new_post.create_new_post()
 
 		flash('Post "{}" created succesfully!'.format(str(new_post.title)))

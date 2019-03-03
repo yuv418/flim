@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Welcome to {{config.app_name}}!</h1>
-	
+	<h1>{{config.app_name}}</h1>
+
 	<div class="posts_block">
-		<h4>Posts</h4>
-		
+
+
 		{% for post in all_posts %}
-		
+
 			{% include "_post_listing.html" %}
-		
+
 		{% endfor %}
-	
+
 		{% if all_posts == [] %}
 			<p>There aren't any posts here!</p>
 		{% endif %}
-		
-	
+
+
 	</div>
-	
+
 {% endblock %}
