@@ -16,7 +16,7 @@
 			
 		
 		  <p id="post_content_preview" class='post_data'>
-		    {{ post.content[0:64].strip() }}...
+		    {{ post.content[0:64].strip() | markdown | safe }}...
 		  </p>
 			
 			

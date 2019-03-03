@@ -81,7 +81,8 @@ def edit_post(post_id):
 		flash("Post edited succesfully!")
 		return redirect(url_for("view_post", post_id=post.id))
 
-	if not post.creator == current_user:
+	print(f"Current user is admin? {current_user.is_admin}")
+	if not post.creator == current_user and not current_user.is_admin():
 		flash("You must be logged in as the creator of this post in order to edit it.")
 		return redirect(url_for("view_post", post_id=post.id))
 
