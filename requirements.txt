@@ -13,3 +13,6 @@ flask-httpauth
 flask-marshmallow
 marshmallow-sqlalchemy
 termcolor
+bleach
+bleach_whitelist
+markdown
