@@ -6,7 +6,7 @@
 	
 	
 	{% if user.about %}
-		<p>{{ user.about }}</p>
+		<p>{{ user.about | markdown | safe }}</p>
 		
 	{% else %}
 		<p>Well, normally we'd put the "About Me" description here, but there isn't one!</p>

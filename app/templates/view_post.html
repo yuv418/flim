@@ -12,9 +12,9 @@
 
 	
 
-	<div class="post-listing" style="margin-top: 1%">
+	<div class="post-content" style="margin-top: 1%">
 
-			{{ post.content | markdown | safe}}
+			{{ post.content | markdown | safe }}
 
 	</div>
 
@@ -23,7 +23,8 @@
 		 <a href="{{ url_for('user_profile', name=post.creator.username) }}">{{ post.creator.username }}</a>
 	</p>
 
-	{% if post.creator == current_user %}
+	
+	{% if post.creator == current_user or current_user.is_admin() %}
 		<!--if the logged-in user created this post-->
 
 		<a href="{{ url_for('edit_post', post_id=post.id) }}">edit</a> <br>

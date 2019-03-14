@@ -15,7 +15,7 @@ from app.create.post import NewPost
 @app.route("/new_post", methods=["GET", "POST"])
 @login_required
 def new_post():
-	form = NewPostForm()
+	form = PostForm()
 
 	if validate_newpost_form(form):
 
@@ -68,9 +68,11 @@ def view_post(post_id):
 @login_required
 def edit_post(post_id):
 	post = Post.query.filter_by(id=post_id).first()
-	form = EditPostForm()
+	form = PostForm()
+	form.edit_post = True
+	print(form.edit_post)
 
-	if form.validate_on_submit():
+	if validate_newpost_form(form):
 		post.content = form.content.data
 		post.topics = json.dumps(form.topics.data)
 
@@ -79,7 +81,8 @@ def edit_post(post_id):
 		flash("Post edited succesfully!")
 		return redirect(url_for("view_post", post_id=post.id))
 
-	if not post.creator == current_user:
+	print(f"Current user is admin? {current_user.is_admin}")
+	if not post.creator == current_user and not current_user.is_admin():
 		flash("You must be logged in as the creator of this post in order to edit it.")
 		return redirect(url_for("view_post", post_id=post.id))
 

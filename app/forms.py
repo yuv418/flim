@@ -25,15 +25,17 @@ class LoginForm(FlaskForm):
 	submit = SubmitField("Log In")
 
 
-class NewPostForm(FlaskForm):
+class PostForm(FlaskForm):
+	edit_post = False
 	title = StringField("Title", validators=[DataRequired()])
 	content = TextAreaField("Content", validators=[DataRequired()])
-
 	topics = SelectMultipleField("Topics", choices=config_helper.get_full_post_topics_list())
-
 	submit = SubmitField("Post")
 
 def validate_newpost_form(form):
+	if form.edit_post:
+		return bool(form.content.data)
+	
 	return form.title.data and form.content.data
 
 class UpdateProfileForm(FlaskForm):
@@ -52,7 +54,6 @@ class UpdateProfileForm(FlaskForm):
 class EditPostForm(FlaskForm):
 	content = TextAreaField("New Content")
 	topics = SelectMultipleField("Update Topics/Tags", choices=config_helper.get_full_post_topics_list(), option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
-
 	submit = SubmitField("Update Post")
 
 class NewResponseForm(FlaskForm):

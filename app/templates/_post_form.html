@@ -1,0 +1,36 @@
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/js/bootstrap-select.min.js"></script>
+    
+    
+
+<form action="" method="POST">
+
+    {{ form.hidden_tag() }}
+
+    {% if not edit_post %}
+        <div class="form_block form-group col-lg-3">
+            {{ form.title(size=32, class_="form-control", placeholder=form.title.label.text ) }}
+        </div>
+    {% endif %}
+
+    <div class="form_block form-group col-lg-10">
+        {{ form.content(cols=100, rows=10, class_="form-control", placeholder=form.content.label.text) }}
+    </div>
+
+    <div class="form_block form-group col-lg-10">
+        <p>{{ form.topics.label }}</p>
+        {{ form.topics(class_="selectpicker", data_live_search="true") }}
+    </div>
+
+
+
+    <div class="form_block form-group col-lg-3">
+        {{ form.submit(class_="btn btn-success") }}
+    </div>
+
+
+    
+</form>

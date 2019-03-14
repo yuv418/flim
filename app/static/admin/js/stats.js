@@ -1,6 +1,12 @@
-setStats()
 
+avail_mem_list = ['Available Memory']
+avail_swap_mem_list = ['Available Swap Memory']
+
+
+setStats()
 window.setInterval(setStats, 1000);
+
+
 
 
 function setStats() {
@@ -11,10 +17,14 @@ function setStats() {
 					
 			
 			for (var i = 0; i < cpu_load_percent.length; i++){
+
+
 					var core_str = "Core " + (i+1) + ", Load: " + cpu_load_percent[i] + "%"
 					
 					core_p = $("<p class='core_str'></p>").text(core_str)
 					$("#cpu_current_load_percent").append(core_p)
+
+					
 			}
 				
 		})
@@ -26,6 +36,7 @@ function setStats() {
 			var avail_mem_string = "Amount of free memory: " + avail_mem + "GB"
 			
 			$("#available_memory").html(avail_mem_string)
+
 			
 		})
 		
