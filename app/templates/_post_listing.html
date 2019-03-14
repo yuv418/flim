@@ -1,28 +1,28 @@
 <div class="card mb-4">
-	
-	
+
+
                   <div class="card-header">
 		    {% include "_topic_listing.html" %}
 		  </div>
-	
-		
+
+
 		<div class="card-body">
 
 		  <a href="{{ url_for('view_post', post_id=post.id) }}"><h3 class="card-title">{{ post.title }}</h3></a>
 		  <p id="card-subtitle" class='post_data'><b>By</b> {{ post.creator.username }}</p>
 		  <a ></a>
 
-				
-			
-		
+
+
+
 		  <p id="post_content_preview" class='post_data'>
-		    {{ post.content[0:64].strip() }}...
+		    {{ post.content[0:64].strip() | markdown | safe }}...
 		  </p>
-			
-			
-			
-			
+
+
+
+
 		</div>
-		
-		
+
+
 </div>

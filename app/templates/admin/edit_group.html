@@ -5,19 +5,19 @@
 
 	<form action="" method="POST">
 		{{ form.hidden_tag() }}
-		
-		
+
+
 		<div class="form_block">
 			<p>{{ form.group_name.label }}</p>
-			<p>{{ form.group_name(size=70) }}</p>
-		
+			<p>{{ form.group_name(size=70, class_="form-control") }}</p>
+
 		</div>
-		
-		
+
+
 		<div class="submit_block">
-			<p>{{ form.submit }}</p>		
+			<p>{{ form.submit(class_="btn btn-success") }}</p>
 		</div>
-	
+
 	</form>
 
 {% endblock %}

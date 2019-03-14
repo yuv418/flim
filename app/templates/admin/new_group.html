@@ -3,17 +3,19 @@
 {% block admin_content %}
 	<h1>Create Group</h1>
 	<form action="" method="POST">
-		
+
 		{{ form.hidden_tag() }}
-		
-		<div class="form_block">
+
+		<div class="form_block form-group">
 			<p>{{ form.group_name.label }}</p>
-			{{ form.group_name(size=70) }}
+			{{ form.group_name(size=70, class_="form-control") }}
 		</div>
-		
-		<div class="submit_block">
-			<p>{{ form.submit }}</p>
+
+
+
+		<div class="form_block form-group">
+			<p>{{ form.submit(class_="btn btn-success") }}</p>
 		</div>
-		
-	</form> 
+
+	</form>
 {% endblock %}

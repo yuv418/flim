@@ -1,43 +1,43 @@
 {% extends "admin/base.html" %}
 {% block admin_content %}
-	
+
 	<h1>Create User</h1>
 	<form action="" method="POST" novalidate>
 		{{ form.hidden_tag() }}
-		
+
 		<p>
 			{{ form.first_name.label }}<br>
-			{{ form.first_name(size=32) }}
+			{{ form.first_name(size=32, class_="form-control") }}
 		</p>
-		
+
 		<p>
-			{{ form.last_name.label }}<br>
-			{{ form.last_name(size=32) }}
+			  {{ form.last_name.label }}<br>
+			  {{ form.last_name(size=32, class_="form-control") }}
 		</p>
-		
+
 		<p>
-			{{ form.username.label }}<br>
-			{{ form.username(size=32) }}
+			  {{ form.username.label }}<br>
+			  {{ form.username(size=32, class_="form-control") }}
 		</p>
-		
-		
+
+
 		<p>
-			{{ form.password.label }}<br>
-			{{ form.password(size=32) }}
+			  {{ form.password.label }}<br>
+			  {{ form.password(size=32, class_="form-control") }}
 		</p>
-		
+
 		<p>
-			{{ form.password_validate.label }}<br>
-			{{ form.password_validate(size=32) }}
+			  {{ form.password_validate.label }}<br>
+			  {{ form.password_validate(size=32, class_="form-control") }}
 		</p>
-		
+
 		<p>
-			{{ form.email.label }}<br>
-			{{ form.email(size=32) }}
+			  {{ form.email.label }}<br>
+			  {{ form.email(size=32, class_="form-control") }}
 		</p>
-		
-		<p><input type="submit" value="Create User" /></p>
-		
+
+		<p><input type="submit" class="btn btn-success" value="Create User" /></p>
+
 	</form>
 
 {% endblock %}
