@@ -24,6 +24,7 @@ class GroupAllResource(Resource):
 		groups = Group.query.all()
 		return get_id_list(groups)
 
+
 api.add_resource(GroupByIDResource, "/api/group/by-id/<group_id>")
 api.add_resource(GroupByNameResource, "/api/group/by-name/<group_name>")
 #api.add_resource(GroupAllResource, "/api/group/all")

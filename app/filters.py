@@ -4,7 +4,7 @@ from markdown.extensions import Extension
 import bleach
 from bleach_whitelist import markdown_tags, markdown_attrs
 
-print(markdown_attrs)
+
 
 @app.template_filter('markdown')
 def markdown_filter(mdtext):
