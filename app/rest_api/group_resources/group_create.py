@@ -9,6 +9,8 @@ from flask import request
 
 
 @app.route("/api/group/create", methods=["POST"])
+@api_require_auth
+@api_require_admin
 @api_require("group_name", str)
 def rest_add_group():
 	# Retrieve variables:
