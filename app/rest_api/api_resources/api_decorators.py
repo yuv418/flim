@@ -66,7 +66,7 @@ def api_require(param_name, param_type):
 			if request.values.get(param_name) != None and request.values.get(param_name).strip() != "":
 				try:
 					# Try to turn param_name into param_type
-					cast = param_type(request.valuesn.get(param_name))
+					cast = param_type(request.values.get(param_name))
 					return f(*args, **kwargs)
 				except ValueError:
 					traceback.print_exc()
