@@ -82,30 +82,7 @@
 			{% else %}
 			
 				{% if current_user.is_admin() %}
-          			  <li class="nav-item dropdown active">
-
-				    <a class="nav-link dropdown-toggle" id="adminDropdownLink" role="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
-				    
-				    <div class="dropdown-menu" aria-labelledby="adminDropdownLink">
-				      <a class="dropdown-item" href="{{ url_for('admin_stats') }}">Stats</a>
-
-				      <!-- users -->
-				      
-				      <a class="dropdown-item" href="{{ url_for('admin_signup_settings') }}">Signup Settings</a>
-				      <a class="dropdown-item" href="{{ url_for('admin_create_user') }}">Create User</a>
-				      <a class="dropdown-item" href="{{ url_for('admin_manage_users') }}">Manage Users</a>
-
-				      <!-- groups -->
-
-				      <a class="dropdown-item" href="{{ url_for('admin_create_group') }}">Create Group</a>
-				      <a class="dropdown-item" href="{{ url_for('admin_manage_groups') }}">Manage Groups</a>
-
-				      <!-- forum -->
-
-				      <a class="dropdown-item" href="{{ url_for('admin_topics_prefs') }}">Topics Preferences</a>
-
-				    </div>
-				  </li>
+               <a href="{{ url_for('admin_stats') }}" class="nav-link nav-item active">Admin</a>
 				 
 				{% endif %}
 

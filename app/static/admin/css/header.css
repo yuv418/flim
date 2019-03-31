@@ -1,77 +1,20 @@
-div.admin_header {
-	background-color: lightblue; /* for browsers that don't like gradients */
-	background-image: linear-gradient(to right, black, white);
-	
-	display: inline-block;
-	
-	width: 100%;
-	
-	padding: 20px;
-	
-	margin: 0;
-	
-	position: absolute;
-	top: 70px;
-	left: 0;
-	right: 0;
-	
-	z-index: 999;
-	
-}
-.admin_title {
-	color: white;
+@media only screen and (min-width: 600px) {
+    .admin-header {
+	      left: 0;
+	      position: absolute;
+	      background-color: rgb(243, 243, 243);
+	      height: 100%;
+	      width: 15%;
 
+
+    }
 }
 
-.first_header_navbtn {
-	margin-left: 20px;
-}
-
-
-
-.content  {
-/*	margin-top: 5% !important; */
-}
-
-div.link_box {
-	background-color: white;
-	padding: 5px 10px;
-	
-	position: absolute;
-	z-index: 1000;
-	
-	border: 2px solid black;
-	
-	display: block;
-	max-width: 60%;
-	max-height: 100%;
-	
-	border-radius: 6px; 
-	
+.list-group .list-group-item {
+	background-color: rgb(243, 243, 243);
 
 }
-
-div.header_submenu_item  {
-	display: inline-block;
-
-
-}
-
-div.link_box a {
-	clear: both;
-	text-decoration: none;
-	
-	
-	
-	color: black;
-	padding:2px 10px;
-	width: 100%:
-	
-
-}
-
-div.link_box a:hover {
-	background-color: lightblue
-	
-
+.admin_content_container {
+    position: relative;
+    margin-left: 10%;
 }

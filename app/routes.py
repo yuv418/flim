@@ -55,4 +55,6 @@ def view_post_topics(topic_name):
 
 	return render_template("post_topic_listing.html", topic_name=topic_name, topic_posts=filtered_posts)
 
-
+@app.route("/fcs")
+def fcs():
+	return "<title>feature missing</title>Feature coming soon!<br><a href='javascript:window.history.back()'><button>Go back</button></a>"

@@ -3,29 +3,70 @@
 
 	{% block content %}
 
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin/css/header.css') }}" />
-		<script src="{{ url_for('static', filename='admin/js/header.js') }}"></script>
-<!--		<div class="admin_header">
-			<h2 class="admin_title" style='display: inline'>Admin Area</h2>
-			<a class="first_header_navbtn header_navbtn" id="admin-stats-btn" href="{{ url_for('admin_stats') }}"><button>Stats</button></a>
 
-			<div class="header_submenu_item">
-				<a class="header_navbtn" id="admin-user-btn" href="#"><button>Users</button></a>
-			</div>
-			<div class="header_submenu_item">
-				<a class="header_navbtn" id="admin-group-btn"  href="#"><button>Groups</button></a>
-			
-			</div>
-			<div class="header_submenu_item">
-				
-				<a class="header_navbtn" id="admin-forum-btn" href="#"><button>Forum</button></a>
-			</div>
-			<div class="header_submenu_item">
-				<a class="header_navbtn" id="admin-isetttings-btn" href="#"><button>Instance Settings</button></a>
-			
-			</div>
-			
-		</div>-->
+		<script src="{{ url_for('static', filename='admin/js/header.js') }}"></script>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin/css/header.css') }}" />
+
+		<div class="list-group admin-header">
+
+
+
+			  <a href="{{ url_for('admin_stats') }}" class="list-group-item">Stats</a>
+
+
+        <div>
+			      <a id="users-dropdown"
+               class="list-group-item dropdown-toggle"
+               role="button"
+               href="#"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">Users</a>
+
+            <div class="dropdown-menu" id="user-dropdown" aria-labelledby="users-dropdown">
+                <a class="dropdown-item" href="{{ url_for('admin_create_user') }}">Create User</a>
+                <a class="dropdown-item" href="{{ url_for('admin_manage_users') }}">Manage Users</a>
+                <a class="dropdown-item" href="{{ url_for('admin_signup_settings') }}">Sign-up Settings</a>
+            </div>
+        </div>
+
+
+        <div>
+
+			      <a id="groups-dropdown"
+               class="list-group-item dropdown-toggle"
+               href="#"
+               role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">Groups</a>
+
+
+            <div class="dropdown-menu" id="group-dropdown" aria-labelledby="groups-dropdown">
+                <a class="dropdown-item" href="{{ url_for('admin_create_group') }}">Create Groups</a>
+                <a class="dropdown-item" href="{{ url_for('admin_manage_groups') }}">Manage Groups</a>
+            </div>
+
+        </div>
+        <div>
+			      <a id="forum-dropdown"
+               class="list-group-item dropdown-toggle"
+               href="#"
+               role="button"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">Forum</a>
+
+
+            <div class="dropdown-menu" id="forum-dropdown" aria-labelledby="groups-dropdown">
+                <a class="dropdown-item" href="{{ url_for('admin_topics_prefs') }}">Topics Preferences</a>
+            </div>
+
+        </div>
+
+        <a href="{{ url_for('fcs') }}" class="list-group-item">Instance Settings</a>
+		</div>
+
 
 		<div class="admin_content_container">
 			{% block admin_content %}{% endblock %}
