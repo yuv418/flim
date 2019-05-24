@@ -14,6 +14,7 @@ from app.rest_api.user_resources import user_create
 from app.rest_api.user_resources import user_retrieve
 from app.rest_api.user_resources import user_update
 from app.rest_api.user_resources import user_delete
+from app.rest_api.user_resources import user_auth
 from app.rest_api.post_resources import post_retrieve
 from app.rest_api.response_resources import response_retrieve
 from app.rest_api.response_resources import response_create

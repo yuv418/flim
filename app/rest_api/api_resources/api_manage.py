@@ -92,71 +92,70 @@ def api_key_add():
 
 
 class APIKeyInfoResource(Resource):
-	
+
 	# This is a simple function. All it requires is api_key in order to view information about the API key.
-	
+
 	def get(self):
-		
+
 		"""
 		This function is designed to generate and return a new API key for a user based on description and user ID provided.
 		"""
-		
-		
+
 		# A blank report variable is generated.
-		
+
 		report = {} 
-		
+
 		# Step 1: Get request variables
-		
+
 		api_key = request.values.get('api_key')
-		
-		
+
+
 		# Step 2: Retrieve information about the API key from the APIKey model.
-		
+
 		api_key_entry = APIKey.query.filter_by(api_key=api_key).first()
-		
-		
+
+
 		# Step 3: Return the dictionary directory from the as_dict function
-		
+
 		return api_key_entry.as_dict()
 
 class APIKeyDeleteResource(Resource):
-	
+
 	"""
 	This is a resource designed for deleting API keys.
 	"""		
 
 	# A simple function to delete an API key. It requires api_key in order to delete the API key.
 	# This request deletes the API key and returns "status": boolean and "msg": string
-	
+
 	def delete(self):
-		
+
 		# A report variable is generated in the beginning
 		report = {}
-		
+
 		# Step 1: Retrieve request variables
-		
+
 		api_key_to_delete = request.values.get("api_key")
-		
+
 		# Step 2: Get API key object.
-		
+
 		api_key_to_delete_entry = APIKey.query.filter_by(api_key=api_key_to_delete).first()
-		
+
 		# Step 3: Delete API key.
-		
+
 		db.session.delete(api_key_to_delete_entry)
 		db.session.commit()
-		
+
 		# Step 3: Generate and return report.
-		
+
 		report['msg'] = "The API key was deleted succesfully."
 		report['status'] = True
-		
+
 		return report
-		
-		
-		
-	
+
+
+
+
 
 api.add_resource(APIKeyInfoResource, "/api/key/info")
 api.add_resource(APIKeyDeleteResource, "/api/key/delete")

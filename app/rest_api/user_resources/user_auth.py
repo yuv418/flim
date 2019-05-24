@@ -17,6 +17,9 @@ def check_user_auth():
 	# Find user
 	user = Users.query.filter_by(username=username).first()
 
+	if user == None:
+		return jsonify({"status": False})
+
 	# Check password
 	pw_chk = user.check_password(password)
 
